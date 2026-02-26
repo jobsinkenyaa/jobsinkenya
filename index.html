@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jobs Opportunities in Kenya – Find Your Next Job</title>
+<meta name="description" content="Find the latest jobs, internships, government and NGO careers across all 47 counties in Kenya.">
+
+<script>
+
+
+
+
+</script>
+
+<!-- Google AdSense — replace publisher ID after approval -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+/* ════════════════════════════════════════
+   VARIABLES & RESET
+════════════════════════════════════════ */
+:root{
+  --green:#0a7c4e; --green-d:#064e32; --green-l:#12a869;
+  --gold:#f5a623; --red:#dc2626; --blue:#1d4ed8;
+  --purple:#7c3aed; --orange:#ea580c; --teal:#0891b2;
+  --bg:#f7f9f5; --white:#ffffff; --text:#1a2b1e;
+  --muted:#6b7f6e; --border:#dde8d9;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+/* ════════════════════════════════════════
+   NAV
+════════════════════════════════════════ */
+nav{
+  background:var(--green);padding:0 5%;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:1000;
+  box-shadow:0 2px 12px rgba(0,0,0,0.2);height:62px;gap:12px;
+}
+.nav-logo{
+  font-family:'Playfair Display',serif;font-size:1.05rem;
+  font-weight:900;color:#fff;display:flex;align-items:center;
+  gap:8px;white-space:nowrap;flex-shrink:0;
+}
+.nav-logo .badge{
+  background:var(--gold);color:var(--green);border-radius:5px;
+  padding:2px 7px;font-size:0.62rem;font-family:'Nunito',sans-serif;
+  font-weight:900;letter-spacing:1px;
+}
+.nav-links{display:flex;gap:18px;list-style:none;}
+.nav-links a{
+  color:rgba(255,255,255,0.88);text-decoration:none;
+  font-weight:700;font-size:0.85rem;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{
+  background:var(--gold);color:var(--green);border:none;
+  padding:8px 16px;border-radius:30px;font-weight:900;
+  font-family:'Nunito',sans-serif;font-size:0.82rem;
+  cursor:pointer;white-space:nowrap;flex-shrink:0;transition:transform 0.2s;
+}
+.nav-cta:hover{transform:translateY(-2px);}
+.hamburger{
+  display:none;background:none;border:none;
+  color:white;font-size:1.6rem;cursor:pointer;padding:4px;
+}
+
+/* Mobile menu */
+.mob-menu{
+  display:none;position:fixed;top:62px;left:0;right:0;
+  background:var(--green-d);z-index:998;
+  flex-direction:column;gap:0;
+  box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+.mob-menu.open{display:flex;}
+.mob-menu a{
+  color:rgba(255,255,255,0.9);text-decoration:none;
+  font-weight:700;font-size:0.95rem;
+  padding:14px 5%;border-bottom:1px solid rgba(255,255,255,0.08);
+  transition:background 0.2s;
+}
+.mob-menu a:hover{background:rgba(255,255,255,0.06);}
+
+/* ════════════════════════════════════════
+   TYPE PILLS
+════════════════════════════════════════ */
+.type-nav{
+  background:var(--white);padding:10px 5%;
+  display:flex;gap:8px;overflow-x:auto;
+  border-bottom:2px solid var(--border);
+  position:sticky;top:62px;z-index:99;
+  box-shadow:0 2px 8px rgba(0,0,0,0.04);
+}
+.type-nav::-webkit-scrollbar{height:0;}
+.tp{
+  white-space:nowrap;padding:6px 14px;border-radius:30px;
+  border:2px solid var(--border);background:var(--bg);
+  font-family:'Nunito',sans-serif;font-weight:800;font-size:0.79rem;
+  cursor:pointer;color:var(--text);transition:all 0.2s;flex-shrink:0;
+  display:flex;align-items:center;gap:4px;
+}
+.tp:hover,.tp.active{background:var(--green);border-color:var(--green);color:white;}
+.tp .n{background:rgba(0,0,0,0.12);border-radius:10px;padding:1px 6px;font-size:0.66rem;}
+.tp.active .n{background:rgba(255,255,255,0.22);}
+
+/* ════════════════════════════════════════
+   HERO
+════════════════════════════════════════ */
+.hero{
+  background:linear-gradient(135deg,#0a7c4e 0%,#0d5c3a 55%,#083d27 100%);
+  color:white;padding:64px 5% 110px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M0 0h30v30H0zm30 30h30v30H30z'/%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-inner{max-width:680px;position:relative;animation:fadeUp 0.7s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(245,166,35,0.18);border:1px solid var(--gold);
+  color:var(--gold);border-radius:30px;padding:5px 14px;
+  font-size:0.79rem;font-weight:800;margin-bottom:16px;
+}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.75rem,5vw,3.2rem);
+  font-weight:900;line-height:1.18;margin-bottom:14px;
+}
+.hero h1 em{font-style:normal;color:var(--gold);}
+.hero p{font-size:clamp(0.88rem,2vw,1rem);opacity:0.88;margin-bottom:28px;line-height:1.75;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-gold{
+  background:var(--gold);color:var(--green);border:none;
+  padding:12px 24px;border-radius:30px;font-weight:900;
+  font-size:0.95rem;font-family:'Nunito',sans-serif;
+  cursor:pointer;text-decoration:none;display:inline-block;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(245,166,35,0.45);}
+.btn-ghost{
+  background:transparent;color:white;
+  border:2px solid rgba(255,255,255,0.42);
+  padding:12px 24px;border-radius:30px;font-weight:700;
+  font-size:0.95rem;font-family:'Nunito',sans-serif;
+  cursor:pointer;text-decoration:none;display:inline-block;
+  transition:all 0.2s;
+}
+.btn-ghost:hover{border-color:white;background:rgba(255,255,255,0.09);}
+.hero-stats{
+  display:flex;gap:28px;margin-top:40px;
+  padding-top:22px;border-top:1px solid rgba(255,255,255,0.14);
+  flex-wrap:wrap;
+}
+.hstat h3{font-size:1.7rem;font-weight:900;color:var(--gold);}
+.hstat p{font-size:0.74rem;opacity:0.68;margin-top:2px;}
+
+/* ════════════════════════════════════════
+   SEARCH
+════════════════════════════════════════ */
+.search-wrap{padding:0 5%;}
+.search-box{
+  background:var(--white);margin:-38px 0 0;border-radius:16px;
+  padding:20px 22px;box-shadow:0 8px 36px rgba(0,0,0,0.13);
+  position:relative;z-index:10;
+}
+.search-row{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr auto;
+  gap:10px;align-items:flex-end;
+}
+.sf{display:flex;flex-direction:column;gap:4px;}
+.sf label{font-size:0.68rem;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;}
+.sf input,.sf select{
+  border:2px solid var(--border);border-radius:9px;
+  padding:10px 11px;font-family:'Nunito',sans-serif;
+  font-size:0.88rem;color:var(--text);outline:none;
+  background:var(--bg);width:100%;transition:border-color 0.2s;
+}
+.sf input:focus,.sf select:focus{border-color:var(--green);}
+.search-btn{
+  background:var(--green);color:white;border:none;
+  padding:0 22px;border-radius:9px;font-weight:800;
+  font-family:'Nunito',sans-serif;font-size:0.9rem;
+  cursor:pointer;height:42px;white-space:nowrap;transition:background 0.2s;
+}
+.search-btn:hover{background:var(--green-l);}
+
+/* ════════════════════════════════════════
+   ADS
+════════════════════════════════════════ */
+.ad-wrap{padding:16px 5% 0;}
+.ad-slot{
+  background:var(--white);border:2px dashed var(--border);
+  border-radius:12px;padding:10px;text-align:center;
+  min-height:90px;display:flex;align-items:center;
+  justify-content:center;color:var(--muted);
+  font-size:0.76rem;font-weight:700;overflow:hidden;
+}
+
+/* ════════════════════════════════════════
+   FEATURED
+════════════════════════════════════════ */
+.feat-section{
+  background:linear-gradient(135deg,#fffbeb,#fef3c7);
+  border-top:3px solid var(--gold);border-bottom:3px solid var(--gold);
+  padding:36px 5%;
+}
+.feat-hdr{
+  display:flex;justify-content:space-between;
+  align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px;
+}
+.feat-label{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--gold);color:white;padding:6px 14px;
+  border-radius:30px;font-weight:900;font-size:0.82rem;
+}
+.feat-sub{font-size:0.79rem;color:#92400e;margin-top:6px;font-weight:600;}
+.promote-btn{
+  background:var(--green);color:white;border:none;
+  padding:9px 18px;border-radius:30px;font-weight:800;
+  font-family:'Nunito',sans-serif;font-size:0.82rem;cursor:pointer;transition:all 0.2s;
+}
+.promote-btn:hover{background:var(--green-l);transform:translateY(-2px);}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:15px;}
+.fcard{
+  background:var(--white);border-radius:15px;padding:20px;
+  border:2px solid var(--gold);position:relative;
+  transition:all 0.25s;box-shadow:0 3px 14px rgba(245,166,35,0.1);
+}
+.fcard:hover{transform:translateY(-4px);box-shadow:0 10px 26px rgba(245,166,35,0.2);}
+.fribbon{
+  position:absolute;top:-1px;left:16px;background:var(--gold);color:white;
+  font-size:0.63rem;font-weight:900;padding:3px 11px;border-radius:0 0 8px 8px;
+}
+.fcard-title{font-size:0.93rem;font-weight:800;margin:14px 0 3px;}
+.fcard-co{font-size:0.8rem;color:var(--muted);margin-bottom:4px;font-weight:600;}
+.fcard-sal{font-size:0.83rem;color:var(--green);font-weight:800;margin-bottom:9px;}
+.fcard-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px;}
+.ftag{background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:2px 8px;font-size:0.7rem;font-weight:700;color:var(--muted);}
+.fcard-foot{display:flex;justify-content:space-between;align-items:center;padding-top:10px;border-top:1px solid #fde68a;}
+.fviews{font-size:0.7rem;color:var(--muted);font-weight:700;}
+.fbtn{
+  background:var(--gold);color:white;border:none;
+  padding:6px 13px;border-radius:16px;font-weight:800;
+  font-size:0.76rem;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.2s;
+}
+.fbtn:hover{background:#d97706;}
+
+/* ════════════════════════════════════════
+   JOBS SECTION
+════════════════════════════════════════ */
+.section{padding:50px 5%;}
+.sec-hdr{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:6px;}
+.sec-title{font-family:'Playfair Display',serif;font-size:1.75rem;font-weight:900;}
+.sec-sub{color:var(--muted);font-size:0.9rem;margin-bottom:22px;}
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px;}
+.chip{
+  background:var(--white);border:2px solid var(--border);
+  border-radius:30px;padding:5px 13px;font-size:0.78rem;
+  font-weight:700;cursor:pointer;transition:all 0.2s;
+  font-family:'Nunito',sans-serif;color:var(--text);
+}
+.chip.active,.chip:hover{background:var(--green);border-color:var(--green);color:white;}
+
+/* Skeleton loader */
+.skel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;}
+.skeleton{
+  background:var(--white);border-radius:15px;padding:20px;
+  border:2px solid var(--border);animation:shimmer 1.4s infinite;
+}
+@keyframes shimmer{0%,100%{opacity:1;}50%{opacity:0.5;}}
+.sk{background:#e8ede8;border-radius:6px;margin-bottom:9px;}
+.sk-h{height:13px;}.sk-m{height:11px;width:68%;}.sk-s{height:10px;width:46%;}
+
+/* Job cards */
+.jgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;}
+.jcard{
+  background:var(--white);border-radius:15px;padding:20px;
+  border:2px solid var(--border);transition:all 0.25s;
+  position:relative;overflow:hidden;
+}
+.jcard:hover{transform:translateY(-4px);box-shadow:0 12px 30px rgba(10,124,78,0.1);border-color:var(--green-l);}
+.jribbon{
+  position:absolute;top:12px;right:-26px;color:white;
+  font-size:0.57rem;font-weight:900;letter-spacing:0.8px;
+  padding:4px 34px;transform:rotate(45deg) translateX(10px);text-transform:uppercase;
+}
+.rb-ft{background:var(--blue);}.rb-pt{background:var(--orange);}
+.rb-int{background:var(--purple);}.rb-gov{background:#b45309;}
+.rb-ngo{background:var(--teal);}.rb-rem{background:#475569;}
+.jtop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:11px;}
+.clogo{
+  width:42px;height:42px;border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;font-weight:900;color:white;flex-shrink:0;
+}
+.jbadge{font-size:0.67rem;font-weight:800;padding:3px 9px;border-radius:16px;}
+.b-ft{background:rgba(29,78,216,0.1);color:var(--blue);}
+.b-pt{background:rgba(234,88,12,0.1);color:var(--orange);}
+.b-int{background:rgba(124,58,237,0.1);color:var(--purple);}
+.b-gov{background:rgba(180,83,9,0.1);color:#b45309;}
+.b-ngo{background:rgba(8,145,178,0.1);color:var(--teal);}
+.b-rem{background:rgba(71,85,105,0.1);color:#475569;}
+.jcard h3{font-size:0.96rem;font-weight:800;margin-bottom:3px;line-height:1.35;}
+.jco{font-size:0.81rem;color:var(--muted);margin-bottom:4px;font-weight:600;}
+.jsal{font-size:0.83rem;color:var(--green);font-weight:800;margin-bottom:8px;}
+.jtags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:11px;}
+.jtag{background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:2px 8px;font-size:0.7rem;font-weight:700;color:var(--muted);}
+.jtag.red{color:var(--red);border-color:#fca5a5;background:#fef2f2;}
+.jfoot{display:flex;justify-content:space-between;align-items:center;padding-top:11px;border-top:1px solid var(--border);}
+.jdl{font-size:0.71rem;color:var(--muted);font-weight:600;}
+.view-btn{
+  background:var(--green);color:white;border:none;
+  padding:7px 14px;border-radius:16px;font-weight:800;
+  font-size:0.77rem;font-family:'Nunito',sans-serif;cursor:pointer;transition:all 0.2s;
+}
+.view-btn:hover{background:var(--green-l);}
+
+/* Share row */
+.srow{display:flex;align-items:center;gap:5px;margin-top:9px;flex-wrap:wrap;}
+.slbl{font-size:0.69rem;color:var(--muted);font-weight:700;margin-right:2px;}
+.sbtn{
+  padding:4px 10px;border-radius:16px;border:none;cursor:pointer;
+  font-size:0.7rem;font-weight:800;color:white;
+  transition:transform 0.18s;font-family:'Nunito',sans-serif;
+}
+.sbtn:hover{transform:scale(1.1);}
+.s-wa{background:#25d366;}.s-wc{background:#075e54;}
+.s-fb{background:#1877f2;}.s-x{background:#111;}
+
+/* Error / empty */
+.err-box{text-align:center;padding:48px 20px;}
+.err-box h3{font-size:1.1rem;font-weight:800;margin-bottom:7px;}
+.err-box p{font-size:0.87rem;color:var(--muted);margin-bottom:16px;}
+.retry-btn{
+  background:var(--green);color:white;border:none;
+  padding:10px 24px;border-radius:30px;font-weight:800;
+  font-family:'Nunito',sans-serif;font-size:0.88rem;cursor:pointer;
+}
+
+/* ════════════════════════════════════════
+   JOB DETAIL MODAL
+════════════════════════════════════════ */
+.overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.58);z-index:2000;
+  overflow-y:auto;padding:16px;
+}
+.overlay.open{display:block;}
+.modal{
+  background:var(--white);border-radius:18px;
+  width:100%;max-width:660px;margin:auto;
+  position:relative;animation:fadeUp 0.26s ease;
+}
+.modal-close{
+  position:sticky;top:12px;float:right;margin:12px 14px 0 0;
+  background:var(--bg);border:none;width:32px;height:32px;
+  border-radius:50%;font-size:1.1rem;cursor:pointer;
+  color:var(--muted);display:flex;align-items:center;justify-content:center;z-index:5;
+}
+.modal-close:hover{background:var(--border);}
+.modal-body{padding:20px 24px 28px;clear:both;}
+
+/* Modal header */
+.mhdr{
+  display:flex;gap:14px;align-items:flex-start;
+  margin-bottom:18px;padding-bottom:16px;border-bottom:2px solid var(--border);
+}
+.mlogo{
+  width:54px;height:54px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.15rem;font-weight:900;color:white;flex-shrink:0;
+}
+.mtitle{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:900;margin-bottom:3px;line-height:1.3;}
+.mco{font-size:0.9rem;color:var(--green);font-weight:800;margin-bottom:8px;}
+.mmeta{display:flex;gap:5px;flex-wrap:wrap;}
+.mmtag{background:var(--bg);border:1px solid var(--border);border-radius:5px;padding:3px 9px;font-size:0.7rem;font-weight:700;color:var(--muted);}
+.mmtag.red{background:#fef2f2;border-color:#fca5a5;color:var(--red);}
+
+/* Quick info grid */
+.minfo{
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:18px;
+}
+.minfo-item{background:var(--bg);border-radius:9px;padding:10px 13px;}
+.minfo-lbl{font-size:0.64rem;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:3px;}
+.minfo-val{font-size:0.85rem;font-weight:800;color:var(--text);}
+
+/* Modal sections */
+.msec{margin-bottom:20px;}
+.msec-ttl{
+  font-size:0.7rem;font-weight:900;color:var(--green);
+  text-transform:uppercase;letter-spacing:0.9px;
+  margin-bottom:10px;padding-bottom:5px;border-bottom:2px solid var(--border);
+  display:flex;align-items:center;gap:6px;
+}
+.msec p{font-size:0.86rem;line-height:1.74;color:#374151;margin-bottom:8px;}
+.msec ul{padding-left:18px;}
+.msec li{font-size:0.85rem;line-height:1.7;color:#374151;margin-bottom:5px;}
+
+/* Apply box */
+.apply-box{
+  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+  border:2px solid #86efac;border-radius:14px;
+  padding:18px;margin-top:4px;
+}
+.apply-box-ttl{
+  font-size:0.7rem;font-weight:900;color:var(--green);
+  text-transform:uppercase;letter-spacing:0.9px;margin-bottom:12px;
+}
+.apply-method{
+  display:flex;align-items:flex-start;gap:12px;
+  background:var(--white);border-radius:10px;
+  padding:12px 14px;margin-bottom:10px;border:2px solid var(--border);
+}
+.am-icon{font-size:1.4rem;flex-shrink:0;margin-top:2px;}
+.am-lbl{font-size:0.68rem;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px;}
+.am-val{font-size:0.9rem;font-weight:900;color:var(--green);word-break:break-all;}
+.apply-cta{
+  display:block;width:100%;background:var(--green);color:white;
+  border:none;padding:13px;border-radius:10px;font-weight:900;
+  font-size:0.95rem;font-family:'Nunito',sans-serif;cursor:pointer;
+  text-align:center;margin-top:6px;transition:all 0.2s;
+}
+.apply-cta:hover{background:var(--green-l);transform:translateY(-2px);}
+.apply-note{font-size:0.74rem;color:var(--muted);text-align:center;margin-top:8px;font-weight:600;}
+.no-apply{
+  background:#fefce8;border:2px solid #fde047;
+  border-radius:10px;padding:14px;text-align:center;
+}
+.no-apply p{font-size:0.84rem;color:#713f12;font-weight:700;line-height:1.65;}
+
+/* Modal share */
+.mshare{
+  display:flex;align-items:center;gap:7px;
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--border);flex-wrap:wrap;
+}
+.mshare-lbl{font-size:0.73rem;font-weight:800;color:var(--muted);}
+
+/* ════════════════════════════════════════
+   COUNTIES
+════════════════════════════════════════ */
+.cty-bg{background:var(--white);}
+.ctygrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px;}
+.cty{
+  background:var(--bg);border:2px solid var(--border);
+  border-radius:9px;padding:9px 10px;text-align:center;
+  font-size:0.78rem;font-weight:700;cursor:pointer;transition:all 0.2s;
+}
+.cty:hover,.cty.active{background:var(--green);color:white;border-color:var(--green);}
+.ctyc{font-size:0.63rem;opacity:0.68;margin-top:2px;}
+
+/* ════════════════════════════════════════
+   SMS ALERTS
+════════════════════════════════════════ */
+.sms-wrap{
+  background:linear-gradient(135deg,#1a2b1e,#0a3d27);
+  color:white;padding:64px 5%;position:relative;overflow:hidden;
+}
+.sms-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='20' fill='%23ffffff' fill-opacity='0.03'/%3E%3C/svg%3E");
+}
+.sms-inner{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start;}
+.sms-h2{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;margin-bottom:12px;}
+.sms-h2 em{font-style:normal;color:var(--gold);}
+.sms-p{opacity:0.82;line-height:1.72;font-size:0.91rem;margin-bottom:18px;}
+.plan-cards{display:flex;flex-direction:column;gap:9px;}
+.plan-card{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);
+  border-radius:12px;padding:13px 17px;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:all 0.2s;cursor:pointer;
+}
+.plan-card:hover,.plan-card.sel{background:rgba(245,166,35,0.14);border-color:var(--gold);}
+.plan-name{font-weight:900;font-size:0.93rem;margin-bottom:2px;}
+.plan-desc{font-size:0.79rem;opacity:0.7;}
+.plan-price{font-size:1.25rem;font-weight:900;color:var(--gold);white-space:nowrap;}
+.plan-price span{font-size:0.7rem;opacity:0.7;font-weight:600;}
+.sms-panel{
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  border-radius:17px;padding:24px;
+}
+.sms-panel h3{font-weight:900;font-size:1.02rem;margin-bottom:15px;color:var(--gold);}
+.sfg{display:flex;flex-direction:column;gap:4px;margin-bottom:11px;}
+.sfg label{font-size:0.68rem;font-weight:900;opacity:0.63;text-transform:uppercase;letter-spacing:0.5px;}
+.sfg input,.sfg select{
+  background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.19);
+  border-radius:8px;padding:9px 12px;font-family:'Nunito',sans-serif;
+  font-size:0.87rem;color:white;outline:none;width:100%;transition:border-color 0.2s;
+}
+.sfg input::placeholder{color:rgba(255,255,255,0.4);}
+.sfg input:focus,.sfg select:focus{border-color:var(--gold);}
+.sfg select option{color:var(--text);background:white;}
+.plan-display{
+  background:rgba(245,166,35,0.13);border:1px solid rgba(245,166,35,0.38);
+  border-radius:8px;padding:10px 13px;margin-bottom:11px;
+  font-size:0.81rem;color:rgba(255,255,255,0.85);
+}
+.mpesa-btn{
+  background:linear-gradient(135deg,#00a651,#007a3d);color:white;
+  border:none;padding:13px;border-radius:10px;font-weight:900;
+  font-size:0.93rem;font-family:'Nunito',sans-serif;cursor:pointer;
+  width:100%;display:flex;align-items:center;justify-content:center;
+  gap:9px;transition:all 0.2s;
+}
+.mpesa-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,166,81,0.38);}
+.mpesa-logo{background:white;color:#00a651;font-weight:900;font-size:0.7rem;padding:2px 7px;border-radius:5px;}
+
+/* ════════════════════════════════════════
+   EMAIL SUB
+════════════════════════════════════════ */
+.sub-wrap{
+  background:linear-gradient(135deg,var(--green),#0d5c3a);
+  color:white;text-align:center;padding:58px 5%;
+  position:relative;overflow:hidden;
+}
+.sub-wrap::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='20' fill='%23ffffff' fill-opacity='0.04'/%3E%3C/svg%3E");
+}
+.sub-wrap h2{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;margin-bottom:9px;position:relative;}
+.sub-wrap>p{opacity:0.85;margin-bottom:22px;font-size:0.91rem;position:relative;}
+.subform{display:flex;gap:8px;max-width:520px;margin:0 auto 12px;flex-wrap:wrap;position:relative;}
+.subform input,.subform select{
+  flex:1;min-width:130px;padding:10px 13px;border-radius:9px;
+  border:none;font-family:'Nunito',sans-serif;font-size:0.87rem;
+  outline:none;background:white;color:var(--text);
+}
+.subform button{
+  background:var(--gold);color:var(--green);border:none;
+  padding:10px 20px;border-radius:9px;font-weight:900;
+  font-family:'Nunito',sans-serif;font-size:0.87rem;cursor:pointer;transition:transform 0.2s;white-space:nowrap;
+}
+.subform button:hover{transform:scale(1.04);}
+.sub-toast{
+  display:none;background:rgba(255,255,255,0.14);
+  border:1px solid rgba(255,255,255,0.28);border-radius:9px;
+  padding:12px 16px;margin:0 auto;max-width:460px;
+  font-weight:700;font-size:0.87rem;position:relative;
+}
+
+/* ════════════════════════════════════════
+   HOW IT WORKS
+════════════════════════════════════════ */
+.how-bg{background:var(--bg);}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:18px;}
+.step{
+  text-align:center;padding:28px 18px;border-radius:15px;
+  background:var(--white);border:2px solid var(--border);transition:all 0.25s;
+}
+.step:hover{transform:translateY(-5px);border-color:var(--green);box-shadow:0 10px 26px rgba(10,124,78,0.09);}
+.step-icon{width:52px;height:52px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:1.3rem;}
+.step-num{font-size:0.66rem;font-weight:900;color:var(--green);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;}
+.step h3{font-size:0.93rem;font-weight:800;margin-bottom:6px;}
+.step p{font-size:0.81rem;color:var(--muted);line-height:1.64;}
+
+/* ════════════════════════════════════════
+   PROMOTE MODAL
+════════════════════════════════════════ */
+.promo-plans{display:flex;flex-direction:column;gap:9px;margin-bottom:18px;}
+.pp{
+  border:2px solid var(--border);border-radius:11px;
+  padding:12px 16px;cursor:pointer;transition:all 0.2s;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.pp:hover,.pp.sel{border-color:var(--green);background:#f0fdf4;}
+.pp h4{font-weight:900;font-size:0.91rem;margin-bottom:2px;}
+.pp p{font-size:0.77rem;color:var(--muted);margin:0;}
+.pp-price{font-size:1.12rem;font-weight:900;color:var(--green);white-space:nowrap;}
+.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:11px;}
+.fg label{font-size:0.68rem;font-weight:900;color:var(--muted);text-transform:uppercase;letter-spacing:0.4px;}
+.fg input,.fg select,.fg textarea{
+  border:2px solid var(--border);border-radius:9px;
+  padding:9px 12px;font-family:'Nunito',sans-serif;
+  font-size:0.87rem;color:var(--text);outline:none;
+  background:var(--bg);resize:vertical;width:100%;transition:border-color 0.2s;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--green);}
+.promo-selected{
+  background:#f0fdf4;border:1px solid #bbf7d0;
+  border-radius:9px;padding:11px 14px;margin-bottom:12px;
+  font-size:0.81rem;color:#166534;font-weight:700;
+}
+
+/* ════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════ */
+footer{background:var(--text);color:rgba(255,255,255,0.78);padding:46px 5% 24px;}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:28px;margin-bottom:28px;}
+.fbrand h3{font-family:'Playfair Display',serif;color:white;font-size:1.02rem;margin-bottom:8px;}
+.fbrand p{font-size:0.8rem;line-height:1.72;opacity:0.58;}
+.fcol h4{color:var(--gold);font-size:0.72rem;font-weight:900;letter-spacing:1px;text-transform:uppercase;margin-bottom:11px;}
+.fcol ul{list-style:none;}
+.fcol li{margin-bottom:6px;}
+.fcol a{color:rgba(255,255,255,0.58);text-decoration:none;font-size:0.81rem;transition:color 0.2s;}
+.fcol a:hover{color:var(--gold);}
+.fbot{border-top:1px solid rgba(255,255,255,0.1);padding-top:20px;display:flex;justify-content:space-between;font-size:0.75rem;opacity:0.48;flex-wrap:wrap;gap:7px;}
+
+/* ════════════════════════════════════════
+   NOTIF
+════════════════════════════════════════ */
+#nb{
+  display:none;position:fixed;bottom:16px;right:16px;
+  background:var(--green);color:white;border-radius:13px;
+  padding:12px 16px;font-weight:700;font-size:0.82rem;
+  box-shadow:0 8px 24px rgba(10,124,78,0.36);z-index:9999;
+  max-width:300px;animation:slideIn 0.38s ease;
+}
+@keyframes slideIn{from{transform:translateY(18px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+#nb .nt{font-weight:900;font-size:0.87rem;margin-bottom:2px;}
+.nc{background:none;border:none;color:rgba(255,255,255,0.6);cursor:pointer;float:right;font-size:1.1rem;margin-left:8px;}
+
+/* ════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════ */
+@media(max-width:820px){
+  .nav-links{display:none;}
+  .hamburger{display:block;}
+  .search-row{grid-template-columns:1fr 1fr;}
+  .search-row .sf:first-child{grid-column:1/-1;}
+  .search-btn{grid-column:1/-1;width:100%;}
+  .sms-inner{grid-template-columns:1fr;}
+  .fgrid{grid-template-columns:1fr 1fr;}
+  .minfo{grid-template-columns:1fr;}
+  .hero{padding:44px 5% 90px;}
+}
+@media(max-width:500px){
+  .hero h1{font-size:1.65rem;}
+  .hero-stats{gap:14px;}
+  .fgrid{grid-template-columns:1fr;}
+  .feat-grid{grid-template-columns:1fr;}
+  .modal-body{padding:16px;}
+  .mhdr{flex-direction:column;}
+  .mlogo{width:46px;height:46px;}
+  .nav-logo{font-size:0.9rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav>
+  <div class="nav-logo">🇰🇪 Jobs Opportunities in Kenya <span class="badge">LIVE</span></div>
+  <ul class="nav-links">
+    <li><a href="#jobs">Browse Jobs</a></li>
+    <li><a href="#featured">Featured</a></li>
+    <li><a href="#counties">Counties</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#sms-alerts">SMS Alerts</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openPromote()">⭐ Post a Job</button>
+  <button class="hamburger" onclick="toggleMob()">☰</button>
+</nav>
+
+<div class="mob-menu" id="mob-menu">
+  <a href="#jobs"       onclick="closeMob()">🔍 Browse Jobs</a>
+  <a href="#featured"   onclick="closeMob()">⭐ Featured Jobs</a>
+  <a href="#counties"   onclick="closeMob()">📍 All Counties</a>
+  <a href="#sms-alerts" onclick="closeMob()">📱 SMS Alerts</a>
+  <a href="#how"        onclick="closeMob()">❓ How It Works</a>
+  <a href="#"           onclick="openPromote();closeMob()">⭐ Post a Job</a>
+</div>
+
+<!-- ══════════════════ TYPE PILLS ══════════════════ -->
+<div class="type-nav">
+  <button class="tp active" onclick="typeFilter(this,'all')">🗂 All <span class="n" id="total-count">...</span></button>
+  <button class="tp" onclick="typeFilter(this,'fulltime')">💼 Full-Time</button>
+  <button class="tp" onclick="typeFilter(this,'parttime')">⏰ Part-Time</button>
+  <button class="tp" onclick="typeFilter(this,'intern')">🎓 Internship</button>
+  <button class="tp" onclick="typeFilter(this,'government')">🏛 Government</button>
+  <button class="tp" onclick="typeFilter(this,'ngo')">🤝 NGO</button>
+  <button class="tp" onclick="typeFilter(this,'remote')">🌐 Remote</button>
+</div>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">🇰🇪 Kenya's #1 Jobs Platform — Updated Hourly</div>
+    <h1>Find Your <em>Next Job</em> Anywhere in Kenya</h1>
+    <p>We bring you verified job listings from real Kenyan employers every hour — full-time, part-time, internships, government, NGO and remote. All 47 counties covered.</p>
+    <div class="hero-btns">
+      <a href="#jobs" class="btn-gold">Browse Live Jobs 🔍</a>
+      <a href="#sms-alerts" class="btn-ghost">📱 Get SMS Alerts</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat"><h3 id="stat-jobs">...</h3><p>Jobs Available</p></div>
+      <div class="hstat"><h3>47</h3><p>Counties Covered</p></div>
+      <div class="hstat"><h3>Hourly</h3><p>Auto-Updated</p></div>
+      <div class="hstat"><h3>Free</h3><p>To Browse</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SEARCH ══════════════════ -->
+<div class="search-wrap">
+  <div class="search-box">
+    <div class="search-row">
+      <div class="sf">
+        <label>🔍 Job Title / Keyword</label>
+        <input type="text" id="si" placeholder="e.g. Accountant, Nurse, Engineer..." onkeydown="if(event.key==='Enter')fetchJobs()">
+      </div>
+      <div class="sf">
+        <label>📍 County</label>
+        <select id="cf">
+          <option value="Kenya">All Kenya</option>
+          <option>Nairobi</option><option>Mombasa</option><option>Kisumu</option>
+          <option>Nakuru</option><option>Eldoret</option><option>Kiambu</option>
+          <option>Machakos</option><option>Nyeri</option><option>Meru</option>
+          <option>Kakamega</option><option>Kisii</option><option>Kilifi</option>
+          <option>Thika</option><option>Malindi</option><option>Garissa</option><option>Turkana</option>
+        </select>
+      </div>
+      <div class="sf">
+        <label>💼 Job Type</label>
+        <select id="tf">
+          <option value="">Any Type</option>
+          <option value="FULLTIME">Full-Time</option>
+          <option value="PARTTIME">Part-Time</option>
+          <option value="INTERN">Internship</option>
+          <option value="CONTRACTOR">Contract</option>
+        </select>
+      </div>
+      <button class="search-btn" onclick="fetchJobs()">Search 🔎</button>
+    </div>
+  </div>
+</div>
+
+<!-- AD SLOT 1 -->
+<div class="ad-wrap">
+  <div class="ad-slot">
+    <ins class="adsbygoogle" style="display:block;width:100%;height:90px;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1234567890" data-ad-format="horizontal"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
+</div>
+
+<!-- ══════════════════ FEATURED JOBS ══════════════════ -->
+<section class="feat-section" id="featured">
+  <div class="feat-hdr">
+    <div>
+      <span class="feat-label">⭐ Featured Jobs</span>
+      <div class="feat-sub">Promoted jobs — top visibility for employers</div>
+    </div>
+    <button class="promote-btn" onclick="openPromote()">⭐ Feature Your Job — From KSh 500</button>
+  </div>
+  <div class="feat-grid" id="feat-grid">
+    <!-- Dynamically loaded from admin panel — up to 1000 featured jobs -->
+    <div style="color:#92400e;font-size:0.88rem;padding:16px;opacity:0.7;">
+      Loading featured jobs...
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT 2 -->
+<div style="padding:12px 5%;">
+  <div class="ad-slot">
+    <ins class="adsbygoogle" style="display:block;width:100%;height:90px;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="9876543210" data-ad-format="horizontal"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
+</div>
+
+<!-- ══════════════════ LIVE JOBS ══════════════════ -->
+<section class="section" id="jobs">
+  <div class="sec-hdr">
+    <div>
+      <div class="sec-title">Latest Jobs in Kenya</div>
+      <div class="sec-sub" id="jobs-sub">Finding the latest jobs across Kenya...</div>
+    </div>
+    <button class="btn-gold" style="font-size:0.84rem;padding:9px 18px;" onclick="fetchJobs()">🔄 Refresh</button>
+  </div>
+  <div class="chips">
+    <button class="chip active" onclick="setChip(this,'all')">All</button>
+    <button class="chip" onclick="setChip(this,'fulltime')">💼 Full-Time</button>
+    <button class="chip" onclick="setChip(this,'parttime')">⏰ Part-Time</button>
+    <button class="chip" onclick="setChip(this,'intern')">🎓 Internship</button>
+    <button class="chip" onclick="setChip(this,'government')">🏛 Government</button>
+    <button class="chip" onclick="setChip(this,'ngo')">🤝 NGO</button>
+    <button class="chip" onclick="setChip(this,'remote')">🌐 Remote</button>
+  </div>
+
+  <!-- Loading skeletons -->
+  <div class="skel-grid" id="loading-grid">
+    <div class="skeleton"><div class="sk sk-h"></div><div class="sk sk-m"></div><div class="sk sk-s"></div><div class="sk sk-h" style="margin-top:12px;"></div></div>
+    <div class="skeleton"><div class="sk sk-h"></div><div class="sk sk-m"></div><div class="sk sk-s"></div><div class="sk sk-h" style="margin-top:12px;"></div></div>
+    <div class="skeleton"><div class="sk sk-h"></div><div class="sk sk-m"></div><div class="sk sk-s"></div><div class="sk sk-h" style="margin-top:12px;"></div></div>
+    <div class="skeleton"><div class="sk sk-h"></div><div class="sk sk-m"></div><div class="sk sk-s"></div><div class="sk sk-h" style="margin-top:12px;"></div></div>
+    <div class="skeleton"><div class="sk sk-h"></div><div class="sk sk-m"></div><div class="sk sk-s"></div><div class="sk sk-h" style="margin-top:12px;"></div></div>
+    <div class="skeleton"><div class="sk sk-h"></div><div class="sk sk-m"></div><div class="sk sk-s"></div><div class="sk sk-h" style="margin-top:12px;"></div></div>
+  </div>
+
+  <div class="jgrid" id="jgrid" style="display:none;"></div>
+
+  <div id="err-box" style="display:none;">
+    <div class="err-box">
+      <h3>⚠️ Could not load jobs</h3>
+      <p>Check your API key or internet connection.</p>
+      <button class="retry-btn" onclick="fetchJobs()">🔄 Try Again</button>
+    </div>
+  </div>
+
+  <!-- Mid-page ad -->
+  <div class="ad-slot" style="margin-top:28px;">
+    <ins class="adsbygoogle" style="display:block;width:100%;height:250px;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="1122334455" data-ad-format="rectangle"></ins>
+    <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+  </div>
+</section>
+
+<!-- ══════════════════ COUNTIES ══════════════════ -->
+<section class="section cty-bg" id="counties">
+  <div class="sec-title">Browse Jobs by County</div>
+  <div class="sec-sub">Tap any county to search jobs there 🇰🇪</div>
+  <div class="ctygrid" id="ctygrid"></div>
+</section>
+
+<!-- ══════════════════ SMS ALERTS ══════════════════ -->
+<section class="sms-wrap" id="sms-alerts">
+  <div class="sms-inner">
+    <div class="sms-info">
+      <h2 class="sms-h2">📱 Never Miss a Job —<br>Get <em>SMS Alerts</em></h2>
+      <p class="sms-p">Subscribe and get instant SMS the moment a job matching your profile is posted. Pay once via M-Pesa and stay ahead always.</p>
+      <div class="plan-cards">
+        <div class="plan-card sel" onclick="selPlan(this,'Weekly','KSh 50')">
+          <div><div class="plan-name">Weekly Alerts</div><div class="plan-desc">7 days of SMS alerts</div></div>
+          <div class="plan-price">KSh 50 <span>/ week</span></div>
+        </div>
+        <div class="plan-card" onclick="selPlan(this,'Monthly','KSh 150')">
+          <div><div class="plan-name">Monthly Alerts</div><div class="plan-desc">30 days of SMS alerts</div></div>
+          <div class="plan-price">KSh 150 <span>/ month</span></div>
+        </div>
+        <div class="plan-card" onclick="selPlan(this,'3-Month Bundle 🔥','KSh 350')">
+          <div><div class="plan-name">3-Month Bundle 🔥</div><div class="plan-desc">90 days — best value</div></div>
+          <div class="plan-price">KSh 350 <span>/ 3 mo</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="sms-panel">
+      <h3>📲 Activate SMS Alerts</h3>
+      <div class="sfg"><label>Your Phone Number</label><input type="tel" id="sms-phone" placeholder="07XX XXX XXX"></div>
+      <div class="sfg"><label>Job Type</label>
+        <select id="sms-type"><option value="">Any Type</option><option>Full-Time</option><option>Part-Time</option><option>Internship</option><option>Government</option><option>NGO</option><option>Remote</option></select>
+      </div>
+      <div class="sfg"><label>Your County</label>
+        <select id="sms-county"><option value="">Any County</option><option>Nairobi</option><option>Mombasa</option><option>Kisumu</option><option>Nakuru</option><option>Eldoret</option><option>Kiambu</option><option>Other</option></select>
+      </div>
+      <div class="sfg"><label>Sector</label>
+        <select id="sms-sector"><option value="">Any Sector</option><option>ICT & Technology</option><option>Finance & Banking</option><option>Health & Medicine</option><option>Engineering</option><option>Agriculture</option><option>Education</option><option>Marketing</option></select>
+      </div>
+      <div class="plan-display">💳 Selected: <strong id="plan-display-txt">Weekly — KSh 50</strong></div>
+      <button class="mpesa-btn" onclick="initMpesa()">
+        <span class="mpesa-logo">M-PESA</span> Pay & Activate SMS Alerts
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ FREE EMAIL ══════════════════ -->
+<section class="sub-wrap" id="subscribe">
+  <h2>📧 Free Email Alerts</h2>
+  <p>Prefer email? Subscribe free — get notified when new jobs are posted in your area.</p>
+  <div class="subform" id="subform">
+    <input type="email" id="semail" placeholder="Your email address">
+    <select><option>Any Job Type</option><option>Full-Time</option><option>Part-Time</option><option>Internship</option><option>Government</option><option>NGO</option></select>
+    <select><option>Any County</option><option>Nairobi</option><option>Mombasa</option><option>Kisumu</option><option>Nakuru</option><option>Eldoret</option></select>
+    <button onclick="doSubscribe()">Subscribe Free 📧</button>
+  </div>
+  <div class="sub-toast" id="stoast">✅ Subscribed! We'll email <strong id="semail-show"></strong> when new jobs are posted. <a href="#sms-alerts" style="color:var(--gold);font-weight:800;">Upgrade to SMS →</a></div>
+</section>
+
+<!-- ══════════════════ HOW IT WORKS ══════════════════ -->
+<section class="section how-bg" id="how">
+  <div class="sec-title">How It Works</div>
+  <div class="sec-sub">Fresh jobs from real Kenyan employers — here's how</div>
+  <div class="steps">
+    <div class="step"><div class="step-icon">🔍</div><div class="step-num">Step 01</div><h3>We Scan the Web</h3><p>Our system pulls thousands of Kenyan job listings every hour from real employers across all sectors.</p></div>
+    <div class="step"><div class="step-icon">🧹</div><div class="step-num">Step 02</div><h3>Jobs are Verified</h3><p>Duplicates removed, expired jobs deleted. Only real, current listings shown.</p></div>
+    <div class="step"><div class="step-icon">🔔</div><div class="step-num">Step 03</div><h3>You Get Notified</h3><p>Email and SMS subscribers are alerted instantly when matching jobs appear.</p></div>
+    <div class="step"><div class="step-icon">🚀</div><div class="step-num">Step 04</div><h3>Apply Directly</h3><p>Click any job, see full details, then go straight to the employer — no middleman, no redirects.</p></div>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <div class="fgrid">
+    <div class="fbrand">
+      <h3>🇰🇪 Jobs Opportunities in Kenya</h3>
+      <p>Kenya's most comprehensive jobs platform. Real jobs from real employers across all 47 counties — updated every hour. Free to browse.</p>
+    </div>
+    <div class="fcol"><h4>Browse Jobs</h4><ul>
+      <li><a href="#jobs">All Jobs</a></li><li><a href="#jobs">Full-Time</a></li>
+      <li><a href="#jobs">Part-Time</a></li><li><a href="#jobs">Internships</a></li>
+      <li><a href="#jobs">Government</a></li><li><a href="#jobs">NGO</a></li><li><a href="#jobs">Remote</a></li>
+    </ul></div>
+    <div class="fcol"><h4>For Employers</h4><ul>
+      <li><a href="#" onclick="openPromote()">Post a Featured Job</a></li>
+      <li><a href="#" onclick="openPromote()">Pricing & Plans</a></li>
+      <li><a href="#">Contact Sales</a></li>
+    </ul></div>
+    <div class="fcol"><h4>Contact Us</h4><ul>
+      <li><a href="mailto:jobsinkenyaa@gmail.com">📧 jobsinkenyaa@gmail.com</a></li>
+      
+      <li><a href="#">📘 Facebook Page</a></li>
+      <li><a href="#">💬 WhatsApp Channel</a></li>
+      <li><a href="#">𝕏 Twitter / X</a></li>
+    </ul></div>
+  </div>
+  <div class="fbot">
+    <span>© 2025 Jobs Opportunities in Kenya. All rights reserved.</span>
+    <span>Made with ❤️ for all Kenyans 🇰🇪</span>
+  </div>
+</footer>
+
+<!-- ══════════════════ JOB DETAIL MODAL ══════════════════ -->
+<div class="overlay" id="job-modal" onclick="if(event.target===this)closeModal('job-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('job-modal')">✕</button>
+    <div class="modal-body" id="job-modal-body"></div>
+  </div>
+</div>
+
+<!-- ══════════════════ PROMOTE MODAL ══════════════════ -->
+<div class="overlay" id="promote-modal" onclick="if(event.target===this)closeModal('promote-modal')">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('promote-modal')">✕</button>
+    <div class="modal-body">
+      <h2 style="font-family:'Playfair Display',serif;font-size:1.2rem;font-weight:900;margin-bottom:6px;">⭐ Feature Your Job Listing</h2>
+      <p style="font-size:0.84rem;color:var(--muted);margin-bottom:18px;">Reach thousands of Kenyan jobseekers. Featured jobs appear at the top and are highlighted in gold.</p>
+      <div class="promo-plans">
+        <div class="pp sel" onclick="selPromo(this,'Starter — KSh 500')"><div><h4>Starter</h4><p>Featured 3 days · 500+ views</p></div><div class="pp-price">KSh 500</div></div>
+        <div class="pp" onclick="selPromo(this,'Standard — KSh 1,000')"><div><h4>Standard 🔥</h4><p>Featured 7 days · 1,500+ views</p></div><div class="pp-price">KSh 1,000</div></div>
+        <div class="pp" onclick="selPromo(this,'Premium — KSh 3,000')"><div><h4>Premium</h4><p>Featured 30 days + SMS blast</p></div><div class="pp-price">KSh 3,000</div></div>
+      </div>
+      <div class="fg"><label>Company / Organisation</label><input type="text" placeholder="e.g. Kenya Power"></div>
+      <div class="fg"><label>Job Title</label><input type="text" placeholder="e.g. Senior Accountant"></div>
+      <div class="fg"><label>Location</label><input type="text" placeholder="e.g. Nairobi, Kenya"></div>
+      <div class="fg"><label>Salary (optional)</label><input type="text" placeholder="e.g. KSh 80,000 or Negotiable"></div>
+      <div class="fg"><label>Brief Job Description</label><textarea rows="3" placeholder="Key responsibilities and requirements..."></textarea></div>
+      <div class="fg"><label>Contact Email / WhatsApp</label><input type="text" placeholder="hr@company.co.ke or 07XX XXX XXX"></div>
+      <div class="promo-selected">📋 Selected: <span id="promo-plan-txt">Starter — KSh 500</span></div>
+      <button class="mpesa-btn" onclick="promoPayment()">
+        <span class="mpesa-logo">M-PESA</span> Pay & Feature My Job
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIF -->
+<div id="nb">
+  <button class="nc" onclick="document.getElementById('nb').style.display='none'">✕</button>
+  <div class="nt">🔔 Jobs Kenya</div>
+  <div id="ntext"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════ -->
+<script>
+// ── JOB STORE ──────────────────────────────────────────────
+let jobStore = {};
+
+// ── JOB BOARD BLACKLIST (never link to these) ──────────────
+const BAD = ['linkedin','indeed','glassdoor','jobsdb','monster','careerjet',
+  'jooble','simplyhired','ziprecruiter','jobs2careers','brightspyre',
+  'jsearch','rapidapi','myjobinkenya','brightermonday','fuzu',
+  'ngojobskenya','careerpointkenya','jobvite','greenhouse','lever.co',
+  'workday','taleo','smartrecruiters','bamboohr','breezy.hr'];
+
+function isJobBoard(u){ return !u || BAD.some(d=>(u||'').toLowerCase().includes(d)); }
+
+// ── TEXT HELPERS ───────────────────────────────────────────
+function cleanText(t){
+  return (t||'').replace(/<[^>]*>/g,'').replace(/&amp;/g,'&')
+    .replace(/&nbsp;/g,' ').replace(/&lt;/g,'<').replace(/&gt;/g,'>').trim();
+}
+function extractEmail(t){
+  const m=(cleanText(t)).match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g)||[];
+  return m.find(e=>!['noreply','no-reply','donotreply','rapidapi','example','@sentry'].some(b=>e.toLowerCase().includes(b)))||null;
+}
+function extractSite(t){
+  const m=(cleanText(t)).match(/https?:\/\/[^\s"'<>)\],]+/g)||[];
+  return m.find(u=>!isJobBoard(u))||null;
+}
+
+// ── DESCRIPTION PARSER → structured sections ──────────────
+function parseDesc(raw){
+  const text  = cleanText(raw);
+  const lines = text.split(/\n+/).map(l=>l.trim()).filter(l=>l.length>2);
+  const out   = {about:[], responsibilities:[], requirements:[], skills:[], other:[]};
+  let cur     = 'about';
+
+  const map = {
+    responsibilities:/responsibilit|duties|roles|what you.ll do|key tasks|key responsibilities|accountabilit/i,
+    requirements:    /requirement|qualification|what you need|education|must have|minimum|criteria/i,
+    skills:          /skill|competenc|knowledge|abilities|attributes/i,
+  };
+
+  lines.forEach(line => {
+    let hit = false;
+    for(const [k,re] of Object.entries(map)){
+      if(re.test(line) && line.length < 90){ cur=k; hit=true; break; }
+    }
+    if(!hit) out[cur].push(line);
+  });
+  return out;
+}
+
+function toList(arr, max=18){
+  if(!arr||!arr.length) return '';
+  return '<ul>'+arr.slice(0,max).map(i=>`<li>${i}</li>`).join('')+'</ul>';
+}
+function toParas(arr, max=5){
+  if(!arr||!arr.length) return '';
+  return arr.slice(0,max).map(i=>`<p>${i}</p>`).join('');
+}
+
+// ── FETCH LIVE JOBS — Admin Panel + RSS Scraped Kenyan Sites ──
+async function fetchJobs(){
+  const kw     = document.getElementById('si').value.trim();
+  const county = document.getElementById('cf').value||'Kenya';
+  const type   = document.getElementById('tf').value||'';
+
+  document.getElementById('loading-grid').style.display='grid';
+  document.getElementById('jgrid').style.display='none';
+  document.getElementById('err-box').style.display='none';
+  document.getElementById('jobs-sub').textContent=`Loading jobs in ${county}...`;
+
+  // 1️⃣ Load jobs from Admin Panel (localStorage — holds 1000+ jobs)
+  let adminJobs=[];
+  try{
+    const stored=localStorage.getItem('kj');
+    if(stored){
+      let raw=JSON.parse(stored);
+      // Apply type filter
+      if(type) raw=raw.filter(j=>normalizeType(j.type||'').includes(type.replace('TIME','').replace('_','')));
+      adminJobs=raw.map(j=>({
+        _source:'admin',
+        title:       j.title||'Job Opening',
+        company:     j.company||'Organisation',
+        city:        j.location||(j.county?j.county+', Kenya':'Kenya'),
+        type:        normalizeType(j.type||'Full-Time'),
+        salary:      j.salary||'Not stated',
+        posted:      j.scraped_at?new Date(j.scraped_at).toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'}):'Recent',
+        deadline:    j.deadline||null,
+        logo:        '',
+        desc:        j.description||'',
+        link:        j.link||'',
+        exp:         '',
+        field:       j.sector||'',
+        quals:       '',
+        apply_email: j.apply_email||'',
+        badge:       '🇰🇪 '+(j.source||'Kenya'),
+        featured:    j.featured||false
+      }));
+      // Apply county filter
+      if(county!=='Kenya') adminJobs=adminJobs.filter(j=>j.city.toLowerCase().includes(county.toLowerCase()));
+      // Apply keyword filter
+      if(kw) adminJobs=adminJobs.filter(j=>(j.title+' '+j.company+' '+j.field).toLowerCase().includes(kw.toLowerCase()));
+      console.log(`Admin: ${adminJobs.length} jobs loaded`);
+    }
+  }catch(e){ console.warn('Admin jobs error:',e); }
+
+  // 2️⃣ Sort — featured first, then rest
+  const featuredJobs    = adminJobs.filter(j=>j.featured).slice(0,1000);
+  const regularAdminJobs= adminJobs.filter(j=>!j.featured);
+  const combined        = [...featuredJobs,...regularAdminJobs];
+
+  if(!combined.length){
+    showNoJobs(county);
+    return;
+  }
+
+  renderJobs(combined);
+  document.getElementById('stat-jobs').textContent=combined.length+'+';
+  document.getElementById('total-count').textContent=combined.length;
+  const parts=[];
+  if(featuredJobs.length) parts.push(`${featuredJobs.length} featured`);
+  parts.push(`${regularAdminJobs.length} jobs`);
+  document.getElementById('jobs-sub').textContent=
+    `${combined.length} jobs in ${county}${parts.length?' — '+parts.join(' · '):''}`;
+}
+
+function normalizeType(t){
+  const s=(t||'').toUpperCase().replace(/[-\s]/g,'');
+  if(s.includes('INTERN')) return 'INTERN';
+  if(s.includes('PART')) return 'PARTTIME';
+  if(s.includes('GOVERN')) return 'GOVERNMENT';
+  if(s.includes('NGO')) return 'NGO';
+  if(s.includes('REMOTE')) return 'REMOTE';
+  if(s.includes('CONTRACT')) return 'CONTRACTOR';
+  return 'FULLTIME';
+}
+
+function showNoJobs(county){
+  document.getElementById('loading-grid').style.display='none';
+  const g=document.getElementById('jgrid');
+  g.style.display='grid';
+  g.innerHTML=`
+    <div style="grid-column:1/-1;text-align:center;padding:44px 20px;">
+      <div style="font-size:2.5rem;margin-bottom:12px;">🔍</div>
+      <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:8px;">No jobs loaded yet</h3>
+      <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px;line-height:1.7;">
+        Your backend is running but may still be scraping for the first time.<br>
+        Also make sure your RapidAPI key is pasted in the HTML file.
+      </p>
+      <button class="retry-btn" onclick="fetchJobs()" style="margin-right:8px;">🔄 Try Again</button>
+      <a href="https://jobs-kenya-backend-production.up.railway.app/status" target="_blank"
+         style="background:var(--border);color:var(--text);border:none;padding:10px 20px;border-radius:30px;font-weight:800;font-family:'Nunito',sans-serif;font-size:0.88rem;cursor:pointer;text-decoration:none;display:inline-block;">
+        📡 Check Backend Status
+      </a>
+    </div>`;
+}
+
+function showEmpty(kw,county){
+  document.getElementById('loading-grid').style.display='none';
+  const g=document.getElementById('jgrid');
+  g.style.display='grid';
+  g.innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:44px;color:var(--muted);font-weight:700;">
+    No jobs found for "<strong>${kw}</strong>" in <strong>${county}</strong>.<br>Try a different keyword or county.
+  </div>`;
+}
+
+// ── RENDER JOB CARDS ───────────────────────────────────────
+const COLORS=['#4f46e5','#0891b2','#b45309','#16a34a','#dc2626','#7c3aed','#ea580c','#0a7c4e','#1d4ed8','#d97706'];
+
+function renderJobs(jobs){
+  document.getElementById('loading-grid').style.display='none';
+  const grid=document.getElementById('jgrid');
+  grid.style.display='grid'; grid.innerHTML=''; jobStore={};
+
+  jobs.forEach((job,i)=>{
+    const id      = 'j'+i;
+    // Unified fields — works for both API jobs and scraped jobs
+    const title   = job.title||'Job Opening';
+    const company = job.company||'Organisation';
+    const city    = job.city||'Kenya';
+    const type    = job.type||'FULLTIME';
+    const salary  = job.salary||'Competitive salary';
+    const posted  = job.posted||'Recent';
+    const deadline= job.deadline||null;
+    const color   = COLORS[i%COLORS.length];
+    const initials= company.substring(0,2).toUpperCase();
+    const logo    = job.logo||'';
+    const badge   = job.badge||'';
+
+    // Store full job for modal
+    jobStore[id]={
+      title,company,city,type,salary,posted,deadline,color,
+      logo:        job.logo||'',
+      desc:        job.desc||'',
+      link:        job.link||'',
+      exp:         job.exp||'',
+      field:       job.field||'',
+      quals:       job.quals||'',
+      apply_email: job.apply_email||'',
+      badge,
+    };
+
+    const tlabel={FULLTIME:'Full-Time',PARTTIME:'Part-Time',INTERN:'Internship',CONTRACTOR:'Contract'}[type]||'Full-Time';
+    const rb={FULLTIME:'rb-ft',PARTTIME:'rb-pt',INTERN:'rb-int',CONTRACTOR:'rb-rem'}[type]||'rb-ft';
+    const bd={FULLTIME:'b-ft',PARTTIME:'b-pt',INTERN:'b-int',CONTRACTOR:'b-rem'}[type]||'b-ft';
+    const dt={FULLTIME:'fulltime',PARTTIME:'parttime',INTERN:'intern',CONTRACTOR:'remote'}[type]||'fulltime';
+
+    // Ad every 6 cards
+    if(i>0&&i%6===0){
+      const ad=document.createElement('div');
+      ad.style.gridColumn='1/-1';
+      ad.innerHTML=`<div class="ad-slot"><ins class="adsbygoogle" style="display:block;width:100%;height:90px;" data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" data-ad-slot="5566778899" data-ad-format="horizontal"></ins></div>`;
+      grid.appendChild(ad);
+      try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
+    }
+
+    const shareMsg = encodeURIComponent(`🇰🇪 Job Alert: ${title} at ${company} — ${city}`);
+    const shareUrl = encodeURIComponent(window.location.href);
+
+    const card=document.createElement('div');
+    card.className='jcard';
+    card.dataset.type=dt;
+    card.innerHTML=`
+      <div class="jribbon ${rb}">${tlabel}</div>
+      <div class="jtop">
+        <div class="clogo" style="background:${color};">
+          ${logo
+            ?`<img src="${logo}" style="width:34px;height:34px;object-fit:contain;border-radius:6px;" onerror="this.parentElement.textContent='${initials}'">`
+            :initials}
+        </div>
+        <span class="jbadge ${bd}">${tlabel}</span>
+      </div>
+      <h3>${title}</h3>
+      <div class="jco">${company}</div>
+      <div class="jsal">${salary}</div>
+      <div class="jtags">
+        <span class="jtag">📍 ${city}</span>
+        <span class="jtag">📅 ${posted}</span>
+        ${deadline?`<span class="jtag red">⏰ Closes: ${deadline}</span>`:''}
+        ${badge?`<span class="jtag" style="background:#f0fdf4;border-color:#bbf7d0;color:#166534;font-size:0.65rem;">${badge}</span>`:''}
+      </div>
+      <div class="jfoot">
+        <div class="jdl">Posted: <strong>${posted}</strong></div>
+        <button class="view-btn" onclick="openJob('${id}')">View Job →</button>
+      </div>
+      <div class="srow">
+        <span class="slbl">Share:</span>
+        <button class="sbtn s-wa"  onclick="window.open('https://api.whatsapp.com/send?text=${shareMsg}%20${shareUrl}','_blank')">WhatsApp</button>
+        <button class="sbtn s-wc"  onclick="window.open('https://www.whatsapp.com/channel/','_blank')" title="Share to WhatsApp Channel">Channel</button>
+        <button class="sbtn s-fb"  onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${shareUrl}','_blank')">Facebook</button>
+        <button class="sbtn s-x"   onclick="window.open('https://twitter.com/intent/tweet?text=${shareMsg}&url=${shareUrl}','_blank')">X</button>
+      </div>`;
+    grid.appendChild(card);
+  });
+}
+
+// ── JOB DETAIL MODAL ───────────────────────────────────────
+function openJob(id){
+  const j=jobStore[id]; if(!j) return;
+  const initials=j.company.substring(0,2).toUpperCase();
+  const tlabel={FULLTIME:'Full-Time',PARTTIME:'Part-Time',INTERN:'Internship',CONTRACTOR:'Contract'}[j.type]||'Full-Time';
+
+  // Parse description into sections
+  const sec=parseDesc(j.desc);
+
+  // Find how to apply — email or employer site only
+  const email = j.apply_email || extractEmail(j.desc);
+  const site  = extractSite(j.desc);
+  const link  = !isJobBoard(j.link)?j.link:null;
+  const applyUrl = link||site; // employer website
+
+  let applyHTML='';
+
+  if(applyUrl&&email){
+    applyHTML=`
+      <div class="apply-box">
+        <div class="apply-box-ttl">📬 How to Apply</div>
+        <div class="apply-method">
+          <div class="am-icon">🌐</div>
+          <div><div class="am-lbl">Employer Website</div><div class="am-val">${applyUrl}</div></div>
+        </div>
+        <div class="apply-method">
+          <div class="am-icon">📧</div>
+          <div><div class="am-lbl">Email your application to</div><div class="am-val">${email}</div></div>
+        </div>
+        <button class="apply-cta" onclick="window.open('${applyUrl}','_blank')">🌐 Go to Employer's Website to Apply</button>
+        <div class="apply-note">Or send your CV directly to: <strong>${email}</strong></div>
+      </div>`;
+  } else if(applyUrl){
+    applyHTML=`
+      <div class="apply-box">
+        <div class="apply-box-ttl">📬 How to Apply</div>
+        <div class="apply-method">
+          <div class="am-icon">🌐</div>
+          <div><div class="am-lbl">Apply on the employer's official website</div><div class="am-val">${applyUrl}</div></div>
+        </div>
+        <button class="apply-cta" onclick="window.open('${applyUrl}','_blank')">🌐 Go to Employer's Website to Apply</button>
+        <div class="apply-note">You will be taken directly to the employer's official page</div>
+      </div>`;
+  } else if(email){
+    applyHTML=`
+      <div class="apply-box">
+        <div class="apply-box-ttl">📬 How to Apply</div>
+        <div class="apply-method">
+          <div class="am-icon">📧</div>
+          <div><div class="am-lbl">Send your CV and cover letter to</div><div class="am-val">${email}</div></div>
+        </div>
+        <button class="apply-cta" onclick="window.open('mailto:${email}?subject=Job Application — ${j.title.replace(/'/g,"\\'")}','_blank')">📧 Open Email App to Apply</button>
+        <div class="apply-note">Attach your CV before sending. Quote the job title in the subject.</div>
+      </div>`;
+  } else {
+    applyHTML=`
+      <div class="apply-box">
+        <div class="apply-box-ttl">📬 How to Apply</div>
+        <div class="no-apply">
+          <p>📋 Please read the full job description above carefully.<br>
+          The employer has included specific application instructions in the description.</p>
+        </div>
+      </div>`;
+  }
+
+  const shareMsg = encodeURIComponent(`🇰🇪 Job Alert: ${j.title} at ${j.company} — ${j.city}`);
+  const shareUrl = encodeURIComponent(window.location.href);
+
+  document.getElementById('job-modal-body').innerHTML=`
+
+    <!-- HEADER -->
+    <div class="mhdr">
+      <div class="mlogo" style="background:${j.color};">
+        ${j.logo?`<img src="${j.logo}" style="width:40px;height:40px;object-fit:contain;border-radius:9px;" onerror="this.parentElement.textContent='${initials}'">`  :initials}
+      </div>
+      <div style="flex:1;min-width:0;">
+        <div class="mtitle">${j.title}</div>
+        <div class="mco">${j.company}</div>
+        <div class="mmeta">
+          <span class="mmtag">📍 ${j.city}</span>
+          <span class="mmtag">💼 ${tlabel}</span>
+          <span class="mmtag">💰 ${j.salary}</span>
+          ${j.deadline?`<span class="mmtag red">⏰ Deadline: ${j.deadline}</span>`:''}
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK INFO GRID -->
+    <div class="minfo">
+      <div class="minfo-item"><div class="minfo-lbl">Job Type</div><div class="minfo-val">${tlabel}</div></div>
+      <div class="minfo-item"><div class="minfo-lbl">Location</div><div class="minfo-val">${j.city}</div></div>
+      <div class="minfo-item"><div class="minfo-lbl">Salary</div><div class="minfo-val">${j.salary}</div></div>
+      <div class="minfo-item"><div class="minfo-lbl">Date Posted</div><div class="minfo-val">${j.posted}</div></div>
+      ${j.exp?`<div class="minfo-item"><div class="minfo-lbl">Experience Required</div><div class="minfo-val">${j.exp}</div></div>`:''}
+      ${j.quals?`<div class="minfo-item"><div class="minfo-lbl">Qualification</div><div class="minfo-val">${j.quals}</div></div>`:''}
+      ${j.field?`<div class="minfo-item" style="grid-column:1/-1;"><div class="minfo-lbl">Job Field</div><div class="minfo-val">${j.field}</div></div>`:''}
+    </div>
+
+    <!-- ABOUT -->
+    ${sec.about.length?`
+    <div class="msec">
+      <div class="msec-ttl">🏢 About the Role</div>
+      ${toParas(sec.about,4)}
+    </div>`:''}
+
+    <!-- RESPONSIBILITIES -->
+    ${sec.responsibilities.length?`
+    <div class="msec">
+      <div class="msec-ttl">📋 Roles & Responsibilities</div>
+      ${toList(sec.responsibilities)}
+    </div>`:''}
+
+    <!-- REQUIREMENTS -->
+    ${sec.requirements.length?`
+    <div class="msec">
+      <div class="msec-ttl">✅ Requirements & Qualifications</div>
+      ${toList(sec.requirements)}
+    </div>`:''}
+
+    <!-- SKILLS -->
+    ${sec.skills.length?`
+    <div class="msec">
+      <div class="msec-ttl">⚡ Skills & Competencies</div>
+      ${toList(sec.skills)}
+    </div>`:''}
+
+    <!-- OTHER -->
+    ${sec.other.length?`
+    <div class="msec">
+      <div class="msec-ttl">📌 Additional Information</div>
+      ${toParas(sec.other,4)}
+    </div>`:''}
+
+    <!-- HOW TO APPLY -->
+    ${applyHTML}
+
+    <!-- SHARE -->
+    <div class="mshare">
+      <span class="mshare-lbl">Share this job:</span>
+      <button class="sbtn s-wa" onclick="window.open('https://api.whatsapp.com/send?text=${shareMsg}%20${shareUrl}','_blank')">WhatsApp</button>
+      <button class="sbtn s-wc" onclick="window.open('https://www.whatsapp.com/channel/','_blank')">Channel</button>
+      <button class="sbtn s-fb" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${shareUrl}','_blank')">Facebook</button>
+      <button class="sbtn s-x"  onclick="window.open('https://twitter.com/intent/tweet?text=${shareMsg}&url=${shareUrl}','_blank')">X</button>
+    </div>
+  `;
+
+  document.getElementById('job-modal').classList.add('open');
+  document.getElementById('job-modal').scrollTop=0;
+}
+
+// ── FILTERS ────────────────────────────────────────────────
+function typeFilter(el,type){
+  document.querySelectorAll('.tp').forEach(p=>p.classList.remove('active'));
+  el.classList.add('active'); filterCards(type);
+}
+function setChip(el,type){
+  document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active'); filterCards(type);
+}
+function filterCards(type){
+  document.querySelectorAll('.jcard').forEach(c=>{
+    c.style.display=(type==='all'||c.dataset.type===type)?'':'none';
+  });
+}
+
+// ── COUNTIES ───────────────────────────────────────────────
+const COUNTIES=['Nairobi','Mombasa','Kisumu','Nakuru','Eldoret','Kiambu','Machakos',
+  'Nyeri','Meru','Kakamega','Kisii','Kilifi','Embu','Garissa','Bungoma','Siaya',
+  'Migori','Kajiado','Laikipia','Kericho','Nandi','Bomet','Baringo','Kwale',
+  'Taita Taveta','Kitui','Makueni',"Murang'a",'Turkana','Homa Bay','Nyamira',
+  'Mandera','Wajir','Marsabit','Isiolo','Tharaka Nithi','Nyandarua','Kirinyaga',
+  'Trans Nzoia','West Pokot','Samburu','Elgeyo Marakwet','Narok','Vihiga','Lamu',
+  'Tana River','Remote / Online'];
+
+const cg=document.getElementById('ctygrid');
+COUNTIES.forEach(c=>{
+  const el=document.createElement('div');
+  el.className='cty';
+  el.innerHTML=`${c}<div class="ctyc">Find jobs here</div>`;
+  el.onclick=()=>{
+    document.querySelectorAll('.cty').forEach(x=>x.classList.remove('active'));
+    el.classList.add('active');
+    document.getElementById('cf').value=c.split('/')[0].trim();
+    document.getElementById('si').value='';
+    document.getElementById('jobs').scrollIntoView({behavior:'smooth'});
+    fetchJobs();
+  };
+  cg.appendChild(el);
+});
+
+// ── SMS ────────────────────────────────────────────────────
+let activePlan={name:'Weekly',price:'KSh 50'};
+function selPlan(el,name,price){
+  document.querySelectorAll('.plan-card').forEach(c=>c.classList.remove('sel'));
+  el.classList.add('sel'); activePlan={name,price};
+  document.getElementById('plan-display-txt').textContent=`${name} — ${price}`;
+}
+function initMpesa(){
+  const ph=document.getElementById('sms-phone').value.trim();
+  if(!ph){alert('Please enter your M-Pesa phone number.');return;}
+  notif(`📱 M-Pesa prompt sent to ${ph}! Enter PIN to activate ${activePlan.name} alerts (${activePlan.price}).`);
+  setTimeout(()=>notif('✅ Payment confirmed! SMS alerts are now active on your number.'),4500);
+}
+
+// ── PROMOTE ────────────────────────────────────────────────
+let activePromo='Starter — KSh 500';
+function openPromote(){document.getElementById('promote-modal').classList.add('open');}
+function selPromo(el,plan){
+  document.querySelectorAll('.pp').forEach(p=>p.classList.remove('sel'));
+  el.classList.add('sel'); activePromo=plan;
+  document.getElementById('promo-plan-txt').textContent=plan;
+}
+function promoPayment(){
+  notif(`📱 M-Pesa prompt sent! Pay for ${activePromo} to feature your job.`);
+  setTimeout(()=>{closeModal('promote-modal');notif('⭐ Payment received! Your job will be featured within 1 hour.');},3500);
+}
+
+// ── EMAIL SUB ──────────────────────────────────────────────
+function doSubscribe(){
+  const e=document.getElementById('semail').value;
+  if(!e){alert('Please enter your email address.');return;}
+  document.getElementById('semail-show').textContent=e;
+  document.getElementById('subform').style.display='none';
+  document.getElementById('stoast').style.display='block';
+}
+
+// ── MODAL & UI ─────────────────────────────────────────────
+function closeModal(id){document.getElementById(id).classList.remove('open');}
+function notif(text){
+  const b=document.getElementById('nb');
+  document.getElementById('ntext').textContent=text;
+  b.style.display='block';
+  clearTimeout(b._t);
+  b._t=setTimeout(()=>b.style.display='none',7000);
+}
+function toggleMob(){document.getElementById('mob-menu').classList.toggle('open');}
+function closeMob(){document.getElementById('mob-menu').classList.remove('open');}
+
+// ── INIT ───────────────────────────────────────────────────
+function loadFeaturedJobs(){
+  const grid=document.getElementById("feat-grid");
+  if(!grid) return;
+  try{
+    const stored=localStorage.getItem("kj");
+    if(!stored){ grid.innerHTML="<div style="color:#92400e;font-size:0.85rem;padding:16px;opacity:0.7;">No featured jobs yet. Contact jobsinkenyaa@gmail.com to feature your job.</div>"; return; }
+    const all=JSON.parse(stored);
+    const featured=all.filter(j=>j.featured).slice(0,1000);
+    if(!featured.length){ grid.innerHTML="<div style="color:#92400e;font-size:0.85rem;padding:16px;opacity:0.7;">No featured jobs yet. Contact jobsinkenyaa@gmail.com to feature your job.</div>"; return; }
+    grid.innerHTML=featured.map(j=>`
+      <div class="fcard">
+        <div class="fribbon">⭐ FEATURED</div>
+        <div class="fcard-title">${j.title}</div>
+        <div class="fcard-co">${j.company} · ${j.location||j.county||"Kenya"}</div>
+        <div class="fcard-sal">${j.salary||"Competitive salary"}</div>
+        <div class="fcard-tags">
+          <span class="ftag">📍 ${j.county||"Kenya"}</span>
+          <span class="ftag">${j.type||"Full-Time"}</span>
+          ${j.sector?`<span class="ftag">${j.sector}</span>`:""}
+          ${j.deadline?`<span class="ftag">⏰ ${j.deadline}</span>`:""}
+        </div>
+        <div class="fcard-foot">
+          <div class="fviews">🇰🇪 ${j.source||"Kenya"}</div>
+          <button class="fbtn" onclick="notif('📧 Contact: jobsinkenyaa@gmail.com')">View Details →</button>
+        </div>
+      </div>`).join("");
+  }catch(e){ console.warn("Featured jobs error:",e); }
+}
+window.onload=function(){ loadFeaturedJobs(); fetchJobs(); };
+setTimeout(()=>notif('🔔 New jobs posted across Kenya today — browse now!'),6000);
+</script>
+</body>
+</html>

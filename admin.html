@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin — Jobs Kenya</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#070c14;--card:#0d1520;--border:#1a2535;
+  --accent:#00d4ff;--green:#00ff88;--orange:#ff9500;--red:#ff3b5c;
+  --text:#ddeeff;--muted:#3d5470;--muted2:#7a9ab5;
+}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* LOGIN */
+#login{display:flex;align-items:center;justify-content:center;min-height:100vh;
+  background:radial-gradient(ellipse at 50% -20%,#0d2a3e,var(--bg) 60%);}
+.lbox{background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:48px;width:380px;box-shadow:0 0 80px rgba(0,212,255,0.06);}
+.llogo{font-size:1.5rem;font-weight:700;margin-bottom:6px;
+  background:linear-gradient(135deg,var(--accent),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.lsub{color:var(--muted2);font-size:0.82rem;margin-bottom:28px;}
+.lbox input{width:100%;background:#050a10;border:1px solid var(--border);
+  color:var(--text);padding:13px 16px;border-radius:10px;margin-bottom:10px;
+  font-family:'Space Grotesk',sans-serif;font-size:0.9rem;outline:none;
+  transition:border-color .2s;}
+.lbox input:focus{border-color:var(--accent);}
+.lbtn{width:100%;background:linear-gradient(135deg,var(--accent),#007acc);
+  color:#000;border:none;padding:14px;border-radius:10px;font-weight:700;
+  font-family:'Space Grotesk',sans-serif;font-size:0.95rem;cursor:pointer;
+  margin-top:4px;transition:opacity .2s;}
+.lbtn:hover{opacity:.85;}
+.lerr{color:var(--red);font-size:0.82rem;margin-top:8px;display:none;}
+
+/* APP */
+#app{display:none;display:flex;min-height:100vh;}
+
+/* SIDEBAR */
+.sb{width:220px;background:var(--card);border-right:1px solid var(--border);
+  padding:20px 0;position:fixed;top:0;left:0;height:100vh;z-index:100;
+  display:flex;flex-direction:column;}
+.sb-logo{padding:0 20px 20px;border-bottom:1px solid var(--border);
+  font-size:0.95rem;font-weight:700;
+  background:linear-gradient(135deg,var(--accent),var(--green));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.sb-logo small{display:block;font-size:0.68rem;color:var(--muted2);
+  -webkit-text-fill-color:var(--muted2);font-weight:400;margin-top:2px;}
+.nav{padding:12px 0;flex:1;}
+.ni{display:flex;align-items:center;gap:10px;padding:11px 20px;
+  color:var(--muted2);cursor:pointer;font-size:0.85rem;font-weight:500;
+  border-left:3px solid transparent;transition:all .2s;}
+.ni:hover{color:var(--text);background:rgba(0,212,255,.04);}
+.ni.on{color:var(--accent);background:rgba(0,212,255,.07);border-left-color:var(--accent);}
+.ni-ico{font-size:1rem;width:18px;text-align:center;}
+.sb-foot{padding:16px 20px;border-top:1px solid var(--border);}
+.logout{display:flex;align-items:center;gap:8px;color:var(--muted2);
+  cursor:pointer;font-size:0.83rem;font-weight:500;transition:color .2s;}
+.logout:hover{color:var(--red);}
+
+/* MAIN */
+.main{margin-left:220px;padding:28px;flex:1;min-height:100vh;}
+.ph{margin-bottom:24px;}
+.pt{font-size:1.5rem;font-weight:700;margin-bottom:4px;}
+.ps{color:var(--muted2);font-size:0.85rem;}
+
+/* STATS */
+.sgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:24px;}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:18px;}
+.sv{font-size:1.9rem;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.sl{color:var(--muted2);font-size:0.75rem;margin-top:3px;}
+.sc.a .sv{color:var(--accent);}
+.sc.g .sv{color:var(--green);}
+.sc.o .sv{color:var(--orange);}
+.sc.r .sv{color:var(--red);}
+
+/* CARD */
+.card{background:var(--card);border:1px solid var(--border);
+  border-radius:12px;padding:22px;margin-bottom:18px;}
+.ct{font-size:0.95rem;font-weight:700;margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;}
+
+/* FORM */
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fi{display:flex;flex-direction:column;gap:5px;}
+.fi.full{grid-column:1/-1;}
+label{font-size:0.75rem;font-weight:600;color:var(--muted2);
+  text-transform:uppercase;letter-spacing:.4px;}
+input,select,textarea{background:#050a10;border:1px solid var(--border);
+  color:var(--text);padding:10px 13px;border-radius:8px;
+  font-family:'Space Grotesk',sans-serif;font-size:0.88rem;
+  outline:none;transition:border-color .2s;width:100%;}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);}
+textarea{resize:vertical;min-height:90px;}
+select option{background:var(--card);}
+
+/* BUTTONS */
+.btn{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;
+  font-family:'Space Grotesk',sans-serif;font-size:0.85rem;font-weight:700;
+  transition:all .2s;display:inline-flex;align-items:center;gap:7px;}
+.bp{background:linear-gradient(135deg,var(--accent),#007acc);color:#000;}
+.bg{background:linear-gradient(135deg,var(--green),#00aa55);color:#000;}
+.br{background:var(--red);color:#fff;}
+.bgh{background:transparent;border:1px solid var(--border);color:var(--text);}
+.bgh:hover{border-color:var(--accent);color:var(--accent);}
+.btn:hover{opacity:.85;}
+.brow{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+
+/* DROP ZONE */
+.dz{border:2px dashed var(--border);border-radius:12px;padding:44px;
+  text-align:center;cursor:pointer;transition:all .2s;}
+.dz:hover,.dz.over{border-color:var(--accent);background:rgba(0,212,255,.04);}
+.dico{font-size:2.8rem;margin-bottom:10px;}
+.dt{font-size:0.98rem;font-weight:700;margin-bottom:5px;}
+.ds{color:var(--muted2);font-size:0.82rem;}
+
+/* TABLE */
+.tw{overflow-x:auto;max-height:500px;overflow-y:auto;}
+table{width:100%;border-collapse:collapse;font-size:0.8rem;}
+th{background:#050a10;padding:9px 11px;text-align:left;
+  color:var(--muted2);font-weight:600;border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:1;}
+td{padding:9px 11px;border-bottom:1px solid var(--border);vertical-align:middle;}
+tr:hover td{background:rgba(0,212,255,.02);}
+.bdg{display:inline-block;padding:2px 9px;border-radius:20px;
+  font-size:0.7rem;font-weight:700;}
+.bg2{background:rgba(0,255,136,.12);color:var(--green);}
+.ba{background:rgba(0,212,255,.12);color:var(--accent);}
+.bo{background:rgba(255,149,0,.12);color:var(--orange);}
+.brd{background:rgba(255,59,92,.12);color:var(--red);}
+
+/* PROGRESS */
+.pb{height:5px;background:var(--border);border-radius:3px;margin:10px 0;overflow:hidden;}
+.pf{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));
+  border-radius:3px;transition:width .3s;}
+
+/* JOB ROW */
+.jr{display:flex;align-items:center;gap:14px;padding:12px 0;
+  border-bottom:1px solid var(--border);}
+.jr:last-child{border-bottom:none;}
+.jri{flex:1;}
+.jrt{font-weight:600;font-size:0.87rem;margin-bottom:2px;}
+.jrm{color:var(--muted2);font-size:0.76rem;}
+.ja{display:flex;gap:6px;}
+.ib{background:transparent;border:1px solid var(--border);color:var(--muted2);
+  padding:5px 9px;border-radius:6px;cursor:pointer;font-size:0.76rem;transition:all .2s;}
+.ib:hover{border-color:var(--accent);color:var(--accent);}
+.ib.d:hover{border-color:var(--red);color:var(--red);}
+
+/* TOAST */
+.toast{position:fixed;bottom:20px;right:20px;background:var(--card);
+  border:1px solid var(--green);color:var(--green);padding:13px 20px;
+  border-radius:10px;font-size:0.85rem;font-weight:600;z-index:9999;
+  transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;}
+.toast.show{transform:translateY(0);opacity:1;}
+.toast.err{border-color:var(--red);color:var(--red);}
+
+/* PAGE */
+.pg{display:none;}
+.pg.on{display:block;}
+
+/* SEARCH ROW */
+.srow2{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.srow2 input{flex:1;min-width:180px;}
+.srow2 select{width:auto;}
+
+@media(max-width:768px){
+  .sb{display:none;}.main{margin-left:0;padding:14px;}
+  .sgrid{grid-template-columns:1fr 1fr;}.fg{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login">
+  <div class="lbox">
+    <div class="llogo">🇰🇪 Jobs Kenya</div>
+    <div class="lsub">Admin Panel — Authorized Access Only</div>
+    <input type="text" id="lu" placeholder="Username" autocomplete="off">
+    <input type="password" id="lp" placeholder="Password" onkeydown="if(event.key==='Enter')login()">
+    <button class="lbtn" onclick="login()">Sign In →</button>
+    <div class="lerr" id="lerr">❌ Wrong username or password</div>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app" style="display:none;">
+
+  <!-- SIDEBAR -->
+  <div class="sb">
+    <div class="sb-logo">🇰🇪 Jobs Kenya<small>Admin Panel</small></div>
+    <div class="nav">
+      <div class="ni on" data-page="dashboard" onclick="go('dashboard',this)"><span class="ni-ico">📊</span>Dashboard</div>
+      <div class="ni" data-page="add" onclick="go('add',this)"><span class="ni-ico">➕</span>Add Job</div>
+      <div class="ni" data-page="csv" onclick="go('csv',this)"><span class="ni-ico">📂</span>CSV Upload</div>
+      <div class="ni" data-page="rss" onclick="go('rss',this)"><span class="ni-ico">📡</span>RSS Import</div>
+      <div class="ni" data-page="manage" onclick="go('manage',this)"><span class="ni-ico">💼</span>All Jobs</div>
+      <div class="ni" data-page="featured" onclick="go('featured',this)"><span class="ni-ico">⭐</span>Featured</div>
+      <div class="ni" data-page="export" onclick="go('export',this)"><span class="ni-ico">⬇️</span>Export</div>
+      <div class="ni" data-page="settings" onclick="go('settings',this)"><span class="ni-ico">⚙️</span>Settings</div>
+    </div>
+    <div class="sb-foot">
+      <div class="logout" onclick="logout()">🚪 Sign Out</div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- DASHBOARD -->
+    <div id="pg-dashboard" class="pg on">
+      <div class="ph"><div class="pt">Dashboard</div><div class="ps">Overview of your jobs portal</div></div>
+      <div class="sgrid">
+        <div class="sc a"><div class="sv" id="s-total">0</div><div class="sl">Total Jobs</div></div>
+        <div class="sc g"><div class="sv" id="s-manual">0</div><div class="sl">Manually Added</div></div>
+        <div class="sc o"><div class="sv" id="s-feat">0</div><div class="sl">Featured Jobs</div></div>
+        <div class="sc r"><div class="sv" id="s-csv">0</div><div class="sl">CSV Imported</div></div>
+      </div>
+      <div class="card">
+        <div class="ct">⚡ Quick Actions</div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn bp" onclick="go('add',document.querySelector('[data-page=add]'))">➕ Add Single Job</button>
+          <button class="btn bg" onclick="go('csv',document.querySelector('[data-page=csv]'))">📂 Upload CSV (150+ jobs)</button>
+          <button class="btn bgh" onclick="go('rss',document.querySelector('[data-page=rss]'))">📡 RSS Import</button>
+          <button class="btn bgh" onclick="exportCSV()">⬇️ Export All</button>
+        </div>
+      </div>
+      <div class="card">
+        <div class="ct">📋 Recent Jobs</div>
+        <div id="recent-list"><div style="color:var(--muted2);font-size:.85rem;">No jobs yet.</div></div>
+      </div>
+    </div>
+
+    <!-- ADD SINGLE JOB -->
+    <div id="pg-add" class="pg">
+      <div class="ph"><div class="pt">➕ Add Single Job</div><div class="ps">Enter a job manually from BrighterMonday, Fuzu, MyJobs etc.</div></div>
+      <div class="card">
+        <div class="fg">
+          <div class="fi"><label>Job Title *</label><input id="f-title" placeholder="e.g. Software Engineer"></div>
+          <div class="fi"><label>Company *</label><input id="f-company" placeholder="e.g. Safaricom PLC"></div>
+          <div class="fi"><label>Location</label><input id="f-location" placeholder="e.g. Nairobi, Kenya"></div>
+          <div class="fi"><label>County</label>
+            <select id="f-county">
+              <option>Nairobi</option><option>Mombasa</option><option>Kisumu</option>
+              <option>Nakuru</option><option>Eldoret</option><option>Kiambu</option>
+              <option>Machakos</option><option>Nyeri</option><option>Meru</option>
+              <option>Kakamega</option><option>Kisii</option><option>Kilifi</option>
+              <option>Embu</option><option>Garissa</option><option>Bungoma</option>
+              <option>Kajiado</option><option>Kericho</option><option>Turkana</option>
+              <option>Homa Bay</option><option>Nyamira</option><option>Narok</option>
+              <option>Vihiga</option><option>Thika</option><option>Lamu</option>
+              <option>Siaya</option><option>Remote</option>
+            </select>
+          </div>
+          <div class="fi"><label>Job Type</label>
+            <select id="f-type">
+              <option>Full-Time</option><option>Part-Time</option><option>Internship</option>
+              <option>Government</option><option>NGO</option><option>Remote</option><option>Contract</option>
+            </select>
+          </div>
+          <div class="fi"><label>Sector</label>
+            <select id="f-sector">
+              <option>General</option><option>ICT & Technology</option><option>Health & Medicine</option>
+              <option>Finance & Banking</option><option>Engineering</option><option>Education</option>
+              <option>Agriculture</option><option>Marketing & Sales</option><option>NGO / Non-Profit</option>
+              <option>Legal</option><option>Transport & Logistics</option><option>Hospitality</option>
+              <option>Government / Civil Service</option>
+            </select>
+          </div>
+          <div class="fi"><label>Salary</label><input id="f-salary" placeholder="e.g. KSh 50,000 – 80,000/month"></div>
+          <div class="fi"><label>Deadline</label><input type="date" id="f-deadline"></div>
+          <div class="fi"><label>Application Email</label><input type="email" id="f-email" placeholder="hr@company.co.ke"></div>
+          <div class="fi"><label>Application Link</label><input type="url" id="f-link" placeholder="https://..."></div>
+          <div class="fi"><label>Source</label>
+            <select id="f-source">
+              <option>BrighterMonday</option><option>Fuzu</option><option>MyJobs</option>
+              <option>MyJobInKenya</option><option>LinkedIn</option><option>Direct / Employer</option><option>Other</option>
+            </select>
+          </div>
+          <div class="fi"><label>Featured ⭐</label>
+            <select id="f-featured"><option value="no">No</option><option value="yes">Yes — Gold highlight</option></select>
+          </div>
+          <div class="fi full"><label>Job Description</label>
+            <textarea id="f-desc" placeholder="Paste full job description..."></textarea>
+          </div>
+        </div>
+        <div class="brow">
+          <button class="btn bp" onclick="addJob()">💾 Save Job</button>
+          <button class="btn bgh" onclick="clearForm()">🗑 Clear</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CSV UPLOAD -->
+    <div id="pg-csv" class="pg">
+      <div class="ph"><div class="pt">📂 CSV Upload</div><div class="ps">Upload 150+ jobs at once from Web Scraper, Excel exports etc.</div></div>
+      <div class="card">
+        <div class="ct">📥 Upload Your CSV File</div>
+        <div class="dz" id="dz" onclick="document.getElementById('csv-file').click()"
+             ondragover="event.preventDefault();this.classList.add('over')"
+             ondragleave="this.classList.remove('over')"
+             ondrop="dropCSV(event)">
+          <div class="dico">📄</div>
+          <div class="dt">Drop CSV file here or click to browse</div>
+          <div class="ds">Supports files from Web Scraper Chrome extension, Excel, Google Sheets exports</div>
+        </div>
+        <input type="file" id="csv-file" accept=".csv" style="display:none" onchange="readCSV(this.files[0])">
+        <div style="margin-top:18px;">
+          <div class="ct">📋 CSV Format — your file must have these column headers:</div>
+          <div style="background:#050a10;border-radius:8px;padding:14px;font-family:'JetBrains Mono',monospace;font-size:0.76rem;color:var(--green);line-height:1.8;overflow-x:auto;">
+            title, company, location, type, sector, salary, deadline, email, link, description<br><br>
+            <span style="color:var(--muted2);">Example row:</span><br>
+            "Software Engineer", "Safaricom", "Nairobi", "Full-Time", "ICT & Technology", "KSh 80,000", "2025-04-01", "hr@safaricom.co.ke", "https://brightermonday.co.ke/...", "We are looking for..."
+          </div>
+          <button class="btn bgh" style="margin-top:12px;" onclick="dlTemplate()">⬇️ Download CSV Template</button>
+        </div>
+      </div>
+
+      <div id="csv-preview" style="display:none;">
+        <div class="card">
+          <div class="ct" id="csv-preview-title">📊 Preview</div>
+          <div class="pb"><div class="pf" id="csv-pf" style="width:0%"></div></div>
+          <div id="csv-info" style="color:var(--muted2);font-size:0.82rem;margin-bottom:12px;"></div>
+          <div class="tw" id="csv-table"></div>
+          <div class="brow">
+            <button class="btn bg" onclick="importCSV()">✅ Import All Jobs</button>
+            <button class="btn bgh" onclick="document.getElementById('csv-preview').style.display='none'">❌ Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RSS IMPORT -->
+    <div id="pg-rss" class="pg">
+      <div class="ph"><div class="pt">📡 RSS Import</div><div class="ps">Auto-import jobs from Kenyan job sites that have RSS feeds.</div></div>
+      <div class="card">
+        <div class="ct">🔗 Available RSS Sources</div>
+        <div style="display:flex;flex-direction:column;gap:10px;" id="rss-sources"></div>
+      </div>
+      <div class="card">
+        <div class="ct">➕ Add Custom RSS Feed</div>
+        <div style="display:flex;gap:10px;align-items:flex-end;">
+          <div class="fi" style="flex:1;margin:0;">
+            <label>Feed Name</label>
+            <input id="rss-name" placeholder="e.g. BrighterMonday">
+          </div>
+          <div class="fi" style="flex:2;margin:0;">
+            <label>RSS URL</label>
+            <input id="rss-url" placeholder="https://...">
+          </div>
+          <button class="btn bp" onclick="importCustomRSS()">Import →</button>
+        </div>
+      </div>
+      <div id="rss-result" style="display:none;">
+        <div class="card">
+          <div class="ct" id="rss-result-title">Results</div>
+          <div class="tw" id="rss-table"></div>
+          <div class="brow">
+            <button class="btn bg" onclick="saveRSSJobs()">✅ Save These Jobs</button>
+            <button class="btn bgh" onclick="document.getElementById('rss-result').style.display='none'">❌ Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALL JOBS -->
+    <div id="pg-manage" class="pg">
+      <div class="ph"><div class="pt">💼 All Jobs</div><div class="ps">View, search and manage all jobs.</div></div>
+      <div class="card">
+        <div class="srow2">
+          <input id="search-q" placeholder="🔍 Search by title or company..." oninput="renderManage()">
+          <select id="filter-type" onchange="renderManage()">
+            <option value="">All Types</option>
+            <option>Full-Time</option><option>Part-Time</option><option>Internship</option>
+            <option>Government</option><option>NGO</option><option>Remote</option><option>Contract</option>
+          </select>
+          <select id="filter-source" onchange="renderManage()">
+            <option value="">All Sources</option>
+            <option>BrighterMonday</option><option>Fuzu</option><option>MyJobs</option>
+            <option>Career Point Kenya</option><option>Jobs in Kenya</option>
+            <option>ReliefWeb</option><option>RSS</option><option>CSV</option><option>Manual</option>
+          </select>
+          <button class="btn br" onclick="clearAll()">🗑 Clear All</button>
+        </div>
+        <div id="manage-list"></div>
+        <div id="manage-pagination" style="display:flex;gap:8px;margin-top:14px;justify-content:center;flex-wrap:wrap;"></div>
+      </div>
+    </div>
+
+    <!-- FEATURED -->
+    <div id="pg-featured" class="pg">
+      <div class="ph"><div class="pt">⭐ Featured Jobs</div><div class="ps">Jobs with gold highlight on your website.</div></div>
+      <div class="card">
+        <div id="feat-list"><div style="color:var(--muted2);font-size:.85rem;">No featured jobs yet.</div></div>
+      </div>
+    </div>
+
+    <!-- EXPORT -->
+    <div id="pg-export" class="pg">
+      <div class="ph"><div class="pt">⬇️ Export Jobs</div><div class="ps">Export your jobs for backup or editing.</div></div>
+      <div class="card">
+        <div class="ct">Export Options</div>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:#050a10;border-radius:10px;border:1px solid var(--border);">
+            <div><div style="font-weight:600;font-size:.88rem;">Export as CSV</div><div style="color:var(--muted2);font-size:.78rem;">Open in Excel or Google Sheets</div></div>
+            <button class="btn bgh" onclick="exportCSV()">⬇️ Export CSV</button>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:#050a10;border-radius:10px;border:1px solid var(--border);">
+            <div><div style="font-weight:600;font-size:.88rem;">Export as JSON</div><div style="color:var(--muted2);font-size:.78rem;">For developers / API use</div></div>
+            <button class="btn bgh" onclick="exportJSON()">⬇️ Export JSON</button>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:#050a10;border-radius:10px;border:1px solid var(--border);">
+            <div><div style="font-weight:600;font-size:.88rem;">Copy API Snippet</div><div style="color:var(--muted2);font-size:.78rem;">Add to your index.html to load these jobs</div></div>
+            <button class="btn bgh" onclick="copySnippet()">📋 Copy Code</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="pg-settings" class="pg">
+      <div class="ph"><div class="pt">⚙️ Settings</div><div class="ps">Configure your admin panel.</div></div>
+      <div class="card">
+        <div class="ct">🔐 Change Login</div>
+        <div class="fg">
+          <div class="fi"><label>New Username</label><input id="set-user" placeholder="admin"></div>
+          <div class="fi"><label>New Password</label><input type="password" id="set-pass" placeholder="••••••••"></div>
+        </div>
+        <div class="brow"><button class="btn bp" onclick="saveCreds()">💾 Save</button></div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  AUTH
+// ═══════════════════════════════════════════════════════
+const DEF_USER = 'admin', DEF_PASS = 'jobskenya2025';
+const getCreds = ()=>({ u: localStorage.getItem('au')||DEF_USER, p: localStorage.getItem('ap')||DEF_PASS });
+
+function login(){
+  const u=_('lu').value.trim(), p=_('lp').value.trim(), c=getCreds();
+  if(u===c.u && p===c.p){
+    sessionStorage.setItem('li','1');
+    _('login').style.display='none';
+    _('app').style.display='flex';
+    init();
+  } else {
+    _('lerr').style.display='block';
+  }
+}
+
+function logout(){
+  sessionStorage.removeItem('li');
+  location.reload();
+}
+
+function saveCreds(){
+  const u=_('set-user').value.trim(), p=_('set-pass').value.trim();
+  if(!u||!p){ toast('Enter both fields','err'); return; }
+  localStorage.setItem('au',u); localStorage.setItem('ap',p);
+  toast('✅ Login updated!');
+}
+
+// ═══════════════════════════════════════════════════════
+//  CORE
+// ═══════════════════════════════════════════════════════
+function _(id){ return document.getElementById(id); }
+
+function toast(msg, type=''){
+  const t=_('toast'); t.textContent=msg; t.className='toast'+(type?' '+type:'');
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+function go(page, el){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('on'));
+  _('pg-'+page).classList.add('on');
+  if(el) el.classList.add('on');
+  if(page==='manage') renderManage();
+  if(page==='featured') renderFeatured();
+  if(page==='dashboard'){ refreshStats(); renderRecent(); }
+  if(page==='rss') renderRSSSources();
+}
+
+// ═══════════════════════════════════════════════════════
+//  JOB STORAGE — uses localStorage, holds 500+ jobs
+// ═══════════════════════════════════════════════════════
+function getJobs(){ return JSON.parse(localStorage.getItem('kj')||'[]'); }
+function setJobs(j){ localStorage.setItem('kj',JSON.stringify(j)); refreshStats(); }
+
+function refreshStats(){
+  const j=getJobs();
+  _('s-total').textContent=j.length;
+  _('s-manual').textContent=j.filter(x=>x.via==='manual').length;
+  _('s-feat').textContent=j.filter(x=>x.featured).length;
+  _('s-csv').textContent=j.filter(x=>x.via==='csv').length;
+}
+
+function renderRecent(){
+  const j=getJobs().slice(0,8);
+  if(!j.length){ _('recent-list').innerHTML='<div style="color:var(--muted2);font-size:.85rem;">No jobs yet.</div>'; return; }
+  _('recent-list').innerHTML=j.map(x=>`
+    <div class="jr">
+      <div class="jri">
+        <div class="jrt">${x.title}</div>
+        <div class="jrm">${x.company} · ${x.county} · <span class="bdg ${typeBadge(x.type)}">${x.type}</span></div>
+      </div>
+      <div class="ja">
+        <button class="ib d" onclick="delJob('${x.id}');renderRecent()">🗑</button>
+      </div>
+    </div>`).join('');
+}
+
+function typeBadge(t){
+  if(!t) return 'ba';
+  t=t.toLowerCase();
+  if(t.includes('intern')) return 'bo';
+  if(t.includes('ngo')||t.includes('govern')) return 'bg2';
+  if(t.includes('remote')) return 'brd';
+  return 'ba';
+}
+
+// ═══════════════════════════════════════════════════════
+//  ADD SINGLE JOB
+// ═══════════════════════════════════════════════════════
+function addJob(){
+  const title=_('f-title').value.trim(), company=_('f-company').value.trim();
+  if(!title||!company){ toast('Title and Company required!','err'); return; }
+  const job={
+    id:'j-'+Date.now()+'-'+Math.random().toString(36).slice(2,7),
+    title, company,
+    location: _('f-location').value.trim()||'Kenya',
+    county:   _('f-county').value,
+    type:     _('f-type').value,
+    sector:   _('f-sector').value,
+    salary:   _('f-salary').value.trim()||'Not stated',
+    deadline: _('f-deadline').value,
+    apply_email: _('f-email').value.trim(),
+    link:     _('f-link').value.trim(),
+    source:   _('f-source').value,
+    featured: _('f-featured').value==='yes',
+    description: _('f-desc').value.trim(),
+    scraped_at: new Date().toISOString(),
+    via: 'manual'
+  };
+  const jobs=getJobs(); jobs.unshift(job); setJobs(jobs);
+  clearForm();
+  toast(`✅ "${title}" added!`);
+}
+
+function clearForm(){
+  ['f-title','f-company','f-location','f-salary','f-deadline','f-email','f-link','f-desc']
+    .forEach(id=>_(id).value='');
+}
+
+// ═══════════════════════════════════════════════════════
+//  CSV UPLOAD
+// ═══════════════════════════════════════════════════════
+let csvParsed=[];
+
+function dropCSV(e){
+  e.preventDefault(); _('dz').classList.remove('over');
+  const f=e.dataTransfer.files[0];
+  if(f) readCSV(f);
+}
+
+function readCSV(file){
+  if(!file){ toast('No file selected','err'); return; }
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const text=e.target.result;
+    csvParsed=parseCSV(text);
+    if(!csvParsed.length){ toast('No valid jobs found in CSV','err'); return; }
+    previewCSV(csvParsed);
+  };
+  reader.readAsText(file);
+}
+
+function parseCSV(text){
+  const lines=text.split('\n').filter(l=>l.trim());
+  if(lines.length<2) return [];
+
+  // Parse header
+  const headers=splitCSVLine(lines[0]).map(h=>h.toLowerCase().trim()
+    .replace(/\s+/g,'_').replace(/[^a-z_]/g,''));
+
+  const jobs=[];
+  for(let i=1;i<lines.length;i++){
+    const vals=splitCSVLine(lines[i]);
+    if(!vals.length||!vals[0]) continue;
+    const row={};
+    headers.forEach((h,idx)=>{ row[h]=vals[idx]||''; });
+
+    // Map common column name variations
+    const title   = row.title||row.job_title||row['job title']||row.position||'';
+    const company = row.company||row.employer||row.organisation||row.organization||'';
+    if(!title.trim()) continue;
+
+    jobs.push({
+      id:          'csv-'+Date.now()+'-'+i,
+      title:       title.trim(),
+      company:     company.trim()||'Not specified',
+      location:    (row.location||row.city||row.place||'Kenya').trim(),
+      county:      guessCounty(row.location||row.county||row.city||''),
+      type:        row.type||row.job_type||row['employment type']||'Full-Time',
+      sector:      row.sector||row.category||row.field||'General',
+      salary:      row.salary||row.pay||row.remuneration||'Not stated',
+      deadline:    row.deadline||row.closing_date||row['closing date']||'',
+      apply_email: row.email||row.apply_email||row.contact||'',
+      link:        row.link||row.url||row.apply_link||row['job url']||'',
+      source:      row.source||'CSV Import',
+      featured:    false,
+      description: row.description||row.summary||row.details||'',
+      scraped_at:  new Date().toISOString(),
+      via:         'csv'
+    });
+  }
+  return jobs;
+}
+
+function splitCSVLine(line){
+  const result=[], re=/(".*?"|[^,]+)(?=,|$)/g;
+  let m, last=0;
+  // Simple but handles quoted fields
+  const cols=[];
+  let inQ=false, cur='';
+  for(let c of line+','){
+    if(c==='"'){ inQ=!inQ; }
+    else if(c===','&&!inQ){ cols.push(cur.trim().replace(/^"|"$/g,'')); cur=''; }
+    else cur+=c;
+  }
+  return cols;
+}
+
+function guessCounty(text){
+  const counties=['Nairobi','Mombasa','Kisumu','Nakuru','Eldoret','Kiambu',
+    'Machakos','Nyeri','Meru','Kakamega','Kisii','Kilifi','Embu','Garissa',
+    'Bungoma','Kajiado','Kericho','Turkana','Homa Bay','Nyamira','Narok',
+    'Vihiga','Thika','Lamu','Siaya'];
+  const t=(text||'').toLowerCase();
+  for(const c of counties){ if(t.includes(c.toLowerCase())) return c; }
+  if(t.includes('remote')||t.includes('online')) return 'Remote';
+  return 'Nairobi';
+}
+
+function previewCSV(jobs){
+  _('csv-preview').style.display='block';
+  _('csv-preview-title').textContent=`📊 Preview — ${jobs.length} jobs found`;
+  _('csv-info').textContent=`${jobs.length} jobs ready to import. Scroll to review before importing.`;
+  _('csv-pf').style.width='100%';
+
+  const cols=['title','company','location','type','salary','deadline'];
+  _('csv-table').innerHTML=`
+    <table>
+      <thead><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
+      <tbody>${jobs.slice(0,200).map(j=>`
+        <tr>${cols.map(c=>`<td>${(j[c]||'').slice(0,50)}</td>`).join('')}</tr>
+      `).join('')}</tbody>
+    </table>`;
+
+  // Scroll to preview
+  _('csv-preview').scrollIntoView({behavior:'smooth'});
+}
+
+function importCSV(){
+  if(!csvParsed.length){ toast('No jobs to import','err'); return; }
+  const existing=getJobs();
+  const combined=[...csvParsed,...existing];
+  // Deduplicate by title+company
+  const seen=new Set(), unique=[];
+  for(const j of combined){
+    const k=j.title.toLowerCase()+'|'+j.company.toLowerCase();
+    if(!seen.has(k)){ seen.add(k); unique.push(j); }
+  }
+  setJobs(unique);
+  _('csv-preview').style.display='none';
+  toast(`✅ ${csvParsed.length} jobs imported! Total: ${unique.length}`);
+  csvParsed=[];
+}
+
+function dlTemplate(){
+  const csv=`title,company,location,type,sector,salary,deadline,email,link,description
+"Software Engineer","Safaricom PLC","Nairobi","Full-Time","ICT & Technology","KSh 80,000 – 120,000","2025-04-01","hr@safaricom.co.ke","https://brightermonday.co.ke/jobs/software-engineer","We are looking for a skilled software engineer..."
+"Accountant","KCB Bank","Mombasa","Full-Time","Finance & Banking","KSh 60,000","2025-03-30","recruitment@kcb.co.ke","https://fuzu.com/kenya/jobs/accountant","The ideal candidate should have CPA-K..."
+"NGO Programme Officer","UNICEF Kenya","Nairobi","NGO","NGO / Non-Profit","Not stated","2025-04-15","apply@unicef.org","https://reliefweb.int/job/unicef","UNICEF Kenya is seeking a Programme Officer..."`;
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
+  a.download='jobs_template.csv';
+  a.click();
+  toast('✅ Template downloaded!');
+}
+
+// ═══════════════════════════════════════════════════════
+//  RSS IMPORT
+// ═══════════════════════════════════════════════════════
+const RSS_FEEDS=[
+  {name:'Career Point Kenya', url:'https://www.careerpointkenya.co.ke/feed/'},
+  {name:'Jobs in Kenya',      url:'https://www.jobsinkenya.co.ke/feed/'},
+  {name:'NGO Jobs Kenya',     url:'https://www.ngojobskenya.com/feed/'},
+  {name:'UN Jobs Nairobi',    url:'https://unjobs.org/duty_stations/nairobi/rss'},
+  {name:'BrighterMonday',     url:'https://www.brightermonday.co.ke/rss/jobs'},
+];
+
+let rssParsed=[];
+
+function renderRSSSources(){
+  _('rss-sources').innerHTML=RSS_FEEDS.map((f,i)=>`
+    <div style="display:flex;align-items:center;justify-content:space-between;
+      padding:13px;background:#050a10;border-radius:10px;border:1px solid var(--border);">
+      <div>
+        <div style="font-weight:600;font-size:.87rem;">${f.name}</div>
+        <div style="color:var(--muted2);font-size:.76rem;">${f.url}</div>
+      </div>
+      <button class="btn bgh" onclick="importRSS(${i})">Import →</button>
+    </div>`).join('');
+}
+
+async function importRSS(idx){
+  const feed=RSS_FEEDS[idx];
+  toast(`Fetching ${feed.name}...`);
+  try{
+    // Use RSS2JSON API to bypass CORS
+    const api=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(feed.url)}&count=50`;
+    const res=await fetch(api);
+    const data=await res.json();
+    if(data.status!=='ok'||!data.items?.length){
+      toast(`❌ ${feed.name} not available`,'err'); return;
+    }
+    rssParsed=data.items.map((item,i)=>{
+      let title=item.title||'', company=feed.name;
+      for(const sep of [' at ',' - ',' | ']){
+        if(title.includes(sep)){
+          const p=title.split(sep,2);
+          title=p[0].trim(); company=p[1].trim(); break;
+        }
+      }
+      const desc=(item.description||item.content||'').replace(/<[^>]+>/g,' ').trim();
+      return {
+        id:`rss-${Date.now()}-${i}`,
+        title, company,
+        location: guessCounty(title+' '+desc)+', Kenya',
+        county:   guessCounty(title+' '+desc),
+        type:     guessType(title+' '+desc),
+        sector:   guessSector(title+' '+desc),
+        salary:   'Not stated', deadline:'',
+        apply_email: extractEmail(desc),
+        link:     item.link||'',
+        source:   feed.name,
+        featured: false,
+        description: desc.slice(0,2000),
+        scraped_at: item.pubDate||new Date().toISOString(),
+        via:'rss'
+      };
+    });
+    showRSSResult(feed.name, rssParsed);
+  }catch(e){
+    toast(`❌ Failed: ${e.message}`,'err');
+  }
+}
+
+async function importCustomRSS(){
+  const name=_('rss-name').value.trim()||'Custom Feed';
+  const url=_('rss-url').value.trim();
+  if(!url){ toast('Enter RSS URL','err'); return; }
+  toast(`Fetching ${name}...`);
+  try{
+    const api=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}&count=50`;
+    const res=await fetch(api);
+    const data=await res.json();
+    if(data.status!=='ok'||!data.items?.length){
+      toast('❌ Feed not found or empty','err'); return;
+    }
+    rssParsed=data.items.map((item,i)=>{
+      const desc=(item.description||'').replace(/<[^>]+>/g,' ').trim();
+      return {
+        id:`rss-${Date.now()}-${i}`,
+        title: item.title||'Job Opening',
+        company: name,
+        location: guessCounty(item.title+' '+desc)+', Kenya',
+        county: guessCounty(item.title+' '+desc),
+        type: guessType(item.title+' '+desc),
+        sector: guessSector(item.title+' '+desc),
+        salary:'Not stated', deadline:'',
+        apply_email: extractEmail(desc),
+        link: item.link||'',
+        source: name, featured:false,
+        description: desc.slice(0,2000),
+        scraped_at: item.pubDate||new Date().toISOString(),
+        via:'rss'
+      };
+    });
+    showRSSResult(name, rssParsed);
+  }catch(e){
+    toast(`❌ Failed: ${e.message}`,'err');
+  }
+}
+
+function showRSSResult(name, jobs){
+  _('rss-result').style.display='block';
+  _('rss-result-title').textContent=`📋 ${name} — ${jobs.length} jobs found`;
+  const cols=['title','company','location','type'];
+  _('rss-table').innerHTML=`
+    <table>
+      <thead><tr>${cols.map(c=>`<th>${c}</th>`).join('')}</tr></thead>
+      <tbody>${jobs.map(j=>`
+        <tr>${cols.map(c=>`<td>${(j[c]||'').slice(0,60)}</td>`).join('')}</tr>
+      `).join('')}</tbody>
+    </table>`;
+  _('rss-result').scrollIntoView({behavior:'smooth'});
+}
+
+function saveRSSJobs(){
+  if(!rssParsed.length){ toast('No jobs to save','err'); return; }
+  const existing=getJobs();
+  const combined=[...rssParsed,...existing];
+  const seen=new Set(), unique=[];
+  for(const j of combined){
+    const k=j.title.toLowerCase()+'|'+j.company.toLowerCase();
+    if(!seen.has(k)){ seen.add(k); unique.push(j); }
+  }
+  setJobs(unique);
+  _('rss-result').style.display='none';
+  toast(`✅ ${rssParsed.length} jobs saved! Total: ${unique.length}`);
+  rssParsed=[];
+}
+
+// ═══════════════════════════════════════════════════════
+//  MANAGE JOBS (paginated — shows all 150+ jobs)
+// ═══════════════════════════════════════════════════════
+let managePage=0;
+const PER_PAGE=25;
+
+function renderManage(){
+  managePage=0; renderManagePage();
+}
+
+function renderManagePage(){
+  let jobs=getJobs();
+  const q=(_('search-q').value||'').toLowerCase();
+  const ft=_('filter-type').value;
+  const fs=_('filter-source').value;
+
+  if(q) jobs=jobs.filter(j=>(j.title+j.company).toLowerCase().includes(q));
+  if(ft) jobs=jobs.filter(j=>j.type===ft);
+  if(fs) jobs=jobs.filter(j=>j.source===fs);
+
+  const total=jobs.length;
+  const page=jobs.slice(managePage*PER_PAGE,(managePage+1)*PER_PAGE);
+
+  if(!page.length){
+    _('manage-list').innerHTML='<div style="color:var(--muted2);font-size:.85rem;text-align:center;padding:28px;">No jobs found.</div>';
+    _('manage-pagination').innerHTML='';
+    return;
+  }
+
+  _('manage-list').innerHTML=page.map(j=>`
+    <div class="jr">
+      <div class="jri">
+        <div class="jrt">${j.title}</div>
+        <div class="jrm">${j.company} · ${j.county} · <span class="bdg ${typeBadge(j.type)}">${j.type}</span> · <span style="font-size:.7rem;opacity:.6;">${j.source||'Manual'}</span></div>
+      </div>
+      <div class="ja">
+        ${j.featured?'<span style="font-size:.8rem;">⭐</span>':''}
+        <button class="ib" onclick="toggleFeat('${j.id}')">${j.featured?'Unfeature':'⭐ Feature'}</button>
+        <button class="ib d" onclick="delJob('${j.id}');renderManage()">🗑</button>
+      </div>
+    </div>`).join('');
+
+  // Pagination
+  const pages=Math.ceil(total/PER_PAGE);
+  _('manage-pagination').innerHTML=
+    `<span style="color:var(--muted2);font-size:.8rem;align-self:center;">${total} jobs</span>`+
+    Array.from({length:pages},(_,i)=>`
+      <button onclick="managePage=${i};renderManagePage()" class="btn bgh"
+        style="padding:6px 12px;font-size:.78rem;${i===managePage?'border-color:var(--accent);color:var(--accent)':''}">${i+1}</button>
+    `).join('');
+}
+
+function delJob(id){
+  setJobs(getJobs().filter(j=>j.id!==id));
+  toast('Job deleted');
+}
+
+function toggleFeat(id){
+  const jobs=getJobs();
+  const j=jobs.find(x=>x.id===id);
+  if(j) j.featured=!j.featured;
+  setJobs(jobs);
+  renderManage();
+  toast(j?.featured?'⭐ Marked as featured!':'Removed from featured');
+}
+
+function clearAll(){
+  if(!confirm(`Delete ALL ${getJobs().length} jobs? This cannot be undone.`)) return;
+  setJobs([]);
+  renderManage();
+  toast('All jobs cleared');
+}
+
+// ═══════════════════════════════════════════════════════
+//  FEATURED
+// ═══════════════════════════════════════════════════════
+function renderFeatured(){
+  const jobs=getJobs().filter(j=>j.featured);
+  if(!jobs.length){ _('feat-list').innerHTML='<div style="color:var(--muted2);font-size:.85rem;">No featured jobs. Go to All Jobs and click ⭐ Feature on any job.</div>'; return; }
+  _('feat-list').innerHTML=jobs.map(j=>`
+    <div class="jr">
+      <div class="jri">
+        <div class="jrt">⭐ ${j.title}</div>
+        <div class="jrm">${j.company} · ${j.county}</div>
+      </div>
+      <div class="ja">
+        <button class="ib d" onclick="toggleFeat('${j.id}');renderFeatured()">Remove</button>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════
+//  EXPORT
+// ═══════════════════════════════════════════════════════
+function exportCSV(){
+  const jobs=getJobs();
+  if(!jobs.length){ toast('No jobs to export','err'); return; }
+  const cols=['title','company','location','county','type','sector','salary','deadline','apply_email','link','source','description'];
+  const rows=[cols.join(','),...jobs.map(j=>cols.map(c=>'"'+(j[c]||'').replace(/"/g,'""')+'"').join(','))];
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(rows.join('\n'));
+  a.download='jobs_kenya_export.csv';
+  a.click();
+  toast(`✅ ${jobs.length} jobs exported!`);
+}
+
+function exportJSON(){
+  const jobs=getJobs();
+  if(!jobs.length){ toast('No jobs to export','err'); return; }
+  const a=document.createElement('a');
+  a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(jobs,null,2));
+  a.download='jobs_kenya.json';
+  a.click();
+  toast(`✅ ${jobs.length} jobs exported as JSON!`);
+}
+
+function copySnippet(){
+  const jobs=getJobs();
+  const snippet=`<script>
+// Jobs Kenya — Admin Panel Jobs (${jobs.length} jobs)
+// Add this to your index.html to load these jobs
+const ADMIN_JOBS = ${JSON.stringify(jobs.slice(0,200))};
+<\/script>`;
+  navigator.clipboard.writeText(snippet).then(()=>toast('✅ Code copied! Paste into index.html'));
+}
+
+// ═══════════════════════════════════════════════════════
+//  HELPERS
+// ═══════════════════════════════════════════════════════
+function extractEmail(t){
+  const m=(t||'').match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g)||[];
+  return m.find(e=>!['noreply','no-reply','example','test@'].some(b=>e.includes(b)))||'';
+}
+
+function guessType(t){
+  t=t.toLowerCase();
+  if(/intern|attachment|graduate trainee/.test(t)) return 'Internship';
+  if(/part-time|part time|casual/.test(t)) return 'Part-Time';
+  if(/government|county|ministry|psc/.test(t)) return 'Government';
+  if(/ngo|unicef|undp|oxfam|non-profit/.test(t)) return 'NGO';
+  if(/remote|work from home|wfh/.test(t)) return 'Remote';
+  if(/contract|consultant|temporary/.test(t)) return 'Contract';
+  return 'Full-Time';
+}
+
+function guessSector(t){
+  t=t.toLowerCase();
+  if(/software|developer|ict|data|cyber|tech/.test(t)) return 'ICT & Technology';
+  if(/nurse|doctor|medical|health|clinical/.test(t)) return 'Health & Medicine';
+  if(/finance|account|audit|tax|banking/.test(t)) return 'Finance & Banking';
+  if(/engineer|civil|mechanical|electrical/.test(t)) return 'Engineering';
+  if(/teach|tutor|lecturer|school|education/.test(t)) return 'Education';
+  if(/farm|agri|crop|livestock|food/.test(t)) return 'Agriculture';
+  if(/market|sales|brand|advertis/.test(t)) return 'Marketing & Sales';
+  if(/ngo|humanitarian|relief|programme/.test(t)) return 'NGO / Non-Profit';
+  if(/legal|lawyer|advocate|compliance/.test(t)) return 'Legal';
+  if(/driver|transport|logistics|supply/.test(t)) return 'Transport & Logistics';
+  return 'General';
+}
+
+// ═══════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════
+function init(){
+  refreshStats();
+  renderRecent();
+  renderRSSSources();
+}
+
+// Auto-login check
+if(sessionStorage.getItem('li')==='1'){
+  _('login').style.display='none';
+  _('app').style.display='flex';
+  init();
+}
+</script>
+</body>
+</html>
