@@ -1457,10 +1457,11 @@ function loadFeaturedJobs(){
   if(!grid) return;
   try{
     const stored=localStorage.getItem("kj");
-    if(!stored){ grid.innerHTML="<div style="color:#92400e;font-size:0.85rem;padding:16px;opacity:0.7;">No featured jobs yet. Contact jobsinkenyaa@gmail.com to feature your job.</div>"; return; }
+    const noFeat='<div style="color:#92400e;font-size:0.85rem;padding:16px;opacity:0.7;">No featured jobs yet. Contact jobsinkenyaa@gmail.com to feature your job.</div>';
+    if(!stored){ grid.innerHTML=noFeat; return; }
     const all=JSON.parse(stored);
     const featured=all.filter(j=>j.featured).slice(0,1000);
-    if(!featured.length){ grid.innerHTML="<div style="color:#92400e;font-size:0.85rem;padding:16px;opacity:0.7;">No featured jobs yet. Contact jobsinkenyaa@gmail.com to feature your job.</div>"; return; }
+    if(!featured.length){ grid.innerHTML=noFeat; return; }
     grid.innerHTML=featured.map(j=>`
       <div class="fcard">
         <div class="fribbon">⭐ FEATURED</div>
