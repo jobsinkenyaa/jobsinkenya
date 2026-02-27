@@ -296,7 +296,7 @@ tr:hover td{background:rgba(0,212,255,.02);}
 
     <!-- CSV UPLOAD -->
     <div id="pg-csv" class="pg">
-      <div class="ph"><div class="pt">📂 CSV Upload</div><div class="ps">Upload 150+ jobs at once from Web Scraper, Excel exports etc.</div></div>
+      <div class="ph"><div class="pt">📂 CSV Upload</div><div class="ps">Upload 150+ jobs at once from Excel, Google Sheets exports etc.</div></div>
       <div class="card">
         <div class="ct">📥 Upload Your CSV File</div>
         <div class="dz" id="dz" onclick="document.getElementById('csv-file').click()"
@@ -305,7 +305,7 @@ tr:hover td{background:rgba(0,212,255,.02);}
              ondrop="dropCSV(event)">
           <div class="dico">📄</div>
           <div class="dt">Drop CSV file here or click to browse</div>
-          <div class="ds">Supports files from Web Scraper Chrome extension, Excel, Google Sheets exports</div>
+          <div class="ds">Supports CSV files from Excel or Google Sheets</div>
         </div>
         <input type="file" id="csv-file" accept=".csv" style="display:none" onchange="readCSV(this.files[0])">
         <div style="margin-top:18px;">
@@ -404,18 +404,18 @@ tr:hover td{background:rgba(0,212,255,.02);}
       <div class="card">
         <div class="ct">Export Options</div>
         <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:#050a10;border-radius:10px;border:1px solid var(--green);">
+            <div><div style="font-weight:700;font-size:.88rem;">⭐ Export as jobs.json <span style="color:var(--green);font-size:.75rem;">(RECOMMENDED)</span></div><div style="color:var(--muted2);font-size:.78rem;">Upload to GitHub → jobs show for ALL visitors permanently</div></div>
+            <button class="btn bg" onclick="exportJSON()">⬇️ Export jobs.json</button>
+          </div>
           <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:#050a10;border-radius:10px;border:1px solid var(--border);">
             <div><div style="font-weight:600;font-size:.88rem;">Export as CSV</div><div style="color:var(--muted2);font-size:.78rem;">Open in Excel or Google Sheets</div></div>
             <button class="btn bgh" onclick="exportCSV()">⬇️ Export CSV</button>
           </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:#050a10;border-radius:10px;border:1px solid var(--border);">
-            <div><div style="font-weight:600;font-size:.88rem;">Export as JSON</div><div style="color:var(--muted2);font-size:.78rem;">For developers / API use</div></div>
-            <button class="btn bgh" onclick="exportJSON()">⬇️ Export JSON</button>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:#050a10;border-radius:10px;border:1px solid var(--border);">
-            <div><div style="font-weight:600;font-size:.88rem;">Copy API Snippet</div><div style="color:var(--muted2);font-size:.78rem;">Add to your index.html to load these jobs</div></div>
-            <button class="btn bgh" onclick="copySnippet()">📋 Copy Code</button>
-          </div>
+        </div>
+        <div style="margin-top:20px;padding:16px;background:#050a10;border-radius:10px;border:1px solid var(--border);">
+          <div style="font-weight:700;font-size:.88rem;margin-bottom:10px;color:var(--accent);">📋 How to make jobs permanent for everyone:</div>
+          <div style="color:var(--muted2);font-size:.82rem;line-height:1.9;">1. Click "Export jobs.json" above<br>2. Go to github.com/jobsinkenyaa/jobsinkenya<br>3. Click "Add file" → "Upload files"<br>4. Upload the jobs.json file<br>5. Click "Commit changes"<br>6. Done! ✅ Jobs load for ALL visitors from any device</div>
         </div>
       </div>
     </div>
@@ -549,7 +549,7 @@ function addJob(){
     source:   _('f-source').value,
     featured: _('f-featured').value==='yes',
     description: _('f-desc').value.trim(),
-    scraped_at: new Date().toISOString(),
+    date_added: new Date().toISOString(),
     via: 'manual'
   };
   const jobs=getJobs(); jobs.unshift(job); setJobs(jobs);
@@ -620,7 +620,7 @@ function parseCSV(text){
       source:      row.source||'CSV Import',
       featured:    false,
       description: row.description||row.summary||row.details||'',
-      scraped_at:  new Date().toISOString(),
+      date_added: new Date().toISOString(),
       via:         'csv'
     });
   }
@@ -757,7 +757,7 @@ async function importRSS(idx){
         source:   feed.name,
         featured: false,
         description: desc.slice(0,2000),
-        scraped_at: item.pubDate||new Date().toISOString(),
+        date_added: item.pubDate||new Date().toISOString(),
         via:'rss'
       };
     });
@@ -794,7 +794,7 @@ async function importCustomRSS(){
         link: item.link||'',
         source: name, featured:false,
         description: desc.slice(0,2000),
-        scraped_at: item.pubDate||new Date().toISOString(),
+        date_added: item.pubDate||new Date().toISOString(),
         via:'rss'
       };
     });
@@ -943,10 +943,13 @@ function exportJSON(){
   const jobs=getJobs();
   if(!jobs.length){ toast('No jobs to export','err'); return; }
   const a=document.createElement('a');
-  a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(jobs,null,2));
-  a.download='jobs_kenya.json';
+  a.href='data:application/json;charset=utf-8,'+encodeURIComponent(JSON.stringify(jobs));
+  a.download='jobs.json';
   a.click();
-  toast(`✅ ${jobs.length} jobs exported as JSON!`);
+  toast(`✅ ${jobs.length} jobs exported! Upload jobs.json to GitHub.`);
+  setTimeout(()=>{
+    alert(`✅ ${jobs.length} jobs downloaded as jobs.json!\n\nTo make jobs permanent for ALL visitors:\n\n1. Go to github.com/jobsinkenyaa/jobsinkenya\n2. Click "Add file" → "Upload files"\n3. Upload jobs.json\n4. Click "Commit changes"\n\nJobs will now load for everyone! 🚀`);
+  },500);
 }
 
 function copySnippet(){
