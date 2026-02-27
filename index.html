@@ -798,7 +798,7 @@ footer{background:var(--text);color:rgba(255,255,255,0.78);padding:46px 5% 24px;
   <div id="err-box" style="display:none;">
     <div class="err-box">
       <h3>⚠️ Could not load jobs</h3>
-      <p>Check your API key or internet connection.</p>
+      <p>No jobs found. Please check your connection.</p>
       <button class="retry-btn" onclick="fetchJobs()">🔄 Try Again</button>
     </div>
   </div>
@@ -965,8 +965,7 @@ let jobStore = {};
 // ── JOB BOARD BLACKLIST (never link to these) ──────────────
 const BAD = ['linkedin','indeed','glassdoor','jobsdb','monster','careerjet',
   'jooble','simplyhired','ziprecruiter','jobs2careers','brightspyre',
-  'jsearch','rapidapi','myjobinkenya','brightermonday','fuzu',
-  'ngojobskenya','careerpointkenya','jobvite','greenhouse','lever.co',
+  'jobvite','greenhouse','lever.co',
   'workday','taleo','smartrecruiters','bamboohr','breezy.hr'];
 
 function isJobBoard(u){ return !u || BAD.some(d=>(u||'').toLowerCase().includes(d)); }
@@ -978,7 +977,7 @@ function cleanText(t){
 }
 function extractEmail(t){
   const m=(cleanText(t)).match(/[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}/g)||[];
-  return m.find(e=>!['noreply','no-reply','donotreply','rapidapi','example','@sentry'].some(b=>e.toLowerCase().includes(b)))||null;
+  return m.find(e=>!['noreply','no-reply','donotreply','example','@sentry'].some(b=>e.toLowerCase().includes(b)))||null;
 }
 function extractSite(t){
   const m=(cleanText(t)).match(/https?:\/\/[^\s"'<>)\],]+/g)||[];
@@ -1017,7 +1016,7 @@ function toParas(arr, max=5){
   return arr.slice(0,max).map(i=>`<p>${i}</p>`).join('');
 }
 
-// ── FETCH LIVE JOBS — Admin Panel + RSS Scraped Kenyan Sites ──
+// ── FETCH LIVE JOBS ──
 async function fetchJobs(){
   const kw     = document.getElementById('si').value.trim();
   const county = document.getElementById('cf').value||'Kenya';
@@ -1028,22 +1027,39 @@ async function fetchJobs(){
   document.getElementById('err-box').style.display='none';
   document.getElementById('jobs-sub').textContent=`Loading jobs in ${county}...`;
 
-  // 1️⃣ Load jobs from Admin Panel (localStorage — holds 1000+ jobs)
+  // Load jobs from localStorage (set by admin panel)
   let adminJobs=[];
   try{
+    // Try localStorage first
+    let raw=null;
     const stored=localStorage.getItem('kj');
-    if(stored){
-      let raw=JSON.parse(stored);
+    if(stored) raw=JSON.parse(stored);
+
+    // If nothing in localStorage, try to load from jobs.json on GitHub
+    if(!raw||!raw.length){
+      try{
+        const res=await fetch('./jobs.json?t='+Date.now());
+        if(res.ok){
+          raw=await res.json();
+          // Save to localStorage for next time
+          if(raw&&raw.length) localStorage.setItem('kj',JSON.stringify(raw));
+          console.log('Loaded jobs from jobs.json');
+        }
+      }catch(e){ console.log('No jobs.json found'); }
+    }
+
+    if(raw&&raw.length){
+      let filtered=[...raw];
       // Apply type filter
-      if(type) raw=raw.filter(j=>normalizeType(j.type||'').includes(type.replace('TIME','').replace('_','')));
-      adminJobs=raw.map(j=>({
+      if(type) filtered=filtered.filter(j=>normalizeType(j.type||'').includes(type.replace('TIME','').replace('_','')));
+      adminJobs=filtered.map(j=>({
         _source:'admin',
         title:       j.title||'Job Opening',
         company:     j.company||'Organisation',
         city:        j.location||(j.county?j.county+', Kenya':'Kenya'),
         type:        normalizeType(j.type||'Full-Time'),
         salary:      j.salary||'Not stated',
-        posted:      j.scraped_at?new Date(j.scraped_at).toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'}):'Recent',
+        posted:      j.date_added?new Date(j.date_added).toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'}):'Recent',
         deadline:    j.deadline||null,
         logo:        '',
         desc:        j.description||'',
@@ -1059,11 +1075,11 @@ async function fetchJobs(){
       if(county!=='Kenya') adminJobs=adminJobs.filter(j=>j.city.toLowerCase().includes(county.toLowerCase()));
       // Apply keyword filter
       if(kw) adminJobs=adminJobs.filter(j=>(j.title+' '+j.company+' '+j.field).toLowerCase().includes(kw.toLowerCase()));
-      console.log(`Admin: ${adminJobs.length} jobs loaded`);
+      console.log(`Jobs loaded: ${adminJobs.length}`);
     }
-  }catch(e){ console.warn('Admin jobs error:',e); }
+  }catch(e){ console.warn('Jobs load error:',e); }
 
-  // 2️⃣ Sort — featured first, then rest
+  // Sort — featured first, then rest
   const featuredJobs    = adminJobs.filter(j=>j.featured).slice(0,1000);
   const regularAdminJobs= adminJobs.filter(j=>!j.featured);
   const combined        = [...featuredJobs,...regularAdminJobs];
@@ -1101,16 +1117,11 @@ function showNoJobs(county){
   g.innerHTML=`
     <div style="grid-column:1/-1;text-align:center;padding:44px 20px;">
       <div style="font-size:2.5rem;margin-bottom:12px;">🔍</div>
-      <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:8px;">No jobs loaded yet</h3>
+      <h3 style="font-size:1.05rem;font-weight:800;margin-bottom:8px;">No jobs found in ${county}</h3>
       <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px;line-height:1.7;">
-        Your backend is running but may still be scraping for the first time.<br>
-        Also make sure your RapidAPI key is pasted in the HTML file.
+        Try selecting a different county or check back soon — new jobs are added daily.
       </p>
-      <button class="retry-btn" onclick="fetchJobs()" style="margin-right:8px;">🔄 Try Again</button>
-      <a href="https://jobs-kenya-backend-production.up.railway.app/status" target="_blank"
-         style="background:var(--border);color:var(--text);border:none;padding:10px 20px;border-radius:30px;font-weight:800;font-family:'Nunito',sans-serif;font-size:0.88rem;cursor:pointer;text-decoration:none;display:inline-block;">
-        📡 Check Backend Status
-      </a>
+      <button class="retry-btn" onclick="fetchJobs()">🔄 Try Again</button>
     </div>`;
 }
 
@@ -1133,7 +1144,7 @@ function renderJobs(jobs){
 
   jobs.forEach((job,i)=>{
     const id      = 'j'+i;
-    // Unified fields — works for both API jobs and scraped jobs
+    // Job fields
     const title   = job.title||'Job Opening';
     const company = job.company||'Organisation';
     const city    = job.city||'Kenya';
