@@ -476,6 +476,7 @@ footer{background:var(--green-d);color:rgba(255,255,255,.82);padding:38px 5% 22p
   <div class="fbot">
     <span>© 2026 Jobs in Kenya. All rights reserved.</span>
     <span style="display:flex;gap:16px;flex-wrap:wrap;">
+      <a href="privacy.html" style="color:inherit;">Privacy Policy</a>
       <a href="mailto:jobsinkenyaa@gmail.com" style="color:inherit;">Contact</a>
       <span>Made with ❤️ for all Kenyans 🇰🇪</span>
     </span>
@@ -506,7 +507,7 @@ footer{background:var(--green-d);color:rgba(255,255,255,.82);padding:38px 5% 22p
 
 <div class="toast" id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ── STATE ──────────────────────────────────────────
 var ALL=[], SHOWN=[], ATYPE='';
 var COLORS=['#16a34a','#2563eb','#d97706','#9333ea','#dc2626','#0891b2','#ea580c','#0f766e'];
@@ -733,10 +734,12 @@ function showModal(j){
 
   var email=j.apply_email||extractEmail(desc);
   var link=j.link||'';
+  // Only show link if it's a valid full URL
+  var validLink=(link&&(link.startsWith('http://')||link.startsWith('https://')))?link:'';
   var ah='<div class="apply-box"><h4>📬 How to Apply</h4><div class="arow">';
-  if(link)  ah+='<a href="'+link+'" target="_blank" class="abtn">Apply Now →</a>';
+  if(validLink) ah+='<a href="'+validLink+'" target="_blank" class="abtn">Apply Now →</a>';
   if(email) ah+='<div class="aemail">📧 '+email+'</div>';
-  if(!link&&!email) ah+='<p style="font-size:.83rem;color:var(--muted)">Contact the employer directly.</p>';
+  if(!validLink&&!email) ah+='<p style="font-size:.83rem;color:var(--muted)">Visit the employer website or check the job source for application details.</p>';
   ah+='</div></div>';
   g('mapply').innerHTML=ah;
 
@@ -1094,11 +1097,4 @@ setTimeout(function(){toast('\uD83D\uDD14 New jobs added today \u2014 browse now
       <button class="pact-btn p-fb" onclick="sharePosterFB()">📘 Facebook</button>
       <button class="pact-btn p-cl" onclick="closePoster()">✕ Close</button>
     </div>
-    <div style="font-size:.72rem;color:var(--muted);margin-top:8px;text-align:center;">
-      Download the poster then post it on your WhatsApp channel or Facebook page
-    </div>
-  </div>
-</div>
-
-</body>
-</html>
+    <div style="font-size:.72rem;color:var(--muted);margin-
