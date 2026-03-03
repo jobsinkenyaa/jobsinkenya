@@ -422,6 +422,8 @@ tr:hover td{background:rgba(0,212,255,.02);}
             <div style="font-weight:700;font-size:.87rem;margin-bottom:4px;">⭐ Export jobs.json <span style="color:var(--green);font-size:.73rem;">(RECOMMENDED)</span></div>
             <div style="color:var(--muted2);font-size:.77rem;margin-bottom:11px;">Upload to GitHub → jobs appear for ALL visitors on any device</div>
             <button class="btn bg" onclick="exportJSON()">⬇️ Download jobs.json</button>
+            <button class="btn bp" onclick="uploadToGitHub()" style="margin-top:8px;">🚀 Upload to GitHub Directly</button>
+            <div style="color:var(--muted2);font-size:.73rem;margin-top:5px;">Setup GitHub token in Settings first</div>
           </div>
           <div style="padding:15px;background:#050a10;border-radius:9px;border:1px solid var(--border);">
             <div style="font-weight:700;font-size:.87rem;margin-bottom:4px;">Export as CSV</div>
@@ -446,6 +448,33 @@ tr:hover td{background:rgba(0,212,255,.02);}
     <!-- SETTINGS -->
     <div id="pg-settings" class="pg">
       <div class="ph"><div class="pt">⚙️ Settings</div><div class="ps">Configure admin panel</div></div>
+
+      <div class="card" style="border-color:var(--green);">
+        <div class="ct">🚀 One-Click GitHub Upload</div>
+        <div style="color:var(--muted2);font-size:.8rem;margin-bottom:14px;line-height:1.8;">
+          Enter your GitHub details once. After that, just click <strong style="color:var(--green);">Upload to GitHub</strong> from the Export page and jobs go live instantly for everyone — no manual uploading ever again.
+        </div>
+        <div class="fg">
+          <div class="fi"><label>GitHub Token</label>
+            <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+          </div>
+          <div class="fi"><label>GitHub Username</label>
+            <input id="gh-user" placeholder="jobsinkenyaa">
+          </div>
+          <div class="fi"><label>Repository Name</label>
+            <input id="gh-repo" placeholder="jobsinkenya">
+          </div>
+          <div class="fi"><label>Branch</label>
+            <input id="gh-branch" placeholder="main">
+          </div>
+        </div>
+        <div class="brow">
+          <button class="btn bg" onclick="saveGHSettings()">💾 Save GitHub Settings</button>
+          <button class="btn bp" onclick="uploadToGitHub()">🚀 Test Upload Now</button>
+        </div>
+        <div id="gh-status" style="margin-top:11px;font-size:.8rem;display:none;"></div>
+      </div>
+
       <div class="card">
         <div class="ct">🔐 Change Login</div>
         <div class="fg">
@@ -1089,9 +1118,104 @@ function guessSector(text){
   return 'General';
 }
 
+
+// ── GITHUB SETTINGS ──────────────────────────────────
+function saveGHSettings(){
+  var token=g('gh-token').value.trim();
+  var user=g('gh-user').value.trim()||'jobsinkenyaa';
+  var repo=g('gh-repo').value.trim()||'jobsinkenya';
+  var branch=g('gh-branch').value.trim()||'main';
+  if(!token){ toast('Enter your GitHub token!','err'); return; }
+  localStorage.setItem('gh_token',token);
+  localStorage.setItem('gh_user',user);
+  localStorage.setItem('gh_repo',repo);
+  localStorage.setItem('gh_branch',branch);
+  toast('✅ GitHub settings saved!');
+}
+
+function loadGHSettings(){
+  var t=localStorage.getItem('gh_token')||'';
+  var u=localStorage.getItem('gh_user')||'jobsinkenyaa';
+  var r=localStorage.getItem('gh_repo')||'jobsinkenya';
+  var b=localStorage.getItem('gh_branch')||'main';
+  if(g('gh-token')) g('gh-token').value=t?'••••••••••••••••':'';
+  if(g('gh-user'))  g('gh-user').value=u;
+  if(g('gh-repo'))  g('gh-repo').value=r;
+  if(g('gh-branch'))g('gh-branch').value=b;
+}
+
+async function uploadToGitHub(){
+  var token=localStorage.getItem('gh_token');
+  var user=localStorage.getItem('gh_user')||'jobsinkenyaa';
+  var repo=localStorage.getItem('gh_repo')||'jobsinkenya';
+  var branch=localStorage.getItem('gh_branch')||'main';
+
+  if(!token){
+    toast('Set your GitHub token in Settings first!','err');
+    go('settings',null); return;
+  }
+
+  var jobs=getJobs();
+  if(!jobs.length){ toast('No jobs to upload!','err'); return; }
+
+  var status=g('gh-status');
+  if(status){ status.style.display='block'; status.style.color='var(--accent)'; status.textContent='⏳ Uploading '+jobs.length+' jobs to GitHub...'; }
+  toast('⏳ Uploading to GitHub...');
+
+  try{
+    var content=btoa(unescape(encodeURIComponent(JSON.stringify(jobs))));
+    var apiUrl='https://api.github.com/repos/'+user+'/'+repo+'/contents/jobs.json';
+
+    // Check if file exists to get SHA
+    var sha='';
+    try{
+      var check=await fetch(apiUrl,{
+        headers:{
+          'Authorization':'token '+token,
+          'Accept':'application/vnd.github.v3+json'
+        }
+      });
+      if(check.ok){
+        var existing=await check.json();
+        sha=existing.sha||'';
+      }
+    }catch(e){}
+
+    // Upload file
+    var body={
+      message:'Update jobs.json — '+jobs.length+' jobs — '+new Date().toLocaleString('en-KE'),
+      content:content,
+      branch:branch
+    };
+    if(sha) body.sha=sha;
+
+    var res=await fetch(apiUrl,{
+      method:'PUT',
+      headers:{
+        'Authorization':'token '+token,
+        'Accept':'application/vnd.github.v3+json',
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify(body)
+    });
+
+    if(res.ok){
+      if(status){ status.style.color='var(--green)'; status.textContent='✅ '+jobs.length+' jobs uploaded! Site will update in ~2 minutes.'; }
+      toast('✅ '+jobs.length+' jobs live on your site!');
+    } else {
+      var err=await res.json();
+      if(status){ status.style.color='var(--red)'; status.textContent='❌ Error: '+(err.message||'Upload failed'); }
+      toast('❌ Upload failed: '+(err.message||'Check your token'),'err');
+    }
+  }catch(e){
+    if(status){ status.style.color='var(--red)'; status.textContent='❌ Error: '+e.message; }
+    toast('❌ Error: '+e.message,'err');
+  }
+}
+
 // ── INIT ─────────────────────────────────────────────
 function init(){
-  refreshStats(); renderRecent(); renderRSSList();
+  refreshStats(); renderRecent(); renderRSSList(); loadGHSettings();
 }
 
 // Auto-login check
