@@ -547,7 +547,7 @@ function updateCount(){
 }
 
 // ── AUTH ──────────────────────────────────────────────
-function getCreds(){ return {u:localStorage.getItem('au')||'admin', p:localStorage.getItem('ap')||'jobskenya2025'}; }
+function getCreds(){ return {u:localStorage.getItem('au')||'admin', p:localStorage.getItem('ap')||'Benedict12#'}; }
 function doLogin(){
   var u=g('lu').value.trim(), p=g('lp').value.trim(), c=getCreds();
   if(u===c.u&&p===c.p){
@@ -915,7 +915,7 @@ async function uploadToGitHub(){
   if(!token){ toast('Set GitHub token in Settings first!','err'); goTab('settings',null); return; }
 
   var jobs=getJobs();
-  if(!jobs.length){ toast('No jobs to publish!','err'); return; }
+  // Allow publishing empty list to clear the site
 
   var st=g('pub-status');
   var prog=g('pub-prog');
