@@ -911,12 +911,10 @@ function loadGHSettings(){
 
 async function uploadToGitHub(){
   // Get stored settings
-  var token=(localStorage.getItem('gh_t')||'').trim();
-  var user=(localStorage.getItem('gh_u')||'jobsinkenyaa').trim();
-  var repo=(localStorage.getItem('gh_r')||'jobsinkenya').trim();
-  var branch=(localStorage.getItem('gh_b')||'main').trim();
-
-  if(!token){ toast('⚠️ Go to Settings tab and enter your GitHub token first!','err'); go('settings',null); return; }
+  var token='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';
+  var user='jobsinkenyaa';
+  var repo='jobsinkenya';
+  var branch='main';
 
   var jobs=getJobs();
   // Allow publishing empty list to clear the site
