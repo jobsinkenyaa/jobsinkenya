@@ -916,7 +916,7 @@ async function uploadToGitHub(){
   var repo=(localStorage.getItem('gh_r')||'jobsinkenya').trim();
   var branch=(localStorage.getItem('gh_b')||'main').trim();
 
-  if(!token){ toast('Set GitHub token in Settings first!','err'); goTab('settings',null); return; }
+  if(!token){ toast('⚠️ Go to Settings tab and enter your GitHub token first!','err'); go('settings',null); return; }
 
   var jobs=getJobs();
   // Allow publishing empty list to clear the site
