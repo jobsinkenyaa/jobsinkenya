@@ -471,7 +471,11 @@ Job Title 3 at Company 3
           </button>
           <button class="btn btn-ghost" onclick="exportJSON()">⬇️ Download jobs.json</button>
         </div>
-        <div class="gh-status" id="gh-status"></div>
+        <div class="prog-wrap" id="pub-prog" style="display:none;margin-top:12px;">
+          <div class="prog-bar"><div class="prog-fill" id="pub-fill" style="width:0%;"></div></div>
+          <div class="prog-txt" id="pub-txt">Uploading...</div>
+        </div>
+        <div class="status" id="pub-status" style="margin-top:10px;"></div>
       </div>
 
       <div class="card">
