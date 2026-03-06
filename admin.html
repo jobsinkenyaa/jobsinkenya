@@ -30,8 +30,9 @@ body{font-family:Arial,sans-serif;background:#0a0f1a;color:#e0e8f0;min-height:10
 .logout:hover{border-color:#ff3b5c;color:#ff3b5c;}
 .tabs{background:#111827;border-bottom:1px solid #1e2d3d;
   display:flex;padding:0 20px;overflow-x:auto;}
-.tab{padding:14px 20px;font-size:.84rem;font-weight:700;color:#6b7280;
-  border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:Arial;}
+.tab{padding:14px 18px;font-size:.83rem;font-weight:700;color:#6b7280;
+  border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;
+  background:none;border-top:none;border-left:none;border-right:none;font-family:Arial;}
 .tab:hover{color:#e0e8f0;}
 .tab.on{color:#00d4ff;border-bottom-color:#00d4ff;}
 .content{padding:20px;max-width:860px;margin:0 auto;}
@@ -54,12 +55,12 @@ select option{background:#111827;}
   font-size:.83rem;cursor:pointer;font-family:Arial;}
 .btn-blue{background:#00d4ff;color:#000;}
 .btn-green{background:#00ff88;color:#000;}
+.btn-gold{background:#ffd60a;color:#000;}
 .btn-red{background:#ff3b5c;color:#fff;}
 .btn-grey{background:transparent;border:1px solid #1e2d3d;color:#6b7280;}
 .btn-grey:hover{border-color:#00d4ff;color:#00d4ff;}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;}
-.dz{border:2px dashed #1e2d3d;border-radius:9px;padding:32px;text-align:center;
-  cursor:pointer;margin-bottom:12px;}
+.dz{border:2px dashed #1e2d3d;border-radius:9px;padding:32px;text-align:center;cursor:pointer;margin-bottom:12px;}
 .dz:hover{border-color:#00d4ff;}
 .dz-ico{font-size:2rem;margin-bottom:6px;}
 .dz-txt{font-size:.84rem;color:#6b7280;}
@@ -71,20 +72,25 @@ select option{background:#111827;}
 .ji-tags{display:flex;gap:4px;flex-wrap:wrap;}
 .ji-tag{background:#1e2d3d;color:#6b7280;padding:2px 7px;border-radius:5px;font-size:.66rem;}
 .ji-del{background:none;border:1px solid #1e2d3d;color:#6b7280;
-  padding:3px 9px;border-radius:5px;font-size:.71rem;cursor:pointer;flex-shrink:0;}
+  padding:4px 10px;border-radius:5px;font-size:.71rem;cursor:pointer;flex-shrink:0;}
 .ji-del:hover{border-color:#ff3b5c;color:#ff3b5c;}
+.ji-feat{background:none;border:1px solid #1e2d3d;color:#ffd60a;
+  padding:4px 10px;border-radius:5px;font-size:.71rem;cursor:pointer;flex-shrink:0;}
 .status{padding:10px 13px;border-radius:7px;font-size:.82rem;margin-top:10px;display:none;}
 .status.ok{background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88;display:block;}
 .status.err{background:rgba(255,59,92,.1);border:1px solid rgba(255,59,92,.3);color:#ff3b5c;display:block;}
 .status.info{background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.3);color:#00d4ff;display:block;}
-.prog{height:5px;background:#1e2d3d;border-radius:3px;margin-top:10px;display:none;}
-.prog-fill{height:100%;background:linear-gradient(90deg,#00d4ff,#00ff88);width:0%;border-radius:3px;transition:width .3s;}
+.prog{height:5px;background:#1e2d3d;border-radius:3px;margin-top:12px;display:none;}
+.prog-fill{height:100%;background:linear-gradient(90deg,#00d4ff,#00ff88);width:0%;border-radius:3px;transition:width .4s;}
 .toast{position:fixed;bottom:18px;right:18px;background:#111827;border:1px solid #1e2d3d;
   color:#e0e8f0;padding:10px 16px;border-radius:8px;font-size:.82rem;font-weight:700;
   z-index:9999;transform:translateY(60px);opacity:0;transition:all .3s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
 .toast.ok{border-color:#00ff88;color:#00ff88;}
 .toast.err{border-color:#ff3b5c;color:#ff3b5c;}
+.tip{background:#0a0f1a;border:1px solid #1e2d3d;border-radius:7px;padding:13px;
+  font-size:.76rem;color:#6b7280;line-height:2.2;margin-bottom:14px;}
+.tip strong{color:#e0e8f0;}
 </style>
 </head>
 <body>
@@ -115,6 +121,7 @@ select option{background:#111827;}
     <button class="tab" onclick="go('upload',this)">📂 Upload CSV</button>
     <button class="tab" onclick="go('manage',this)">💼 Manage Jobs</button>
     <button class="tab" onclick="go('publish',this)">🚀 Publish</button>
+    <button class="tab" onclick="go('settings',this)">⚙️ Settings</button>
   </div>
 
   <div class="content">
@@ -123,7 +130,7 @@ select option{background:#111827;}
     <div id="pg-paste" class="pg on">
       <div class="card" style="border-color:#00d4ff;">
         <h3>⚡ Smart Paste</h3>
-        <p>Copy a full job from any website and paste it below. Click Auto-Fill and all fields fill automatically.</p>
+        <p>Copy a full job from any website and paste below. Click Auto-Fill — all fields fill automatically.</p>
         <label>Paste Full Job Text</label>
         <textarea id="paste-raw" style="min-height:160px;border-color:#00d4ff;" placeholder="Paste full job text here — title, company, location, description, how to apply, everything..."></textarea>
         <div class="row">
@@ -134,7 +141,7 @@ select option{background:#111827;}
 
       <div class="card">
         <h3>📝 Job Details</h3>
-        <p>Auto-filled above — review and save.</p>
+        <p>Auto-filled from paste — review and save.</p>
         <div class="grid">
           <div><label>Job Title *</label><input id="f-title" placeholder="e.g. Software Engineer"></div>
           <div><label>Company *</label><input id="f-company" placeholder="e.g. Safaricom"></div>
@@ -184,7 +191,7 @@ select option{background:#111827;}
           <div><label>Salary</label><input id="f-salary" placeholder="e.g. KSh 50,000/month"></div>
           <div><label>Deadline</label><input type="date" id="f-deadline"></div>
           <div><label>Featured ⭐</label>
-            <select id="f-featured"><option value="no">No</option><option value="yes">Yes</option></select>
+            <select id="f-featured"><option value="no">No</option><option value="yes">Yes — show at top of site</option></select>
           </div>
           <div class="full"><label>Full Description & How to Apply</label>
             <textarea id="f-desc" style="min-height:180px;" placeholder="Full job description including responsibilities, requirements and how to apply..."></textarea>
@@ -192,7 +199,7 @@ select option{background:#111827;}
         </div>
         <div class="row">
           <button class="btn btn-green" onclick="saveJob()">💾 Save Job</button>
-          <button class="btn btn-grey" onclick="clearForm()">🗑 Clear</button>
+          <button class="btn btn-grey" onclick="clearForm()">🗑 Clear Form</button>
         </div>
         <div class="status" id="save-status"></div>
       </div>
@@ -202,15 +209,16 @@ select option{background:#111827;}
     <div id="pg-bulk" class="pg">
       <div class="card" style="border-color:#00d4ff;">
         <h3>📦 Bulk Paste — Add Many Jobs at Once</h3>
-        <p>Paste multiple jobs separated by <strong style="color:#e0e8f0;">---</strong> on its own line. Each job is auto-detected and saved.</p>
-        <div style="background:#0a0f1a;border:1px solid #1e2d3d;border-radius:7px;padding:11px;margin-bottom:12px;font-size:.75rem;color:#6b7280;line-height:2;">
-          Job Title at Company<br>
+        <p>Paste multiple jobs below separated by <strong style="color:#e0e8f0;">---</strong> on its own line.</p>
+        <div class="tip">
+          <strong>Format:</strong><br>
+          Job Title at Company Name<br>
           Location: Nairobi | Deadline: 30 April 2026<br>
-          Description...<br>
-          <span style="color:#1e2d3d;">---</span><br>
+          Full description...<br>
+          <span style="color:#2d3f55;">---</span><br>
           Next Job Title at Company 2<br>
           Description...<br>
-          <span style="color:#1e2d3d;">---</span>
+          <span style="color:#2d3f55;">---</span>
         </div>
         <label>Paste All Jobs Here</label>
         <textarea id="bulk-raw" style="min-height:280px;border-color:#00d4ff;" placeholder="Paste all jobs here separated by ---"></textarea>
@@ -238,7 +246,7 @@ select option{background:#111827;}
     <div id="pg-upload" class="pg">
       <div class="card">
         <h3>📊 Upload CSV File</h3>
-        <p>Upload a CSV with columns: title, company, location, type, sector, salary, deadline, description</p>
+        <p>Upload a CSV with columns: title, company, location, county, type, sector, salary, deadline, description</p>
         <div class="dz" onclick="g('csv-input').click()"
           ondragover="event.preventDefault();this.style.borderColor='#00d4ff'"
           ondragleave="this.style.borderColor=''"
@@ -274,7 +282,7 @@ select option{background:#111827;}
           </div>
         </div>
         <div id="manage-list"></div>
-        <div id="manage-empty" style="display:none;text-align:center;padding:24px;color:#6b7280;font-size:.84rem;">No jobs yet.</div>
+        <div id="manage-empty" style="display:none;text-align:center;padding:24px;color:#6b7280;font-size:.84rem;">No jobs saved yet.</div>
       </div>
     </div>
 
@@ -282,27 +290,67 @@ select option{background:#111827;}
     <div id="pg-publish" class="pg">
       <div class="card" style="border-color:#00ff88;">
         <h3 style="color:#00ff88;">🚀 Publish to Website</h3>
-        <p>Click the button below to push all jobs to your website. They appear within 2 minutes.</p>
+        <p>Uploads all your jobs to GitHub. They appear on your site within 2 minutes.</p>
         <div style="background:#0a0f1a;border:1px solid #1e2d3d;border-radius:7px;padding:13px;margin-bottom:14px;">
           <div style="font-size:.76rem;color:#6b7280;margin-bottom:3px;">Jobs ready to publish</div>
           <div style="font-size:1.8rem;font-weight:800;color:#00ff88;" id="pub-count">0</div>
         </div>
-        <button class="btn btn-green" onclick="publish()" style="font-size:.92rem;padding:13px 28px;">🚀 Publish Now</button>
-        <button class="btn btn-grey" onclick="exportJSON()" style="margin-left:8px;">⬇️ Download jobs.json</button>
+        <div class="row">
+          <button class="btn btn-green" onclick="publish()" style="font-size:.92rem;padding:13px 28px;">🚀 Publish Now</button>
+          <button class="btn btn-grey" onclick="exportJSON()">⬇️ Download jobs.json</button>
+        </div>
         <div class="prog" id="pub-prog"><div class="prog-fill" id="pub-fill"></div></div>
         <div class="status" id="pub-status"></div>
       </div>
 
       <div class="card">
         <h3>📖 Manual Upload (if publish fails)</h3>
-        <p>Download jobs.json and upload it manually to GitHub.</p>
-        <div style="background:#0a0f1a;border:1px solid #1e2d3d;border-radius:7px;padding:13px;font-size:.78rem;color:#6b7280;line-height:2.2;">
+        <p>Download jobs.json and upload it directly to GitHub.</p>
+        <div class="tip">
           1. Click "Download jobs.json" above<br>
-          2. Go to <strong style="color:#00d4ff;">github.com/jobsinkenyaa/jobsinkenya</strong><br>
-          3. Click <strong style="color:#e0e8f0;">Add file → Upload files</strong><br>
-          4. Upload jobs.json → Commit changes<br>
-          ✅ Jobs appear in ~2 minutes
+          2. Go to <strong>github.com/jobsinkenyaa/jobsinkenya</strong><br>
+          3. Click <strong>Add file → Upload files</strong><br>
+          4. Upload jobs.json → <strong>Commit changes</strong><br>
+          ✅ Jobs appear on site in ~2 minutes
         </div>
+      </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div id="pg-settings" class="pg">
+      <div class="card" style="border-color:#00d4ff;">
+        <h3>🔑 GitHub Token</h3>
+        <p>Enter your GitHub Personal Access Token. Saved in your browser only.</p>
+        <div class="tip">
+          <strong>How to get token:</strong><br>
+          1. Go to github.com → Profile → Settings<br>
+          2. Developer settings → Personal access tokens → Tokens (classic)<br>
+          3. Generate new token → tick <strong>repo</strong> only → No expiration<br>
+          4. Copy and paste below
+        </div>
+        <label>GitHub Token</label>
+        <input type="password" id="set-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+        <label>GitHub Username</label>
+        <input id="set-user" placeholder="jobsinkenyaa" value="jobsinkenyaa">
+        <label>Repository Name</label>
+        <input id="set-repo" placeholder="jobsinkenya" value="jobsinkenya">
+        <label>Branch</label>
+        <input id="set-branch" placeholder="main" value="main">
+        <div class="row">
+          <button class="btn btn-blue" onclick="saveSettings()">💾 Save Settings</button>
+          <button class="btn btn-green" onclick="testToken()">🔗 Test Connection</button>
+        </div>
+        <div class="status" id="set-status"></div>
+      </div>
+
+      <div class="card">
+        <h3>🔐 Change Login Password</h3>
+        <div class="grid">
+          <div><label>New Username</label><input id="set-u" placeholder="admin"></div>
+          <div><label>New Password</label><input type="password" id="set-p" placeholder="New password"></div>
+        </div>
+        <button class="btn btn-blue" onclick="saveCreds()">💾 Save Login</button>
+        <div class="status" id="creds-status"></div>
       </div>
     </div>
 
@@ -312,11 +360,6 @@ select option{background:#111827;}
 <div class="toast" id="toast"></div>
 
 <script>
-var GITHUB_TOKEN = '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';
-var GITHUB_USER  = 'jobsinkenyaa';
-var GITHUB_REPO  = 'jobsinkenya';
-var GITHUB_FILE  = 'jobs.json';
-
 // ── AUTH ──────────────────────────────────────────
 function login(){
   var u=g('lu').value.trim(), p=g('lp').value.trim();
@@ -332,10 +375,19 @@ function login(){
   }
 }
 function logout(){ sessionStorage.removeItem('li'); location.reload(); }
+function saveCreds(){
+  var u=g('set-u').value.trim(), p=g('set-p').value.trim();
+  if(!u||!p){ toast('Enter both fields','err'); return; }
+  localStorage.setItem('au',u); localStorage.setItem('ap',p);
+  showStatus('creds-status','✅ Login updated!','ok');
+  toast('✅ Login saved!','ok');
+}
 
 // ── INIT ──────────────────────────────────────────
-function init(){ updateCount(); }
-
+function init(){
+  updateCount();
+  loadSettings();
+}
 window.onload=function(){
   if(sessionStorage.getItem('li')==='1'){
     g('login').style.display='none';
@@ -345,7 +397,7 @@ window.onload=function(){
 };
 
 // ── TABS ──────────────────────────────────────────
-function go(name, el){
+function go(name,el){
   document.querySelectorAll('.pg').forEach(function(p){p.classList.remove('on');});
   document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on');});
   g('pg-'+name).classList.add('on');
@@ -356,36 +408,80 @@ function go(name, el){
 
 // ── STORAGE ───────────────────────────────────────
 function getJobs(){ try{ return JSON.parse(localStorage.getItem('kj')||'[]'); }catch(e){ return []; } }
-function setJobs(jobs){ localStorage.setItem('kj',JSON.stringify(jobs)); updateCount(); }
+function setJobs(j){ localStorage.setItem('kj',JSON.stringify(j)); updateCount(); }
 function updateCount(){
   var n=getJobs().length;
   g('jcount').textContent=n;
   if(g('pub-count')) g('pub-count').textContent=n;
 }
 
+// ── SETTINGS ──────────────────────────────────────
+function saveSettings(){
+  var t=g('set-token').value.trim();
+  var u=g('set-user').value.trim();
+  var r=g('set-repo').value.trim();
+  var b=g('set-branch').value.trim();
+  if(!t){ toast('Enter your GitHub token!','err'); return; }
+  localStorage.setItem('gh_token',t);
+  localStorage.setItem('gh_user',u||'jobsinkenyaa');
+  localStorage.setItem('gh_repo',r||'jobsinkenya');
+  localStorage.setItem('gh_branch',b||'main');
+  showStatus('set-status','✅ Settings saved!','ok');
+  toast('✅ Settings saved!','ok');
+}
+
+function loadSettings(){
+  var t=localStorage.getItem('gh_token');
+  var u=localStorage.getItem('gh_user');
+  var r=localStorage.getItem('gh_repo');
+  var b=localStorage.getItem('gh_branch');
+  if(t&&g('set-token')) g('set-token').value=t;
+  if(u&&g('set-user')) g('set-user').value=u;
+  if(r&&g('set-repo')) g('set-repo').value=r;
+  if(b&&g('set-branch')) g('set-branch').value=b;
+}
+
+async function testToken(){
+  var token=(localStorage.getItem('gh_token')||'').trim();
+  var user=(localStorage.getItem('gh_user')||'jobsinkenyaa').trim();
+  var repo=(localStorage.getItem('gh_repo')||'jobsinkenya').trim();
+  if(!token){ showStatus('set-status','❌ Enter and save your token first!','err'); return; }
+  showStatus('set-status','⏳ Testing connection...','info');
+  try{
+    var r=await fetch('https://api.github.com/repos/'+user+'/'+repo,{
+      headers:{
+        'Authorization':'token '+token,
+        'Accept':'application/vnd.github+json'
+      }
+    });
+    if(r.ok){
+      showStatus('set-status','✅ Connected! Token is working correctly.','ok');
+      toast('✅ Token works!','ok');
+    } else {
+      var e=await r.json();
+      showStatus('set-status','❌ '+(e.message||'Connection failed. Check token and repo name.'),'err');
+    }
+  }catch(e){
+    showStatus('set-status','❌ '+e.message,'err');
+  }
+}
+
 // ── HELPERS ───────────────────────────────────────
 function g(id){ return document.getElementById(id); }
-
 function toast(msg,type){
-  var t=g('toast');
-  t.textContent=msg;
+  var t=g('toast'); t.textContent=msg;
   t.className='toast'+(type?' '+type:'');
   t.classList.add('show');
   setTimeout(function(){t.classList.remove('show');},3000);
 }
-
 function showStatus(id,msg,type){
   var el=g(id); if(!el) return;
-  el.textContent=msg;
-  el.className='status '+type;
+  el.textContent=msg; el.className='status '+type;
 }
-
 function setSelect(id,val){
   var el=g(id); if(!el||!val) return;
   for(var i=0;i<el.options.length;i++){
-    if(el.options[i].value===val||el.options[i].text===val){
-      el.selectedIndex=i; return;
-    }
+    if(el.options[i].value===val||el.options[i].text===val){ el.selectedIndex=i; return; }
   }
 }
 
@@ -412,11 +508,10 @@ function smartPaste(){
 function parseJob(text){
   var lines=text.split('\n').map(function(l){return l.trim();}).filter(Boolean);
   var first=lines[0]||'';
-  var title='', company='';
+  var title='',company='';
   var am=first.match(/^(.+?)\s+(?:at|@)\s+(.+)$/i);
   if(am){ title=am[1].trim(); company=am[2].trim(); }
   else title=first.substring(0,80);
-
   var rt=text.toLowerCase();
   var counties=['Mombasa','Kisumu','Nakuru','Eldoret','Kiambu','Machakos','Nyeri','Meru',
     'Kakamega','Kisii','Kilifi','Embu','Garissa','Bungoma','Kajiado','Kericho',
@@ -425,7 +520,6 @@ function parseJob(text){
   var lm=text.match(/location[:\s*]+([A-Za-z\s,]+?)(?:\n|$)/i);
   if(lm) county=lm[1].trim().split(',')[0];
   else for(var i=0;i<counties.length;i++){ if(rt.includes(counties[i].toLowerCase())){ county=counties[i]; break; } }
-
   var type='Full-Time';
   if(/intern|attachment|trainee/.test(rt)) type='Internship';
   else if(/part.time/.test(rt)) type='Part-Time';
@@ -433,10 +527,9 @@ function parseJob(text){
   else if(/\bngo\b|unicef|undp/.test(rt)) type='NGO';
   else if(/remote|work from home/.test(rt)) type='Remote';
   else if(/contract|consultant/.test(rt)) type='Contract';
-
   var sector='General';
   if(/software|developer|ict|cyber|devops/.test(rt)) sector='ICT & Technology';
-  else if(/data.*scien|ai\b|machine learning|lidar/.test(rt)) sector='Data & AI';
+  else if(/data.*scien|ai\b|machine learning/.test(rt)) sector='Data & AI';
   else if(/nurse|doctor|medical|health|clinical/.test(rt)) sector='Health & Medicine';
   else if(/financ|account|audit|tax|banking/.test(rt)) sector='Finance & Banking';
   else if(/engineer|civil|mechanical|electrical/.test(rt)) sector='Engineering';
@@ -450,14 +543,12 @@ function parseJob(text){
   else if(/hotel|hospitality|tourism|chef/.test(rt)) sector='Hospitality & Tourism';
   else if(/customer service|call centre/.test(rt)) sector='Customer Service';
   else if(/procurement|purchasing/.test(rt)) sector='Procurement & Purchasing';
-
   var qual='';
   if(/phd|doctorate/.test(rt)) qual='PhD';
   else if(/master|mba|msc/.test(rt)) qual='Masters';
   else if(/bachelor|degree|ba\b|bsc/.test(rt)) qual='Bachelor Degree';
   else if(/diploma/.test(rt)) qual='Diploma';
   else if(/certificate/.test(rt)) qual='Certificate';
-
   var exp='';
   var em=text.match(/(\d+)\s*(?:years?|yrs?)\s*(?:experience|exp)/i);
   if(em){
@@ -469,18 +560,14 @@ function parseJob(text){
     else if(y<7) exp='5 - 7 years';
     else exp='7+ years';
   }
-
   var salary='Not stated';
-  var sm=text.match(/(?:salary|pay)[:\s]+(KSh?[\d,\s\-–]+(?:\/month)?)/i);
+  var sm=text.match(/(?:salary|pay)[:\s]+(KSh?[\d,\s\-]+(?:\/month)?)/i);
   if(sm) salary=sm[1].trim();
-
   var deadline='';
   var dm=text.match(/(?:deadline|closing date|apply by)[:\s]+([\w\s,\/]+\d{4})/i);
   if(dm){ try{ var d=new Date(dm[1]); if(!isNaN(d)) deadline=d.toISOString().split('T')[0]; }catch(e){} }
-
   return {title:title,company:company,location:county+', Kenya',county:county,
-    type:type,sector:sector,qualification:qual,experience:exp,
-    salary:salary,deadline:deadline,description:text};
+    type:type,sector:sector,qualification:qual,experience:exp,salary:salary,deadline:deadline};
 }
 
 // ── SAVE JOB ──────────────────────────────────────
@@ -523,14 +610,15 @@ function previewBulk(){
   var parts=raw.split(/\n---+\n|\n---+$|^---+\n/m)
     .map(function(p){return p.trim();}).filter(function(p){return p.length>20;});
   if(!parts.length){ toast('Separate jobs with ---','err'); return; }
-  BULK=parts.map(function(p){ return parseJob(p); });
-  BULK.forEach(function(j,i){
+  BULK=parts.map(function(p,i){
+    var j=parseJob(p);
     j.id='j-'+Date.now()+'-b'+i;
+    j.description=p;
     j.date_added=new Date().toISOString();
-    j.via='bulk';
-    j.featured=false;
+    j.via='bulk'; j.featured=false;
+    return j;
   });
-  g('bulk-title').textContent=BULK.length+' jobs found';
+  g('bulk-title').textContent=BULK.length+' jobs found — ready to import';
   g('bulk-list').innerHTML=BULK.map(function(j,i){
     return '<div style="background:#0a0f1a;border:1px solid #1e2d3d;border-radius:7px;padding:11px;margin-bottom:7px;">'
       +'<div style="font-weight:700;font-size:.86rem;">'+(i+1)+'. '+j.title+'</div>'
@@ -565,25 +653,21 @@ function readCSV(file){
       var headers=lines[0].split(',').map(function(h){return h.trim().toLowerCase().replace(/['"]/g,'');});
       CSV_ROWS=[];
       for(var i=1;i<lines.length;i++){
-        var vals=splitCSV(lines[i]);
-        var obj={};
+        var vals=splitCSV(lines[i]); var obj={};
         headers.forEach(function(h,idx){ obj[h]=(vals[idx]||'').trim().replace(/^"|"$/g,''); });
         if(obj.title||obj['job title']) CSV_ROWS.push(obj);
       }
-      g('csv-count').textContent=CSV_ROWS.length+' jobs found';
+      g('csv-count').textContent=CSV_ROWS.length+' jobs found — ready to import';
       g('csv-list').innerHTML=CSV_ROWS.slice(0,5).map(function(r){
         return '<div style="background:#0a0f1a;border:1px solid #1e2d3d;border-radius:6px;padding:9px;margin-bottom:6px;font-size:.8rem;">'
           +'<strong>'+(r.title||r['job title']||'')+'</strong> — '+(r.company||'')+'</div>';
-      }).join('')+(CSV_ROWS.length>5?'<div style="color:#6b7280;font-size:.76rem;padding:6px;">...and '+(CSV_ROWS.length-5)+' more</div>':'');
+      }).join('')+(CSV_ROWS.length>5?'<p style="color:#6b7280;font-size:.76rem;margin-top:6px;">...and '+(CSV_ROWS.length-5)+' more jobs</p>':'');
       g('csv-preview').style.display='block';
-      showStatus('csv-status','✅ File read — '+CSV_ROWS.length+' jobs ready to import.','ok');
-    }catch(err){
-      showStatus('csv-status','❌ Error reading CSV: '+err.message,'err');
-    }
+      showStatus('csv-status','✅ File read — '+CSV_ROWS.length+' jobs ready.','ok');
+    }catch(err){ showStatus('csv-status','❌ Error: '+err.message,'err'); }
   };
   r.readAsText(file);
 }
-
 function splitCSV(line){
   var res=[],cur='',q=false;
   for(var i=0;i<line.length;i++){
@@ -592,10 +676,8 @@ function splitCSV(line){
     else if(c===','&&!q){ res.push(cur); cur=''; }
     else cur+=c;
   }
-  res.push(cur);
-  return res;
+  res.push(cur); return res;
 }
-
 function importCSV(){
   if(!CSV_ROWS.length){ toast('No CSV data','err'); return; }
   var jobs=getJobs(), added=0;
@@ -603,12 +685,11 @@ function importCSV(){
     var t=r.title||r['job title']||''; if(!t) return;
     jobs.unshift({
       id:'j-'+Date.now()+'-c'+(added++),
-      title:t, company:r.company||r['company name']||'Unknown',
+      title:t, company:r.company||'Unknown',
       location:r.location||'Kenya', county:r.county||'Nairobi',
-      type:r.type||r['job type']||'Full-Time',
-      sector:r.sector||r.field||'General',
+      type:r.type||'Full-Time', sector:r.sector||'General',
       salary:r.salary||'Not stated', deadline:r.deadline||'',
-      description:r.description||r.desc||'',
+      description:r.description||'',
       featured:false, date_added:new Date().toISOString(), via:'csv'
     });
   });
@@ -617,10 +698,9 @@ function importCSV(){
   toast('✅ '+added+' jobs imported!','ok');
   CSV_ROWS=[]; g('csv-preview').style.display='none';
 }
-
 function downloadTemplate(){
   var csv='title,company,location,county,type,sector,salary,deadline,description\n'
-    +'"Software Engineer","Safaricom","Nairobi, Kenya","Nairobi","Full-Time","ICT & Technology","KSh 120000/month","2026-04-30","Full description here"\n';
+    +'"Software Engineer","Safaricom","Nairobi, Kenya","Nairobi","Full-Time","ICT & Technology","KSh 120000/month","2026-04-30","Full description and how to apply here"\n';
   var a=document.createElement('a');
   a.href='data:text/csv;charset=utf-8,'+encodeURIComponent(csv);
   a.download='jobs_template.csv'; a.click();
@@ -642,22 +722,24 @@ function renderManage(){
         +'<div class="ji-tags">'
           +'<span class="ji-tag">📍 '+(j.county||'Kenya')+'</span>'
           +'<span class="ji-tag">'+(j.type||'Full-Time')+'</span>'
-          +(j.featured?'<span class="ji-tag" style="color:#ffd60a;">⭐</span>':'')
+          +(j.featured?'<span class="ji-tag" style="color:#ffd60a;">⭐ Featured</span>':'')
         +'</div>'
       +'</div>'
+      +'<button class="ji-feat" onclick="toggleFeat(\''+j.id+'\')" title="Toggle featured">'+(j.featured?'★':'☆')+'</button>'
       +'<button class="ji-del" onclick="delJob(\''+j.id+'\')">🗑</button>'
     +'</div>';
   }).join('');
 }
-
 function delJob(id){
   setJobs(getJobs().filter(function(j){return j.id!==id;}));
-  renderManage();
-  toast('Deleted','ok');
+  renderManage(); toast('Deleted','ok');
 }
-
+function toggleFeat(id){
+  var jobs=getJobs().map(function(j){ if(j.id===id) j.featured=!j.featured; return j; });
+  setJobs(jobs); renderManage(); toast('Featured updated','ok');
+}
 function deleteAll(){
-  if(!confirm('Delete ALL '+getJobs().length+' jobs?')) return;
+  if(!confirm('Delete ALL '+getJobs().length+' jobs? This cannot be undone.')) return;
   setJobs([]); renderManage(); toast('All jobs deleted','ok');
 }
 
@@ -665,50 +747,52 @@ function deleteAll(){
 function exportJSON(){
   var blob=new Blob([JSON.stringify(getJobs(),null,2)],{type:'application/json'});
   var a=document.createElement('a'); a.href=URL.createObjectURL(blob);
-  a.download='jobs.json'; a.click();
-  toast('Downloaded!','ok');
+  a.download='jobs.json'; a.click(); toast('Downloaded!','ok');
 }
 
 // ── PUBLISH ───────────────────────────────────────
 async function publish(){
+  var token=(localStorage.getItem('gh_token')||'').trim();
+  var user=(localStorage.getItem('gh_user')||'jobsinkenyaa').trim();
+  var repo=(localStorage.getItem('gh_repo')||'jobsinkenya').trim();
+  var branch=(localStorage.getItem('gh_branch')||'main').trim();
+
+  if(!token){
+    toast('⚠️ Enter GitHub token in Settings tab first!','err');
+    go('settings', document.querySelectorAll('.tab')[5]);
+    return;
+  }
+
   var jobs=getJobs();
   var prog=g('pub-prog'), fill=g('pub-fill');
-
-  showStatus('pub-status','','info');
-  g('pub-status').style.display='none';
-  prog.style.display='block';
-  fill.style.width='10%';
+  g('pub-status').className='status'; g('pub-status').style.display='none';
+  prog.style.display='block'; fill.style.width='10%';
 
   try{
-    // Step 1 — encode
     var json=JSON.stringify(jobs,null,2);
     var bytes=new TextEncoder().encode(json);
-    var bin='';
-    bytes.forEach(function(b){ bin+=String.fromCharCode(b); });
+    var bin=''; bytes.forEach(function(b){ bin+=String.fromCharCode(b); });
     var content=btoa(bin);
-
     fill.style.width='30%';
 
-    var url='https://api.github.com/repos/'+GITHUB_USER+'/'+GITHUB_REPO+'/contents/'+GITHUB_FILE;
+    var url='https://api.github.com/repos/'+user+'/'+repo+'/contents/jobs.json';
     var headers={
-      'Authorization':'Bearer '+GITHUB_TOKEN,
+      'Authorization':'token '+token,
       'Accept':'application/vnd.github+json',
-      'X-GitHub-Api-Version':'2022-11-28',
       'Content-Type':'application/json'
     };
 
-    // Step 2 — get SHA
+    // Get SHA
     var sha='';
     fill.style.width='50%';
     try{
-      var r1=await fetch(url,{method:'GET',headers:headers});
+      var r1=await fetch(url,{headers:headers});
       if(r1.ok){ var d=await r1.json(); sha=d.sha||''; }
     }catch(e){}
 
     fill.style.width='70%';
 
-    // Step 3 — upload
-    var body={message:'Update: '+jobs.length+' jobs — '+new Date().toDateString(),content:content,branch:'main'};
+    var body={message:'Update jobs: '+jobs.length+' — '+new Date().toDateString(),content:content,branch:branch};
     if(sha) body.sha=sha;
 
     var r2=await fetch(url,{method:'PUT',headers:headers,body:JSON.stringify(body)});
@@ -719,7 +803,7 @@ async function publish(){
       toast('✅ Published!','ok');
     } else {
       var err=await r2.json();
-      showStatus('pub-status','❌ '+(err.message||'Upload failed'),'err');
+      showStatus('pub-status','❌ '+(err.message||'Upload failed — check token in Settings'),'err');
       toast('❌ '+(err.message||'Failed'),'err');
     }
   }catch(e){
