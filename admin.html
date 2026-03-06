@@ -442,7 +442,10 @@ Job Title 3 at Company 3
     <!-- ── MANAGE JOBS ── -->
     <div id="pg-manage" class="pg">
       <div class="card">
-        <div class="card-title">💼 All Jobs (<span id="manage-count">0</span>)</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
+          <div class="card-title" style="margin-bottom:0;">💼 All Jobs (<span id="manage-count">0</span>)</div>
+          <button class="btn btn-red" onclick="deleteAll()">🗑 Delete All Jobs</button>
+        </div>
         <div class="search-row">
           <input id="msearch" placeholder="Search jobs..." oninput="renderManage()">
         </div>
@@ -815,6 +818,13 @@ function downloadTemplate(){
 }
 
 // ── MANAGE JOBS ───────────────────────────────────────
+function deleteAll(){
+  if(!confirm('Delete ALL '+getJobs().length+' jobs? This cannot be undone.')) return;
+  setJobs([]);
+  renderManage();
+  toast('All jobs deleted','ok');
+}
+
 function renderManage(){
   var jobs=getJobs();
   var q=(g('msearch').value||'').toLowerCase();
@@ -896,43 +906,93 @@ function loadGHSettings(){
 }
 
 async function uploadToGitHub(){
-  var token=localStorage.getItem('gh_t');
-  var user=localStorage.getItem('gh_u')||'jobsinkenyaa';
-  var repo=localStorage.getItem('gh_r')||'jobsinkenya';
-  var branch=localStorage.getItem('gh_b')||'main';
-  if(!token){ toast('Set GitHub token in Settings first!','err'); go('settings',null); return; }
+  // Get stored settings
+  var token=(localStorage.getItem('gh_t')||'').trim();
+  var user=(localStorage.getItem('gh_u')||'jobsinkenyaa').trim();
+  var repo=(localStorage.getItem('gh_r')||'jobsinkenya').trim();
+  var branch=(localStorage.getItem('gh_b')||'main').trim();
+
+  if(!token){ toast('Set GitHub token in Settings first!','err'); goTab('settings',null); return; }
+
   var jobs=getJobs();
   if(!jobs.length){ toast('No jobs to publish!','err'); return; }
 
-  var st=g('gh-status');
-  st.className='gh-status loading'; st.style.display='block';
-  st.textContent='⏳ Publishing '+jobs.length+' jobs...';
+  var st=g('pub-status');
+  var prog=g('pub-prog');
+  var fill=g('pub-fill');
+  var txt=g('pub-txt');
+
+  st.className='status'; st.style.display='none';
+  prog.style.display='block';
+  fill.style.width='20%';
+  txt.textContent='Connecting to GitHub...';
 
   try{
-    var content=btoa(unescape(encodeURIComponent(JSON.stringify(jobs,null,2))));
+    // Clean token — remove any whitespace or non-ASCII
+    token=token.replace(/[^ -~]/g,'').trim();
+
+    var jsonStr=JSON.stringify(jobs,null,2);
+    // Encode to base64 safely
+    var bytes=new TextEncoder().encode(jsonStr);
+    var binStr='';
+    bytes.forEach(function(b){ binStr+=String.fromCharCode(b); });
+    var content=btoa(binStr);
+
     var url='https://api.github.com/repos/'+user+'/'+repo+'/contents/jobs.json';
+
+    var headers={
+      'Authorization': 'Bearer '+token,
+      'Accept': 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'Content-Type': 'application/json'
+    };
+
+    fill.style.width='40%';
+    txt.textContent='Checking existing file...';
+
+    // Get SHA of existing file
     var sha='';
     try{
-      var check=await fetch(url,{headers:{'Authorization':'token '+token,'Accept':'application/vnd.github.v3+json'}});
-      if(check.ok){ var ex=await check.json(); sha=ex.sha||''; }
+      var check=await fetch(url,{headers:headers});
+      if(check.ok){
+        var ex=await check.json();
+        sha=ex.sha||'';
+      }
     }catch(e){}
-    var body={message:'Update jobs — '+jobs.length+' jobs — '+new Date().toLocaleString(),content:content,branch:branch};
+
+    fill.style.width='60%';
+    txt.textContent='Uploading '+jobs.length+' jobs...';
+
+    var body={
+      message:'Jobs Kenya update: '+jobs.length+' jobs on '+new Date().toDateString(),
+      content:content,
+      branch:branch
+    };
     if(sha) body.sha=sha;
-    var res=await fetch(url,{method:'PUT',headers:{
-      'Authorization':'token '+token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'
-    },body:JSON.stringify(body)});
+
+    var res=await fetch(url,{
+      method:'PUT',
+      headers:headers,
+      body:JSON.stringify(body)
+    });
+
+    fill.style.width='100%';
+
     if(res.ok){
-      st.className='gh-status ok';
-      st.textContent='✅ '+jobs.length+' jobs published! Site updates in ~2 minutes.';
-      toast('✅ Jobs live on your site!');
+      txt.textContent='✅ Done!';
+      setStatus('pub-status','✅ '+jobs.length+' jobs published! Your site will update in ~2 minutes.','ok');
+      toast('✅ '+jobs.length+' jobs live!','ok');
     } else {
       var err=await res.json();
-      st.className='gh-status err';
-      st.textContent='❌ '+(err.message||'Upload failed. Check your token in Settings.');
+      var msg=err.message||'Upload failed';
+      txt.textContent='❌ Failed';
+      setStatus('pub-status','❌ Error: '+msg+' — Check your token and repo name in Settings.','err');
+      toast('❌ '+msg,'err');
     }
   }catch(e){
-    st.className='gh-status err';
-    st.textContent='❌ '+e.message;
+    txt.textContent='❌ Error';
+    setStatus('pub-status','❌ '+e.message,'err');
+    toast('❌ '+e.message,'err');
   }
 }
 
