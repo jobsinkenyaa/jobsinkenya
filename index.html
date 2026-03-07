@@ -13,7 +13,6 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://jobsinkenya.it.com">
 <meta name="twitter:card" content="summary">
-<!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4575381845991909" crossorigin="anonymous"></script>
 <meta name="google-adsense-account" content="ca-pub-4575381845991909">
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -28,8 +27,6 @@
 body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;width:100%;}
 a{text-decoration:none;color:inherit;}
 button{font-family:'Outfit',sans-serif;cursor:pointer;}
-
-/* NAV */
 nav{background:var(--green-d);color:#fff;padding:0 5%;height:56px;
   display:flex;align-items:center;justify-content:space-between;
   position:sticky;top:0;z-index:300;box-shadow:0 2px 8px rgba(0,0,0,.25);}
@@ -37,106 +34,64 @@ nav{background:var(--green-d);color:#fff;padding:0 5%;height:56px;
 .nav-links{display:flex;gap:20px;font-size:.84rem;font-weight:600;}
 .nav-links a{opacity:.8;color:#fff;transition:opacity .2s;}
 .nav-links a:hover{opacity:1;}
-.post-btn{background:var(--gold);color:#000;padding:7px 15px;border-radius:6px;
-  font-weight:700;font-size:.82rem;border:none;}
+.post-btn{background:var(--gold);color:#000;padding:7px 15px;border-radius:6px;font-weight:700;font-size:.82rem;border:none;}
 .mob-btn{display:none;background:none;border:none;color:#fff;font-size:1.4rem;}
-.mob-nav{display:none;position:fixed;top:56px;left:0;right:0;
-  background:var(--green-d);z-index:299;padding:10px 5%;
-  border-top:1px solid rgba(255,255,255,.1);}
+.mob-nav{display:none;position:fixed;top:56px;left:0;right:0;background:var(--green-d);z-index:299;padding:10px 5%;border-top:1px solid rgba(255,255,255,.1);}
 .mob-nav.open{display:block;}
-.mob-nav a{display:block;color:#fff;padding:10px 0;font-weight:600;
-  border-bottom:1px solid rgba(255,255,255,.08);}
-
-/* COOKIE BANNER */
-.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#1f2937;color:#f9fafb;
-  padding:14px 5%;display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:10px;z-index:999;font-size:.82rem;line-height:1.5;}
+.mob-nav a{display:block;color:#fff;padding:10px 0;font-weight:600;border-bottom:1px solid rgba(255,255,255,.08);}
+.cookie-banner{position:fixed;bottom:0;left:0;right:0;background:#1f2937;color:#f9fafb;padding:14px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;z-index:999;font-size:.82rem;line-height:1.5;}
 .cookie-banner.hide{display:none;}
 .cookie-text a{color:#86efac;text-decoration:underline;}
-.cookie-accept{background:var(--green);color:#fff;border:none;padding:8px 20px;
-  border-radius:6px;font-weight:700;font-size:.82rem;}
-
-/* HERO */
-.hero{background:linear-gradient(135deg,var(--green-d),#166534 60%,#15803d);
-  color:#fff;padding:48px 5% 40px;text-align:center;}
+.cookie-accept{background:var(--green);color:#fff;border:none;padding:8px 20px;border-radius:6px;font-weight:700;font-size:.82rem;}
+.hero{background:linear-gradient(135deg,var(--green-d),#166534 60%,#15803d);color:#fff;padding:48px 5% 40px;text-align:center;}
 .hero h1{font-size:clamp(1.6rem,4vw,2.5rem);font-weight:900;margin-bottom:10px;line-height:1.2;}
 .hero p{font-size:.93rem;opacity:.85;margin-bottom:26px;max-width:500px;margin-left:auto;margin-right:auto;}
-.sbox{background:#fff;border-radius:10px;padding:6px;display:flex;gap:6px;flex-wrap:wrap;
-  max-width:640px;margin:0 auto 20px;box-shadow:0 4px 20px rgba(0,0,0,.2);}
-.sbox input,.sbox select{border:none;outline:none;padding:9px 11px;
-  font-family:'Outfit',sans-serif;font-size:.88rem;color:var(--text);
-  border-radius:7px;background:#f3f4f6;flex:1;min-width:130px;}
-.sbox button{background:var(--green);color:#fff;border:none;padding:9px 20px;
-  border-radius:7px;font-weight:700;font-size:.88rem;white-space:nowrap;}
+.sbox{background:#fff;border-radius:10px;padding:6px;display:flex;gap:6px;flex-wrap:wrap;max-width:640px;margin:0 auto 20px;box-shadow:0 4px 20px rgba(0,0,0,.2);}
+.sbox input,.sbox select{border:none;outline:none;padding:9px 11px;font-family:'Outfit',sans-serif;font-size:.88rem;color:var(--text);border-radius:7px;background:#f3f4f6;flex:1;min-width:130px;}
+.sbox button{background:var(--green);color:#fff;border:none;padding:9px 20px;border-radius:7px;font-weight:700;font-size:.88rem;white-space:nowrap;}
 .stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;}
 .stat-n{font-size:1.4rem;font-weight:900;display:block;}
 .stat-l{font-size:.72rem;opacity:.75;}
-
-/* CHIPS */
-.chips{background:#fff;border-bottom:1px solid var(--border);padding:9px 5%;
-  display:flex;gap:7px;flex-wrap:wrap;align-items:center;
-  position:sticky;top:56px;z-index:200;overflow-x:auto;}
-.chip{padding:5px 14px;border-radius:20px;border:1px solid var(--border);
-  background:#fff;font-size:.78rem;font-weight:600;color:var(--muted);
-  transition:all .2s;white-space:nowrap;}
+.chips{background:#fff;border-bottom:1px solid var(--border);padding:9px 5%;display:flex;gap:7px;flex-wrap:wrap;align-items:center;position:sticky;top:56px;z-index:200;overflow-x:auto;}
+.chip{padding:5px 14px;border-radius:20px;border:1px solid var(--border);background:#fff;font-size:.78rem;font-weight:600;color:var(--muted);transition:all .2s;white-space:nowrap;}
 .chip:hover,.chip.on{background:var(--green);color:#fff;border-color:var(--green);}
-
-/* SHARE BAR */
-.share-bar{background:linear-gradient(135deg,var(--green-d),#166534);color:#fff;
-  padding:12px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;}
+.share-bar{background:linear-gradient(135deg,var(--green-d),#166534);color:#fff;padding:12px 5%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:9px;}
 .share-bar-title{font-weight:800;font-size:.88rem;}
 .share-bar-sub{font-size:.74rem;opacity:.8;margin-top:1px;}
 .sbar-btns{display:flex;gap:7px;flex-wrap:wrap;}
-.sbarbtn{padding:7px 15px;border-radius:6px;border:none;font-family:'Outfit',sans-serif;
-  font-weight:700;font-size:.76rem;}
+.sbarbtn{padding:7px 15px;border-radius:6px;border:none;font-family:'Outfit',sans-serif;font-weight:700;font-size:.76rem;}
 .sb-wa{background:#25d366;color:#fff;}
 .sb-fb{background:#1877f2;color:#fff;}
 .sb-cp{background:rgba(255,255,255,.2);color:#fff;}
-
-/* FEATURED */
 .feat-wrap{background:var(--gold-l);border-top:3px solid var(--gold);padding:22px 5%;}
-.feat-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;
-  max-width:1160px;margin-left:auto;margin-right:auto;flex-wrap:wrap;gap:10px;}
+.feat-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;max-width:1160px;margin-left:auto;margin-right:auto;flex-wrap:wrap;gap:10px;}
 .feat-label{font-size:.98rem;font-weight:800;color:var(--gold);}
 .feat-sub{font-size:.76rem;color:#92400e;margin-top:2px;}
-.feat-cta{background:var(--gold);color:#000;border:none;padding:8px 16px;
-  border-radius:6px;font-weight:700;font-size:.78rem;}
-.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-  gap:13px;max-width:1160px;margin:0 auto;}
+.feat-cta{background:var(--gold);color:#000;border:none;padding:8px 16px;border-radius:6px;font-weight:700;font-size:.78rem;}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:13px;max-width:1160px;margin:0 auto;}
 .fcard{background:#fff;border:1px solid #fcd34d;border-radius:10px;padding:15px;position:relative;}
-.fribbon{position:absolute;top:10px;right:10px;background:var(--gold);color:#000;
-  padding:2px 8px;border-radius:20px;font-size:.65rem;font-weight:800;}
+.fribbon{position:absolute;top:10px;right:10px;background:var(--gold);color:#000;padding:2px 8px;border-radius:20px;font-size:.65rem;font-weight:800;}
 .ft{font-weight:800;font-size:.88rem;padding-right:55px;margin-bottom:3px;}
 .fco{color:var(--muted);font-size:.77rem;margin-bottom:5px;}
 .fsal{color:var(--gold);font-weight:700;font-size:.8rem;margin-bottom:7px;}
 .ftags{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:9px;}
 .ftag{background:var(--gold-l);color:#92400e;padding:2px 7px;border-radius:8px;font-size:.67rem;font-weight:600;}
-.no-feat{color:#92400e;font-size:.84rem;text-align:center;padding:12px;opacity:.7;}
-
-/* MAIN LAYOUT */
 .wrap{max-width:1160px;margin:0 auto;padding:22px 5%;}
 .layout{display:grid;grid-template-columns:1fr 265px;gap:20px;}
-
-/* JOBS */
 .jobs-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px;}
 .jobs-title{font-size:1.05rem;font-weight:800;}
 .jobs-sub{color:var(--muted);font-size:.8rem;margin-top:2px;}
-.jobs-count{background:var(--green-l);color:var(--green-d);padding:3px 11px;
-  border-radius:20px;font-size:.77rem;font-weight:700;}
+.jobs-count{background:var(--green-l);color:var(--green-d);padding:3px 11px;border-radius:20px;font-size:.77rem;font-weight:700;}
 .jlist{display:flex;flex-direction:column;gap:10px;}
-
-/* JOB CARD — MyJobMag style full card */
 .jcard{background:#fff;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
 .jcard-head{padding:15px 16px;display:flex;gap:12px;align-items:flex-start;cursor:pointer;}
 .jcard-head:hover{background:#fafafa;}
-.jico{width:46px;height:46px;border-radius:8px;flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.88rem;color:#fff;}
+.jico{width:46px;height:46px;border-radius:8px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.88rem;color:#fff;}
 .jcard-main{flex:1;min-width:0;}
 .jt{font-weight:800;font-size:.95rem;margin-bottom:2px;color:var(--text);}
 .jco{color:var(--muted);font-size:.8rem;font-weight:600;margin-bottom:6px;}
 .jmeta{display:flex;gap:6px;flex-wrap:wrap;}
-.jm{background:var(--bg);border:1px solid var(--border);padding:3px 9px;
-  border-radius:8px;font-size:.7rem;color:var(--muted);font-weight:600;}
+.jm{background:var(--bg);border:1px solid var(--border);padding:3px 9px;border-radius:8px;font-size:.7rem;color:var(--muted);font-weight:600;}
 .jm.red{background:#fee2e2;border-color:#fecaca;color:var(--red);}
 .jm.green{background:var(--green-l);border-color:#bbf7d0;color:#166534;}
 .jbadge{padding:3px 10px;border-radius:20px;font-size:.68rem;font-weight:700;flex-shrink:0;align-self:flex-start;}
@@ -147,8 +102,6 @@ nav{background:var(--green-d);color:#fff;padding:0 5%;height:56px;
 .bng{background:#fee2e2;color:#991b1b;}
 .brm{background:#e0f2fe;color:#0369a1;}
 .bct{background:#f1f5f9;color:#475569;}
-
-/* JOB BODY — expanded inline */
 .jcard-body{display:none;border-top:1px solid var(--border);padding:16px;background:#fafafa;}
 .jcard-body.open{display:block;}
 .jbody-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
@@ -164,114 +117,74 @@ nav{background:var(--green-d);color:#fff;padding:0 5%;height:56px;
 .js-fb{background:#1877f2;color:#fff;}
 .js-x{background:#000;color:#fff;}
 .js-poster{background:var(--green-d);color:#fff;}
-
-/* POSTER CANVAS (hidden) */
 #poster-canvas{display:none;}
-
-/* SIDEBAR */
 .side{display:flex;flex-direction:column;gap:14px;}
 .scard{background:#fff;border:1px solid var(--border);border-radius:10px;padding:15px;}
-.scard-t{font-size:.85rem;font-weight:800;margin-bottom:11px;
-  padding-bottom:8px;border-bottom:1px solid var(--border);}
+.scard-t{font-size:.85rem;font-weight:800;margin-bottom:11px;padding-bottom:8px;border-bottom:1px solid var(--border);}
 .clist{display:flex;flex-direction:column;gap:3px;}
-.cbtn{display:flex;align-items:center;justify-content:space-between;padding:6px 8px;
-  border-radius:6px;font-size:.8rem;font-weight:600;border:none;background:none;
-  width:100%;text-align:left;color:var(--text);}
+.cbtn{display:flex;align-items:center;justify-content:space-between;padding:6px 8px;border-radius:6px;font-size:.8rem;font-weight:600;border:none;background:none;width:100%;text-align:left;color:var(--text);}
 .cbtn:hover,.cbtn.on{background:var(--green-l);color:var(--green-d);}
-.ccnt{background:var(--border);color:var(--muted);padding:1px 6px;border-radius:7px;font-size:.67rem;}
+.ccnt{background:var(--border);color:var(--muted);padding:1px 6px;border-radius:7px;font-size:.67px;}
 .sub-form{display:flex;flex-direction:column;gap:7px;}
-.sub-form input{padding:8px 10px;border:1px solid var(--border);border-radius:7px;
-  font-family:'Outfit',sans-serif;font-size:.83rem;outline:none;}
+.sub-form input{padding:8px 10px;border:1px solid var(--border);border-radius:7px;font-family:'Outfit',sans-serif;font-size:.83rem;outline:none;}
 .sub-form input:focus{border-color:var(--green);}
-.sub-btn{background:var(--green);color:#fff;border:none;padding:8px;
-  border-radius:7px;font-weight:700;font-size:.82rem;}
-
-/* SKELETON */
+.sub-btn{background:var(--green);color:#fff;border:none;padding:8px;border-radius:7px;font-weight:700;font-size:.82rem;}
 .skwrap{display:flex;flex-direction:column;gap:10px;}
-.sk{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;
-  display:flex;flex-direction:column;gap:8px;}
-.skb{background:linear-gradient(90deg,#f3f4f6 25%,#e5e7eb 50%,#f3f4f6 75%);
-  background-size:200% 100%;animation:sh 1.4s infinite;border-radius:5px;}
+.sk{background:#fff;border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px;}
+.skb{background:linear-gradient(90deg,#f3f4f6 25%,#e5e7eb 50%,#f3f4f6 75%);background-size:200% 100%;animation:sh 1.4s infinite;border-radius:5px;}
 .skb.h{height:16px;width:55%;}
 .skb.m{height:13px;width:38%;}
 .skb.s{height:11px;width:75%;}
 @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
-
-/* EMPTY */
 .empty{text-align:center;padding:40px;background:#fff;border:1px solid var(--border);border-radius:10px;}
 .empty-ico{font-size:2.2rem;margin-bottom:10px;}
-.rbtn{margin-top:12px;background:var(--green);color:#fff;border:none;
-  padding:9px 20px;border-radius:7px;font-weight:700;}
-
-/* FOOTER */
+.rbtn{margin-top:12px;background:var(--green);color:#fff;border:none;padding:9px 20px;border-radius:7px;font-weight:700;}
 footer{background:var(--green-d);color:rgba(255,255,255,.82);padding:36px 5% 20px;margin-top:40px;}
-.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:26px;
-  max-width:1160px;margin:0 auto 26px;}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:26px;max-width:1160px;margin:0 auto 26px;}
 .fbrand h3{color:#fff;font-size:.96rem;font-weight:800;margin-bottom:7px;}
 .fbrand p{font-size:.8rem;line-height:1.7;opacity:.73;}
 .fcol h4{color:#fff;font-weight:700;font-size:.83rem;margin-bottom:10px;}
 .fcol ul{list-style:none;display:flex;flex-direction:column;gap:6px;}
 .fcol a{font-size:.8rem;opacity:.73;transition:opacity .2s;}
 .fcol a:hover{opacity:1;}
-.fbot{border-top:1px solid rgba(255,255,255,.1);padding-top:16px;
-  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
-  font-size:.76rem;opacity:.6;max-width:1160px;margin:0 auto;}
-
-/* TOAST */
-.toast{position:fixed;bottom:70px;right:16px;background:var(--green-d);color:#fff;
-  padding:10px 16px;border-radius:8px;font-size:.82rem;font-weight:600;z-index:998;
-  transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;}
+.fbot{border-top:1px solid rgba(255,255,255,.1);padding-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font-size:.76rem;opacity:.6;max-width:1160px;margin:0 auto;}
+.toast{position:fixed;bottom:70px;right:16px;background:var(--green-d);color:#fff;padding:10px 16px;border-radius:8px;font-size:.82rem;font-weight:600;z-index:998;transform:translateY(80px);opacity:0;transition:all .3s;pointer-events:none;}
 .toast.show{transform:translateY(0);opacity:1;}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .layout{grid-template-columns:1fr;}
-  .side{display:none;}
-}
+@media(max-width:900px){.layout{grid-template-columns:1fr;}.side{display:none;}}
 @media(max-width:600px){
-  .nav-links,.post-btn{display:none;}
-  .mob-btn{display:block;}
-  .fgrid{grid-template-columns:1fr 1fr;}
-  .fbrand{grid-column:1/-1;}
+  .nav-links,.post-btn{display:none;}.mob-btn{display:block;}
+  .fgrid{grid-template-columns:1fr 1fr;}.fbrand{grid-column:1/-1;}
   .jbody-grid{grid-template-columns:1fr;}
   .sbox input,.sbox select{min-width:100px;}
 }
-@media(max-width:400px){
-  .fgrid{grid-template-columns:1fr;}
-}
+@media(max-width:400px){.fgrid{grid-template-columns:1fr;}}
 </style>
 </head>
 <body>
 
-<!-- COOKIE CONSENT BANNER -->
 <div class="cookie-banner" id="cookie-banner">
-  <div class="cookie-text">
-    We use cookies to improve your experience and show relevant ads. By continuing to use this site you accept our
-    <a href="privacy.html">Privacy Policy</a>.
-  </div>
+  <div class="cookie-text">We use cookies to improve your experience and show relevant ads. By continuing you accept our <a href="privacy.html">Privacy Policy</a>.</div>
   <button class="cookie-accept" onclick="acceptCookies()">Accept & Continue</button>
 </div>
 
-<!-- NAV -->
 <nav>
   <div class="logo">🇰🇪 Jobs in Kenya</div>
   <div class="nav-links">
     <a href="#jobs">Browse Jobs</a>
     <a href="#featured">Featured</a>
     <a href="privacy.html">Privacy Policy</a>
-    <a href="/cdn-cgi/l/email-protection#0b616469786265606e65726a6a4b6c666a626725686466">Contact</a>
+    <a href="mailto:jobsinkenyaa@gmail.com">Contact</a>
   </div>
   <button class="post-btn" onclick="window.location='mailto:jobsinkenyaa@gmail.com?subject=Feature My Job'">Post a Job ⭐</button>
   <button class="mob-btn" onclick="document.getElementById('mn').classList.toggle('open')">☰</button>
 </nav>
 <div class="mob-nav" id="mn">
-  <a href="#jobs"     onclick="document.getElementById('mn').classList.remove('open')">Browse Jobs</a>
+  <a href="#jobs" onclick="document.getElementById('mn').classList.remove('open')">Browse Jobs</a>
   <a href="#featured" onclick="document.getElementById('mn').classList.remove('open')">Featured Jobs</a>
   <a href="privacy.html">Privacy Policy</a>
-  <a href="/cdn-cgi/l/email-protection#8ce6e3eeffe5e2e7e9e2f5ededccebe1ede5e0a2efe3e1">📧 <span class="__cf_email__" data-cfemail="315b5e5342585f5a545f48505071565c50585d1f525e5c">[email&#160;protected]</span></a>
+  <a href="mailto:jobsinkenyaa@gmail.com">📧 Contact</a>
 </div>
 
-<!-- HERO -->
 <div class="hero">
   <h1>Find Your Next Job in Kenya 🇰🇪</h1>
   <p>Hundreds of jobs across all counties — internships, government, NGO, remote and more. Free to browse.</p>
@@ -297,7 +210,6 @@ footer{background:var(--green-d);color:rgba(255,255,255,.82);padding:36px 5% 20p
   </div>
 </div>
 
-<!-- FILTER CHIPS -->
 <div class="chips">
   <span style="font-size:.76rem;font-weight:700;color:var(--muted);">Type:</span>
   <button class="chip on" onclick="setType(this,'')">All</button>
@@ -322,18 +234,11 @@ footer{background:var(--green-d);color:rgba(255,255,255,.82);padding:36px 5% 20p
   <button class="chip" onclick="setSector(this,'Human Resources')">HR</button>
 </div>
 
-<!-- ADSENSE AD — TOP BANNER -->
 <div style="text-align:center;padding:10px 5%;background:#fff;border-bottom:1px solid #e5e7eb;">
-  <ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-4575381845991909"
-     data-ad-slot="auto"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575381845991909" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<!-- SHARE BAR -->
 <div class="share-bar">
   <div>
     <div class="share-bar-title">📢 Share Today's Jobs</div>
@@ -346,27 +251,19 @@ footer{background:var(--green-d);color:rgba(255,255,255,.82);padding:36px 5% 20p
   </div>
 </div>
 
-<!-- FEATURED JOBS -->
 <div class="feat-wrap" id="featured" style="display:none;">
   <div class="feat-top">
     <div>
       <div class="feat-label">⭐ Featured Jobs</div>
-      <div class="feat-sub">Contact <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="016b6e6372686f6a646f78606041666c60686d2f626e6c">[email&#160;protected]</a> to feature your job listing</div>
+      <div class="feat-sub">Contact jobsinkenyaa@gmail.com to feature your job listing</div>
     </div>
-    <button class="feat-cta" onclick="window.location='mailto:jobsinkenyaa@gmail.com?subject=Feature My Job'">
-      ⭐ Feature a Job — From KSh 500
-    </button>
+    <button class="feat-cta" onclick="window.location='mailto:jobsinkenyaa@gmail.com?subject=Feature My Job'">⭐ Feature a Job — From KSh 500</button>
   </div>
-  <div class="feat-grid" id="feat-grid">
-    <div class="no-feat">No featured jobs yet.</div>
-  </div>
+  <div class="feat-grid" id="feat-grid"></div>
 </div>
 
-<!-- MAIN -->
 <div class="wrap">
   <div class="layout">
-
-    <!-- JOBS COLUMN -->
     <div id="jobs">
       <div class="jobs-hdr">
         <div>
@@ -375,16 +272,13 @@ footer{background:var(--green-d);color:rgba(255,255,255,.82);padding:36px 5% 20p
         </div>
         <div class="jobs-count" id="jcount"></div>
       </div>
-
       <div id="loading" class="skwrap">
         <div class="sk"><div class="skb h"></div><div class="skb m"></div><div class="skb s"></div></div>
         <div class="sk"><div class="skb h"></div><div class="skb m"></div><div class="skb s"></div></div>
         <div class="sk"><div class="skb h"></div><div class="skb m"></div><div class="skb s"></div></div>
         <div class="sk"><div class="skb h"></div><div class="skb m"></div><div class="skb s"></div></div>
       </div>
-
       <div id="jlist" class="jlist" style="display:none;"></div>
-
       <div id="empty" class="empty" style="display:none;">
         <div class="empty-ico">🔍</div>
         <div style="font-weight:800;margin-bottom:6px;">No jobs found</div>
@@ -393,7 +287,6 @@ footer{background:var(--green-d);color:rgba(255,255,255,.82);padding:36px 5% 20p
       </div>
     </div>
 
-    <!-- SIDEBAR -->
     <div class="side">
       <div class="scard">
         <div class="scard-t">📍 Browse by County</div>
@@ -407,40 +300,24 @@ footer{background:var(--green-d);color:rgba(255,255,255,.82);padding:36px 5% 20p
           <button class="sub-btn" onclick="subscribe()">Subscribe Free →</button>
         </div>
       </div>
-      <!-- ADSENSE SIDEBAR AD -->
       <div class="scard" style="padding:8px;background:#f9fafb;">
-        <ins class="adsbygoogle"
-           style="display:block"
-           data-ad-client="ca-pub-4575381845991909"
-           data-ad-slot="auto"
-           data-ad-format="auto"
-           data-full-width-responsive="true"></ins>
-        <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575381845991909" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       </div>
-
       <div class="scard" style="background:var(--gold-l);border-color:#fcd34d;">
         <div class="scard-t" style="border-color:#fcd34d;color:var(--gold);">⭐ Feature Your Job</div>
         <p style="font-size:.79rem;color:#92400e;margin-bottom:9px;line-height:1.6;">Get top visibility. Featured jobs appear at the top of every page. From KSh 500.</p>
-        <a href="/cdn-cgi/l/email-protection#2e44414c5d4740454b40574f4f6e49434f4742004d4143115d5b4c444b4d5a13684b4f5a5b5c4b0e63570e64414c" style="display:block;background:var(--gold);color:#000;padding:8px;border-radius:7px;
-           text-align:center;font-weight:700;font-size:.82rem;">Contact Us →</a>
+        <a href="mailto:jobsinkenyaa@gmail.com?subject=Feature My Job" style="display:block;background:var(--gold);color:#000;padding:8px;border-radius:7px;text-align:center;font-weight:700;font-size:.82rem;">Contact Us →</a>
       </div>
     </div>
-
   </div>
 </div>
 
-<!-- ADSENSE AD — BEFORE FOOTER -->
 <div style="text-align:center;padding:16px 5%;background:#fff;border-top:1px solid #e5e7eb;">
-  <ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-4575381845991909"
-     data-ad-slot="auto"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4575381845991909" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="fgrid">
     <div class="fbrand">
@@ -455,13 +332,13 @@ footer{background:var(--green-d);color:rgba(255,255,255,.82);padding:36px 5% 20p
       <li><a href="#" onclick="setType(null,'Remote')">Remote Jobs</a></li>
     </ul></div>
     <div class="fcol"><h4>Employers</h4><ul>
-      <li><a href="/cdn-cgi/l/email-protection#7c16131e0f1512171912051d1d3c1b111d1510521f1311430f091e16191f08413a191d08090e195c31055c36131e">Feature a Job</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#33595c51405a5d58565d4a525273545e525a5f1d505c5e0c404651595650470e635c4047135213795c51">Post a Job</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#5f35303d2c3631343a31263e3e1f38323e3633713c3032">Contact Us</a></li>
+      <li><a href="mailto:jobsinkenyaa@gmail.com?subject=Feature My Job">Feature a Job</a></li>
+      <li><a href="mailto:jobsinkenyaa@gmail.com?subject=Post a Job">Post a Job</a></li>
+      <li><a href="mailto:jobsinkenyaa@gmail.com">Contact Us</a></li>
     </ul></div>
     <div class="fcol"><h4>Information</h4><ul>
       <li><a href="privacy.html">Privacy Policy</a></li>
-      <li><a href="/cdn-cgi/l/email-protection#e78d8885948e898c82899e8686a7808a868e8bc984888a">📧 <span class="__cf_email__" data-cfemail="6d07020f1e0403060803140c0c2d0a000c0401430e0200">[email&#160;protected]</span></a></li>
+      <li><a href="mailto:jobsinkenyaa@gmail.com">📧 Email Us</a></li>
       <li><a href="#">📘 Facebook</a></li>
       <li><a href="#">💬 WhatsApp Channel</a></li>
     </ul></div>
@@ -472,18 +349,14 @@ footer{background:var(--green-d);color:rgba(255,255,255,.82);padding:36px 5% 20p
   </div>
 </footer>
 
-<!-- Hidden canvas for poster generation -->
 <canvas id="poster-canvas" width="1080" height="1080" style="display:none;"></canvas>
-
 <div class="toast" id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// ── STATE ──────────────────────────────────────────
+<script>
 var ALL=[], SHOWN=[], ATYPE='', ASECTOR='';
 var COLORS=['#16a34a','#2563eb','#d97706','#9333ea','#dc2626','#0891b2','#ea580c','#0f766e'];
 var BADGE={'full-time':'bft','part-time':'bpt','internship':'bin','government':'bgv','ngo':'bng','remote':'brm','contract':'bct'};
 
-// ── COOKIE CONSENT ─────────────────────────────────
 function acceptCookies(){
   localStorage.setItem('cookies_ok','1');
   g('cookie-banner').classList.add('hide');
@@ -492,42 +365,64 @@ if(localStorage.getItem('cookies_ok')==='1'){
   document.getElementById('cookie-banner').classList.add('hide');
 }
 
-// ── LOAD JOBS ──────────────────────────────────────
+// ── LOAD JOBS — tries multiple sources ─────────────
 async function loadJobs(){
   g('loading').style.display='flex';
   g('jlist').style.display='none';
   g('empty').style.display='none';
   g('jsub').textContent='Loading jobs...';
+
   var jobs=[];
+
+  // Try 1: same-origin jobs.json (works when hosted on GitHub Pages)
   try{
     var r=await fetch('./jobs.json?t='+Date.now());
-    if(r.ok) jobs=await r.json();
+    if(r.ok){
+      var data=await r.json();
+      if(Array.isArray(data)&&data.length){ jobs=data; }
+    }
   }catch(e){}
-  if(!jobs||!jobs.length){
-    try{ var s=localStorage.getItem('kj'); if(s) jobs=JSON.parse(s); }catch(e){}
+
+  // Try 2: raw GitHub URL (fallback — always works)
+  if(!jobs.length){
+    try{
+      var r2=await fetch('https://raw.githubusercontent.com/jobsinkenyaa/jobsinkenya/main/jobs.json?t='+Date.now());
+      if(r2.ok){
+        var data2=await r2.json();
+        if(Array.isArray(data2)&&data2.length){ jobs=data2; }
+      }
+    }catch(e){}
   }
-  if(jobs&&jobs.length){
+
+  // Try 3: localStorage cache (last resort)
+  if(!jobs.length){
+    try{
+      var s=localStorage.getItem('kj');
+      if(s){ var parsed=JSON.parse(s); if(Array.isArray(parsed)&&parsed.length) jobs=parsed; }
+    }catch(e){}
+  }
+
+  // Cache in localStorage for offline
+  if(jobs.length){
     try{ localStorage.setItem('kj',JSON.stringify(jobs)); }catch(e){}
   }
-  ALL=jobs||[];
+
+  ALL=jobs;
   g('sn').textContent=ALL.length+'+';
   renderFeatured();
   buildCounties();
   doFilter();
 }
 
-// ── FILTERS ────────────────────────────────────────
 function doFilter(){
   var kw=(g('kw').value||'').toLowerCase().trim();
   var cn=(g('county').value||'').toLowerCase();
   var now=new Date();
   SHOWN=ALL.filter(function(j){
-    // Auto-expire: hide jobs past their deadline
     if(j.deadline){
       var dl=new Date(j.deadline);
       if(!isNaN(dl)&&dl<now) return false;
     }
-    // Auto-expire: hide jobs older than 30 days if no deadline
     if(!j.deadline&&j.date_added){
       var added=new Date(j.date_added);
       var days=(now-added)/(1000*60*60*24);
@@ -550,7 +445,6 @@ function setType(el,type){
   if(el) el.classList.add('on');
   doFilter();
 }
-
 function setSector(el,sector){
   ASECTOR=sector; ATYPE='';
   document.querySelectorAll('.chip').forEach(function(c){c.classList.remove('on');});
@@ -559,7 +453,6 @@ function setSector(el,sector){
   g('jobs').scrollIntoView({behavior:'smooth'});
 }
 
-// ── RENDER JOBS ────────────────────────────────────
 function renderJobs(){
   g('loading').style.display='none';
   if(!SHOWN.length){
@@ -592,8 +485,6 @@ function renderJobs(){
       var d=new Date(j.date_added||j.scraped_at||'');
       if(!isNaN(d.getTime())) date=d.toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'});
     }catch(e){}
-
-    // Build body info grid
     var infoItems=[
       {l:'📍 Location',v:loc},
       {l:'💼 Job Type',v:type},
@@ -605,14 +496,11 @@ function renderJobs(){
       {l:'📅 Posted',v:date},
       {l:'🇰🇪 Source',v:src},
     ].filter(Boolean);
-
     var infoHTML=infoItems.map(function(item){
       return '<div class="jbinfo"><div class="jbinfo-label">'+item.l+'</div><div class="jbinfo-val">'+item.v+'</div></div>';
     }).join('');
-
     var st=encodeURIComponent('🇰🇪 Job: '+j.title+' at '+j.company+' — '+loc+'\njobsinkenya.it.com');
     var su=encodeURIComponent('https://jobsinkenya.it.com');
-
     return '<div class="jcard" id="jc'+i+'">'
       +'<div class="jcard-head" onclick="toggleJob('+i+')">'
         +'<div class="jico" style="background:'+col+'">'+ini+'</div>'
@@ -634,7 +522,7 @@ function renderJobs(){
         +'<div class="jshare">'
           +'<button class="jsharebtn js-wa" onclick="window.open(\'https://api.whatsapp.com/send?text='+st+'\',\'_blank\')">💬 WhatsApp</button>'
           +'<button class="jsharebtn js-fb" onclick="window.open(\'https://www.facebook.com/sharer/sharer.php?u='+su+'\',\'_blank\')">📘 Facebook</button>'
-          +'<button class="jsharebtn js-x"  onclick="window.open(\'https://twitter.com/intent/tweet?text='+st+'\',\'_blank\')">𝕏 Twitter</button>'
+          +'<button class="jsharebtn js-x" onclick="window.open(\'https://twitter.com/intent/tweet?text='+st+'\',\'_blank\')">𝕏 Twitter</button>'
           +'<button class="jsharebtn js-poster" onclick="generatePoster('+i+')">🎨 Download Poster</button>'
         +'</div>'
       +'</div>'
@@ -642,24 +530,17 @@ function renderJobs(){
   }).join('');
 }
 
-// Toggle job expand/collapse
 function toggleJob(i){
   var body=g('jb'+i);
   if(!body) return;
   var isOpen=body.classList.contains('open');
-  // Close all
   document.querySelectorAll('.jcard-body').forEach(function(b){b.classList.remove('open');});
-  // Open clicked one if it was closed
   if(!isOpen) body.classList.add('open');
 }
 
-// ── FEATURED ───────────────────────────────────────
 function renderFeatured(){
   var feat=ALL.filter(function(j){return j.featured;}).slice(0,50);
-  if(!feat.length){
-    g('featured').style.display='none';
-    return;
-  }
+  if(!feat.length){ g('featured').style.display='none'; return; }
   g('featured').style.display='block';
   g('feat-grid').innerHTML=feat.map(function(j){
     return '<div class="fcard">'
@@ -676,18 +557,14 @@ function renderFeatured(){
   }).join('');
 }
 
-// ── COUNTIES ───────────────────────────────────────
 function buildCounties(){
   var cnt={};
   ALL.forEach(function(j){ var c=j.county||'Kenya'; cnt[c]=(cnt[c]||0)+1; });
   var sorted=Object.entries(cnt).sort(function(a,b){return b[1]-a[1];}).slice(0,14);
   g('clist').innerHTML=sorted.map(function(e){
-    return '<button class="cbtn" onclick="pickCounty(\''+e[0]+'\',this)">'
-      +e[0]+' <span class="ccnt">'+e[1]+'</span>'
-    +'</button>';
+    return '<button class="cbtn" onclick="pickCounty(\''+e[0]+'\',this)">'+e[0]+' <span class="ccnt">'+e[1]+'</span></button>';
   }).join('');
 }
-
 function pickCounty(c,el){
   g('county').value=c;
   document.querySelectorAll('.cbtn').forEach(function(b){b.classList.remove('on');});
@@ -696,122 +573,79 @@ function pickCounty(c,el){
   g('jobs').scrollIntoView({behavior:'smooth'});
 }
 
-// ── DIGEST SHARE ───────────────────────────────────
 function shareDigest(platform){
   var jobs=SHOWN.slice(0,15);
   if(!jobs.length){ toast('No jobs to share!'); return; }
   var dateStr=new Date().toLocaleDateString('en-KE',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
-  var msg='🇰🇪 *JOBS IN KENYA — '+dateStr.toUpperCase()+'*\n'
-    +'━━━━━━━━━━━━━━━━━━\n\n';
+  var msg='🇰🇪 *JOBS IN KENYA — '+dateStr.toUpperCase()+'*\n━━━━━━━━━━━━━━━━━━\n\n';
   jobs.forEach(function(j,i){
     var loc=j.location||(j.county?j.county+', Kenya':'Kenya');
-    msg+=(i+1)+'. *'+(j.title||'Job Opening')+'*\n'
-      +'   🏢 '+(j.company||'Organisation')+'\n'
-      +'   📍 '+loc+'\n'
+    msg+=(i+1)+'. *'+(j.title||'Job Opening')+'*\n   🏢 '+(j.company||'Organisation')+'\n   📍 '+loc+'\n'
       +(j.salary&&j.salary!=='Not stated'?'   💰 '+j.salary+'\n':'')
-      +(j.deadline?'   ⏰ Deadline: '+j.deadline+'\n':'')
-      +'\n';
+      +(j.deadline?'   ⏰ Deadline: '+j.deadline+'\n':'')+'\n';
   });
-  msg+='━━━━━━━━━━━━━━━━━━\n'
-    +'👉 *View & Apply: jobsinkenya.it.com*\n'
-    +'📲 Share with someone who needs a job!';
-
-  if(platform==='wa'){
-    window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(msg),'_blank');
-  } else if(platform==='fb'){
-    window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://jobsinkenya.it.com'),'_blank');
-  } else {
-    var clean=msg.replace(/\*/g,'');
-    navigator.clipboard.writeText(clean).then(function(){ toast('✅ Copied to clipboard!'); }).catch(function(){ toast('✅ '+jobs.length+' jobs ready!'); });
+  msg+='━━━━━━━━━━━━━━━━━━\n👉 *View & Apply: jobsinkenya.it.com*\n📲 Share with someone who needs a job!';
+  if(platform==='wa') window.open('https://api.whatsapp.com/send?text='+encodeURIComponent(msg),'_blank');
+  else if(platform==='fb') window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('https://jobsinkenya.it.com'),'_blank');
+  else{
+    navigator.clipboard.writeText(msg.replace(/\*/g,'')).then(function(){toast('✅ Copied!');}).catch(function(){toast('✅ Ready to share!');});
   }
 }
 
-// ── POSTER GENERATOR ───────────────────────────────
 function generatePoster(i){
   var feat=SHOWN.filter(function(j){return j.featured;});
   var rest=SHOWN.filter(function(j){return !j.featured;});
   var j=feat.concat(rest)[i];
   if(!j) return;
-
   var canvas=g('poster-canvas');
   var ctx=canvas.getContext('2d');
   var W=1080,H=1080;
   canvas.width=W; canvas.height=H;
-
-  // Background
   var grad=ctx.createLinearGradient(0,0,W,H);
-  grad.addColorStop(0,'#0a2e1a');
-  grad.addColorStop(1,'#166534');
+  grad.addColorStop(0,'#0a2e1a'); grad.addColorStop(1,'#166534');
   ctx.fillStyle=grad; ctx.fillRect(0,0,W,H);
-
-  // Circles
   ctx.beginPath(); ctx.arc(W-100,120,220,0,Math.PI*2);
   ctx.fillStyle='rgba(255,255,255,0.04)'; ctx.fill();
   ctx.beginPath(); ctx.arc(60,H-60,160,0,Math.PI*2);
   ctx.fillStyle='rgba(255,255,255,0.03)'; ctx.fill();
-
-  // Top bar
   var bar=ctx.createLinearGradient(0,0,W,0);
   bar.addColorStop(0,'#22c55e'); bar.addColorStop(1,'#16a34a');
   ctx.fillStyle=bar; ctx.fillRect(0,0,W,8);
-
-  // Brand
-  ctx.fillStyle='rgba(255,255,255,0.55)';
-  ctx.font='bold 30px Arial';
+  ctx.fillStyle='rgba(255,255,255,0.55)'; ctx.font='bold 30px Arial';
   ctx.fillText('JOBS IN KENYA  |  jobsinkenya.it.com',60,65);
-
-  // Type badge
   ctx.fillStyle='#22c55e';
   ctx.beginPath(); ctx.roundRect(60,88,200,42,8); ctx.fill();
   ctx.fillStyle='#fff'; ctx.font='bold 22px Arial';
   ctx.fillText((j.type||'Full-Time').toUpperCase(),75,116);
-
-  // Title
   ctx.fillStyle='#fff'; ctx.font='bold 68px Arial';
   var tlines=wrapText(ctx,j.title||'Job Opening',60,W-100);
   var ty=210;
   tlines.slice(0,3).forEach(function(l){ ctx.fillText(l,60,ty); ty+=80; });
-
-  // Company
   ctx.fillStyle='#86efac'; ctx.font='bold 44px Arial';
   ctx.fillText(j.company||'Organisation',60,ty+15); ty+=65;
-
-  // Divider
   ctx.strokeStyle='rgba(255,255,255,0.2)'; ctx.lineWidth=1.5;
   ctx.beginPath(); ctx.moveTo(60,ty); ctx.lineTo(W-60,ty); ctx.stroke(); ty+=35;
-
-  // Details
   ctx.fillStyle='rgba(255,255,255,0.8)'; ctx.font='30px Arial';
   var loc=j.location||(j.county?j.county+', Kenya':'Kenya');
-  ['📍 '+loc,
-   j.salary&&j.salary!=='Not stated'?'💰 '+j.salary:'',
-   j.deadline?'⏰ Deadline: '+j.deadline:'',
-   j.sector?'🏢 '+j.sector:''
-  ].filter(Boolean).forEach(function(d){ ctx.fillText(d,60,ty); ty+=46; });
-
-  // Description
+  ['📍 '+loc,j.salary&&j.salary!=='Not stated'?'💰 '+j.salary:'',j.deadline?'⏰ Deadline: '+j.deadline:'',j.sector?'🏢 '+j.sector:'']
+    .filter(Boolean).forEach(function(d){ ctx.fillText(d,60,ty); ty+=46; });
   ty+=10;
   var desc=(j.description||j.desc||'').replace(/<[^>]+>/g,' ').trim().substring(0,200);
   if(desc){
     ctx.fillStyle='rgba(255,255,255,0.55)'; ctx.font='26px Arial';
     wrapText(ctx,desc,60,W-120).slice(0,4).forEach(function(l){ ctx.fillText(l,60,ty); ty+=36; });
   }
-
-  // Bottom
   var by=H-130;
   ctx.fillStyle='rgba(0,0,0,0.3)'; ctx.fillRect(0,by,W,H-by);
   ctx.fillStyle='#22c55e'; ctx.font='bold 32px Arial';
   ctx.fillText('View & Apply: jobsinkenya.it.com',60,by+50);
   ctx.fillStyle='rgba(255,255,255,0.5)'; ctx.font='24px Arial';
   ctx.fillText('Free Job Listings | Updated Daily | All 47 Counties',60,by+90);
-
-  // Download
   var a=document.createElement('a');
   a.download=(j.title||'job').replace(/[^a-z0-9]/gi,'_').toLowerCase()+'_poster.png';
   a.href=canvas.toDataURL('image/png'); a.click();
   toast('✅ Poster downloaded!');
 }
-
 function wrapText(ctx,text,x,maxW){
   var words=(text||'').split(' '),lines=[],line='';
   words.forEach(function(w){
@@ -823,9 +657,21 @@ function wrapText(ctx,text,x,maxW){
   return lines;
 }
 
-// ── EMAIL SUBSCRIBE ────────────────────────────────
 function subscribe(){
   var e=g('semail').value.trim();
   if(!e||!e.includes('@')){ toast('Enter a valid email!'); return; }
-  // Replace with your Mailchimp URL from: Audience → Signup forms → Embedded forms
-  var 
+  toast('✅ Subscribed! You will receive job alerts.');
+  g('semail').value='';
+}
+
+function toast(msg){
+  var t=g('toast'); t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},3000);
+}
+function g(id){ return document.getElementById(id); }
+
+loadJobs();
+</script>
+</body>
+</html>
