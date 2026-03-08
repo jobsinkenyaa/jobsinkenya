@@ -172,6 +172,7 @@
     <input type="password" id="admin-pass" placeholder="Password" onkeydown="if(event.key==='Enter')login()">
     <button class="login-btn" onclick="login()">Sign In →</button>
     <div class="login-error" id="login-error">❌ Incorrect username or password</div>
+    <p style="margin-top:14px;font-size:.78rem;color:#9ca3af;">Forgot password? <a href="#" onclick="resetCreds()" style="color:#16a34a;font-weight:700;">Reset to default</a></p>
     <p style="margin-top:20px;font-size:.75rem;color:#94a3b8;">🔒 Unauthorised access is prohibited.</p>
   </div>
 </div>
@@ -458,7 +459,7 @@
           <div class="card" style="background:#fffbeb;border-color:#fde68a;">
             <h4>💡 How to Earn from Featured Jobs</h4>
             <p class="sub">Feature jobs for employers who pay you. Charge KSh 500–3,000 per listing and mark them as Featured when saving.</p>
-            <a href="mailto:jobsinkenyaa@gmail.com?subject=Feature My Job on Jobs Kenya" style="display:inline-block;background:var(--gold);color:white;padding:9px 20px;border-radius:10px;font-weight:800;font-size:.88rem;text-decoration:none;">📧 Contact employers to feature jobs</a>
+            <a href="/cdn-cgi/l/email-protection#345e5b56475d5a5f515a4d5555745359555d581a575b590b4741565e515740097251554041465114794d147e5b56145b5a147e5b5647147f515a4d55" style="display:inline-block;background:var(--gold);color:white;padding:9px 20px;border-radius:10px;font-weight:800;font-size:.88rem;text-decoration:none;">📧 Contact employers to feature jobs</a>
           </div>
 
           <div class="table-card">
@@ -557,6 +558,11 @@
 
 <script>
 // ── AUTH ──────────────────────────────────────────
+function resetCreds(){
+  localStorage.removeItem('au');
+  localStorage.removeItem('ap');
+  alert('✅ Reset done! Login with:\nUsername: admin\nPassword: Benedict12#');
+}
 function login(){
   var u=g('admin-user').value.trim(), p=g('admin-pass').value.trim();
   var cu=localStorage.getItem('au')||'admin';
@@ -1058,14 +1064,4 @@ async function publish(){
       var err=await r2.json();
       txt.textContent='❌ Failed';
       showStatus('pub-status','❌ '+(err.message||'Upload failed')+'  —  Go to ⚙️ Settings and check your GitHub token.','err');
-      toast('❌ '+(err.message||'Failed'));
-    }
-  }catch(e){
-    txt.textContent='❌ Error';
-    showStatus('pub-status','❌ '+e.message,'err');
-    toast('❌ '+e.message);
-  }
-}
-</script>
-</body>
-</html>
+      toast('❌ '+(e
