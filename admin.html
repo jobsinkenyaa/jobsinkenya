@@ -557,6 +557,7 @@
 <div id="toast"></div>
 
 <script>
+function g(id){return document.getElementById(id);}
 // ── AUTH ──────────────────────────────────────────
 function resetCreds(){
   localStorage.removeItem('au');
@@ -709,7 +710,6 @@ async function testToken(){
 }
 
 // ── HELPERS ───────────────────────────────────────
-function g(id){return document.getElementById(id);}
 function setText(id,val){var el=g(id);if(el)el.textContent=val;}
 function toast(msg){
   var t=g('toast');t.textContent=msg;t.style.display='block';
