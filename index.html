@@ -630,4 +630,32 @@ function wrap(ctx,text,x,maxW){
     var test=line?line+' '+w:w;
     if(ctx.measureText(test).width>maxW){lines.push(line);line=w;}else line=test;
   });
-  if(line)
+  if(line)  lines.push(line);
+  return lines;
+}
+
+function downloadPoster(){
+  var a=document.createElement('a');
+  a.href=PURL;
+  a.download='job-poster-'+Date.now()+'.png';
+  a.click();
+  toast('✅ Poster downloaded!');
+}
+
+function sharePosterWA(){
+  toast('Download the poster first, then attach it in WhatsApp!');
+  window.open('https://api.whatsapp.com/send?text='+encodeURIComponent('🇰🇪 Check out this job!\n\njobsinkenya.it.com\n📢 Join our channel: https://whatsapp.com/channel/0029Vb6jTWw7oQhZKKEGz60c'),'_blank');
+}
+
+function closePoster(){
+  g('pmod').classList.remove('open');
+}
+
+// Close poster modal on background click
+g('pmod').addEventListener('click',function(e){if(e.target===this)closePoster();});
+
+// Start
+loadJobs();
+</script>
+</body>
+</html>
