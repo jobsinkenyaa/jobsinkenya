@@ -341,6 +341,7 @@ async function loadJobs(){
   g('empty').style.display='none';
   g('jsub').textContent='Loading jobs...';
   var jobs=[];
+  // raw.githubusercontent.com is first — it has proper CORS headers for browser fetches
   var URLS=[
     'https://raw.githubusercontent.com/jobsinkenyaa/jobsinkenya/main/jobs.json',
     'https://jobsinkenyaa.github.io/jobsinkenya/jobs.json',
@@ -352,7 +353,11 @@ async function loadJobs(){
       if(rf.ok){var dj=await rf.json();if(Array.isArray(dj)&&dj.length){jobs=dj;break;}}
     }catch(e){}
   }
-  if(!jobs.length){try{var s=localStorage.getItem('kj');if(s){var p=JSON.parse(s);if(Array.isArray(p)&&p.length)jobs=p;}}catch(e){}}
+  // Fall back to cached jobs if all fetches fail
+  if(!jobs.length){
+    try{var s=localStorage.getItem('kj');if(s){var p=JSON.parse(s);if(Array.isArray(p)&&p.length)jobs=p;}}catch(e){}
+  }
+  // Cache latest jobs for offline fallback
   if(jobs.length){try{localStorage.setItem('kj',JSON.stringify(jobs));}catch(e){}}
   ALL=jobs;
   g('sn').textContent=ALL.length+'+';
