@@ -342,12 +342,15 @@ async function loadJobs(){
   g('jsub').textContent='Loading jobs...';
   var jobs=[];
   var URLS=[
-    'https://jobsinkenyaa.github.io/jobsinkenya/jobs.json?t='+Date.now(),
-    'https://raw.githubusercontent.com/jobsinkenyaa/jobsinkenya/main/jobs.json?t='+Date.now(),
-    './jobs.json?t='+Date.now()
+    'https://raw.githubusercontent.com/jobsinkenyaa/jobsinkenya/main/jobs.json',
+    'https://jobsinkenyaa.github.io/jobsinkenya/jobs.json',
+    './jobs.json'
   ];
   for(var ui=0;ui<URLS.length;ui++){
-    try{var rf=await fetch(URLS[ui],{cache:'no-store'});if(rf.ok){var dj=await rf.json();if(Array.isArray(dj)&&dj.length){jobs=dj;break;}}}catch(e){}
+    try{
+      var rf=await fetch(URLS[ui]+'?t='+Date.now(),{cache:'no-store',mode:'cors'});
+      if(rf.ok){var dj=await rf.json();if(Array.isArray(dj)&&dj.length){jobs=dj;break;}}
+    }catch(e){}
   }
   if(!jobs.length){try{var s=localStorage.getItem('kj');if(s){var p=JSON.parse(s);if(Array.isArray(p)&&p.length)jobs=p;}}catch(e){}}
   if(jobs.length){try{localStorage.setItem('kj',JSON.stringify(jobs));}catch(e){}}
