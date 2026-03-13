@@ -626,18 +626,28 @@ tr:hover td{background:#fafafa;}
     jobs.forEach(function(j){if(j.featured)feat++;if(!isExpired(j))active++;});
     id('pub-total').textContent=jobs.length;id('pub-feat').textContent=feat;id('pub-active').textContent=active;
   }
-  window.doVerifyLive=async function(){
+  window.doVerifyLive=function(){
     var user=(localStorage.getItem('gh_user')||'jobsinkenyaa').trim();
     var repo=(localStorage.getItem('gh_repo')||'jobsinkenya').trim();
     var url='https://'+user+'.github.io/'+repo+'/jobs.json?t='+Date.now();
-    showMsg('pub-msg','⏳ Checking live site...','info');
-    try{
-      var r=await fetch(url,{cache:'no-store'});
-      if(r.ok){var d=await r.json();showMsg('pub-msg','✅ Live! Found '+d.length+' jobs at '+url,'ok');}
-      else{showMsg('pub-msg','⚠️ File not found at '+url+'. GitHub Pages may not be enabled, or publish hasn\'t run yet.','err');}
-    }catch(e){showMsg('pub-msg','❌ Could not reach '+url+' — GitHub Pages may not be enabled on this repo.','err');}
+    window.open(url,'_blank');
+    showMsg('pub-msg','🔍 Opened '+url+' in a new tab. If you see JSON data, publishing is working! If you get a 404, GitHub Pages may not be enabled or jobs.json is missing.','info');
   };
   window.doExportJSON=function(){var blob=new Blob([JSON.stringify(getJobs(),null,2)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='jobs.json';a.click();toast('Downloaded!');};
+  async function ghUpload(token,user,repo,branch,filepath,contentStr,commitMsg){
+    var headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'};
+    var url='https://api.github.com/repos/'+user+'/'+repo+'/contents/'+filepath;
+    var sha='';
+    try{var r=await fetch(url,{headers:headers});if(r.ok){var d=await r.json();sha=d.sha||'';}}catch(e){}
+    var bytes=new TextEncoder().encode(contentStr);
+    var bin='';bytes.forEach(function(b){bin+=String.fromCharCode(b);});
+    var body={message:commitMsg,content:btoa(bin),branch:branch};
+    if(sha)body.sha=sha;
+    var r2=await fetch(url,{method:'PUT',headers:headers,body:JSON.stringify(body)});
+    if(!r2.ok){var err=await r2.json();throw new Error(err.message||'Upload failed');}
+    return true;
+  }
+
   window.doPublish=async function(){
     var token=(localStorage.getItem('gh_token')||'').trim();
     var user=(localStorage.getItem('gh_user')||'jobsinkenyaa').trim();
@@ -647,31 +657,48 @@ tr:hover td{background:#fafafa;}
     var jobs=getJobs();
     var prog=id('pub-prog'),fill=id('pub-fill'),txt=id('pub-txt');
     id('pub-msg').className='smsg';id('pub-msg').style.display='none';
-    prog.style.display='block';fill.style.width='10%';txt.textContent='Preparing...';
+    prog.style.display='block';fill.style.width='5%';txt.textContent='Preparing...';
     try{
-      var json=JSON.stringify(jobs,null,2);
-      var bytes=new TextEncoder().encode(json);
-      var bin='';bytes.forEach(function(b){bin+=String.fromCharCode(b);});
-      var content=btoa(bin);
-      fill.style.width='35%';txt.textContent='Connecting...';
-      var url='https://api.github.com/repos/'+user+'/'+repo+'/contents/jobs.json';
-      var headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'};
-      var sha='';
-      fill.style.width='55%';txt.textContent='Checking file...';
-      try{var r1=await fetch(url,{headers:headers});if(r1.ok){var d1=await r1.json();sha=d1.sha||'';}}catch(e){}
-      fill.style.width='75%';txt.textContent='Uploading '+jobs.length+' jobs...';
-      var body={message:'Update jobs: '+jobs.length+' — '+new Date().toDateString(),content:content,branch:branch};
-      if(sha)body.sha=sha;
-      var r2=await fetch(url,{method:'PUT',headers:headers,body:JSON.stringify(body)});
-      fill.style.width='100%';
-      if(r2.ok){txt.textContent='✅ Done!';showMsg('pub-msg','✅ '+jobs.length+' jobs published to https://'+user+'.github.io/'+repo+'/jobs.json — site updates in ~2 min.','ok');toast('✅ Live!');}
-      else{var err=await r2.json();txt.textContent='❌ Failed';
-        var hint='';
-        if(err.message&&err.message.includes('Bad credentials'))hint=' → Token is invalid or expired. Create a new one at github.com/settings/tokens';
-        else if(err.message&&err.message.includes('Not Found'))hint=' → Repo not found. Check username & repo name in Settings.';
-        else if(err.message&&err.message.includes('Resource not accessible'))hint=' → Token lacks repo write permission. Regenerate with "repo" scope.';
-        showMsg('pub-msg','❌ '+(err.message||'Failed')+hint,'err');}
-    }catch(e){fill.style.width='100%';txt.textContent='❌ Error';showMsg('pub-msg','❌ '+e.message,'err');}
+      // Step 1 — Upload jobs.json
+      fill.style.width='25%';txt.textContent='Uploading jobs.json ('+jobs.length+' jobs)...';
+      var jobsJson=JSON.stringify(jobs,null,2);
+      await ghUpload(token,user,repo,branch,'jobs.json',jobsJson,'Update jobs: '+jobs.length+' — '+new Date().toDateString());
+      fill.style.width='55%';txt.textContent='✅ jobs.json done! Now uploading index.html...';
+
+      // Step 2 — Fetch current index.html from repo and upload updated version
+      var idxUrl='https://api.github.com/repos/'+user+'/'+repo+'/contents/index.html';
+      var headers={'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+      var idxSha='';var idxContent='';
+      try{
+        var ri=await fetch(idxUrl,{headers:headers});
+        if(ri.ok){var di=await ri.json();idxSha=di.sha||'';idxContent=atob(di.content.replace(/\n/g,''));}
+      }catch(e){}
+
+      if(idxContent){
+        // Patch the fetch URLs inside index.html to put raw.githubusercontent.com first
+        var patched=idxContent.replace(
+          /var URLS=\[[\s\S]*?\];/,
+          "var URLS=['https://raw.githubusercontent.com/"+user+"/"+repo+"/main/jobs.json','https://"+user+".github.io/"+repo+"/jobs.json','./jobs.json'];"
+        );
+        fill.style.width='80%';txt.textContent='Uploading index.html...';
+        var bytes2=new TextEncoder().encode(patched);
+        var bin2='';bytes2.forEach(function(b){bin2+=String.fromCharCode(b);});
+        var body2={message:'Auto-update index.html fetch URLs — '+new Date().toDateString(),content:btoa(bin2),branch:branch};
+        if(idxSha)body2.sha=idxSha;
+        await fetch(idxUrl,{method:'PUT',headers:Object.assign({},headers,{'Content-Type':'application/json'}),body:JSON.stringify(body2)});
+      }
+
+      fill.style.width='100%';txt.textContent='✅ All done!';
+      showMsg('pub-msg','✅ '+jobs.length+' jobs published + index.html updated! Site live at https://'+user+'.github.io/'+repo+'/ in ~2 min.','ok');
+      toast('✅ Published!');
+    }catch(e){
+      fill.style.width='100%';txt.textContent='❌ Failed';
+      var hint='';
+      if(e.message.includes('Bad credentials'))hint=' → Token expired. Go to Settings and generate a new one.';
+      else if(e.message.includes('Not Found'))hint=' → Repo not found. Check username & repo name in Settings.';
+      else if(e.message.includes('Resource not accessible'))hint=' → Token needs "repo" scope. Regenerate at github.com/settings/tokens';
+      showMsg('pub-msg','❌ '+e.message+hint,'err');
+    }
   };
 
   // SETTINGS
