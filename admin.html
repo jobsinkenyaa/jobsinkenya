@@ -69,6 +69,13 @@ tr:hover td{background:#fafafa;}
 .abtn{border:none;padding:4px 10px;border-radius:6px;font-size:.72rem;font-weight:700;cursor:pointer;margin-right:4px;}
 .ab-feat{background:#fef3c7;color:#b45309;}.ab-feat:hover{background:var(--gold);color:#fff;}
 .ab-del{background:#fee2e2;color:#dc2626;}.ab-del:hover{background:var(--red);color:#fff;}
+.ab-edit{background:#dbeafe;color:#1d4ed8;}.ab-edit:hover{background:#2563eb;color:#fff;}
+#edit-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;padding:16px;}
+#edit-modal.open{display:flex;}
+.edit-box{background:#fff;border-radius:16px;padding:24px;width:100%;max-width:700px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.3);}
+.edit-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.edit-hdr h4{font-size:1rem;font-weight:900;color:var(--g);}
+.edit-close{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--mu);line-height:1;}
 .dz{border:2px dashed var(--border);border-radius:10px;padding:32px;text-align:center;cursor:pointer;margin-bottom:12px;}
 .dz:hover{border-color:var(--g);}
 .smsg{padding:10px 14px;border-radius:8px;font-size:.83rem;font-weight:700;margin-top:10px;display:none;white-space:pre-wrap;}
@@ -396,6 +403,66 @@ tr:hover td{background:#fafafa;}
   </div>
 </div>
 
+<!-- EDIT MODAL -->
+<div id="edit-modal">
+  <div class="edit-box">
+    <div class="edit-hdr">
+      <h4>✏️ Edit Job</h4>
+      <button class="edit-close" onclick="closeEdit()">✕</button>
+    </div>
+    <input type="hidden" id="e-id">
+    <div class="form2">
+      <div class="fg"><label>Title *</label><input id="e-title" placeholder="Job title"></div>
+      <div class="fg"><label>Company *</label><input id="e-company" placeholder="Company name"></div>
+      <div class="fg"><label>Location</label><input id="e-location" placeholder="e.g. Nairobi, Kenya"></div>
+      <div class="fg"><label>County</label><select id="e-county">
+        <option value="">Select county</option>
+        <option>Nairobi</option><option>Mombasa</option><option>Kisumu</option><option>Nakuru</option>
+        <option>Eldoret</option><option>Kiambu</option><option>Machakos</option><option>Nyeri</option>
+        <option>Meru</option><option>Kakamega</option><option>Kisii</option><option>Kilifi</option>
+        <option>Embu</option><option>Garissa</option><option>Bungoma</option><option>Kajiado</option>
+        <option>Kericho</option><option>Turkana</option><option>Homa Bay</option><option>Narok</option>
+        <option>Remote</option>
+      </select></div>
+      <div class="fg"><label>Type</label><select id="e-type">
+        <option>Full-Time</option><option>Part-Time</option><option>Internship</option>
+        <option>Government</option><option>NGO</option><option>Remote</option><option>Contract</option>
+      </select></div>
+      <div class="fg"><label>Sector</label><select id="e-sector">
+        <option>General</option><option>ICT &amp; Technology</option><option>Data &amp; AI</option>
+        <option>Health &amp; Medicine</option><option>Finance &amp; Banking</option><option>Engineering</option>
+        <option>Education &amp; Teaching</option><option>Agriculture &amp; Food</option><option>Marketing &amp; Sales</option>
+        <option>NGO / Non-Profit</option><option>Legal &amp; Compliance</option><option>Human Resources</option>
+        <option>Transport &amp; Logistics</option><option>Customer Service</option><option>Hospitality &amp; Tourism</option>
+        <option>Government / Civil Service</option><option>Procurement &amp; Purchasing</option>
+      </select></div>
+      <div class="fg"><label>Qualification</label><select id="e-qual">
+        <option value="">Not specified</option><option>KCSE</option><option>Certificate</option>
+        <option>Diploma</option><option>Bachelor Degree</option><option>Masters</option><option>PhD</option>
+      </select></div>
+      <div class="fg"><label>Experience</label><select id="e-exp">
+        <option value="">Not specified</option><option>No Experience</option><option>Less than 1 year</option>
+        <option>1 - 2 years</option><option>2 - 3 years</option><option>3 - 5 years</option>
+        <option>5 - 7 years</option><option>7+ years</option>
+      </select></div>
+      <div class="fg"><label>Salary</label><input id="e-salary" placeholder="e.g. KSh 50,000/month"></div>
+      <div class="fg"><label>Deadline</label><input type="date" id="e-deadline"></div>
+      <div class="fg"><label>Featured ⭐</label><select id="e-featured">
+        <option value="no">No</option><option value="yes">Yes — show at top</option>
+      </select></div>
+      <div class="fg full"><label>Description &amp; How to Apply</label>
+        <textarea id="e-desc" style="min-height:180px;" placeholder="Full description, requirements, how to apply..."></textarea>
+      </div>
+    </div>
+    <div class="brow" style="margin-top:4px;">
+      <button class="btn btn-g" onclick="doSaveEdit()">💾 Save Changes</button>
+      <button class="btn btn-out" onclick="closeEdit()">Cancel</button>
+    </div>
+    <div class="smsg" id="edit-msg"></div>
+  </div>
+</div>
+
+
 <div id="toast"></div>
 
 <script>
@@ -651,12 +718,68 @@ tr:hover td{background:#fafafa;}
       var dl=j.deadline?new Date(j.deadline).toLocaleDateString('en-KE',{day:'numeric',month:'short'}):'—';
       return '<tr><td><strong>'+(j.title||'Untitled')+'</strong></td><td>'+(j.company||'—')+'</td><td>'+(j.county||'—')+'</td><td>'+(j.type||'—')+'</td><td>'+dl+'</td><td>'+badge+'</td><td>'
         +'<button class="abtn ab-feat" onclick="doToggleFeat(\''+j.id+'\')">'+(j.featured?'★ Unfeature':'☆ Feature')+'</button>'
+        +'<button class="abtn ab-edit" onclick="doEditJob(\''+j.id+'\')" >✏️ Edit</button>'
         +'<button class="abtn ab-del" onclick="doDelJob(\''+j.id+'\')">🗑</button></td></tr>';
     }).join('');
   }
   window.doDelJob=function(jid){if(!confirm('Delete this job?'))return;setJobs(getJobs().filter(function(j){return j.id!==jid;}));renderListings();updateDashboard();toast('Deleted!');};
   window.doToggleFeat=function(jid){setJobs(getJobs().map(function(j){if(j.id===jid)j.featured=!j.featured;return j;}));renderListings();renderFeatured();toast('Updated!');};
   window.doDeleteAll=function(){if(!confirm('Delete ALL '+getJobs().length+' jobs? This cannot be undone!'))return;setJobs([]);renderListings();updateDashboard();toast('All deleted.');};
+
+
+  // ── EDIT JOB ─────────────────────────────
+  function setSel2(el,val){var e=document.getElementById(el);if(!e||!val)return;for(var i=0;i<e.options.length;i++){if(e.options[i].value===val||e.options[i].text===val){e.selectedIndex=i;return;}}}
+  window.doEditJob=function(jid){
+    var job=getJobs().find(function(j){return j.id===jid;});
+    if(!job){toast('Job not found!');return;}
+    document.getElementById('e-id').value=job.id;
+    document.getElementById('e-title').value=job.title||'';
+    document.getElementById('e-company').value=job.company||'';
+    document.getElementById('e-location').value=job.location||'';
+    document.getElementById('e-salary').value=job.salary||'';
+    document.getElementById('e-deadline').value=job.deadline||'';
+    document.getElementById('e-desc').value=job.description||'';
+    setSel2('e-county',job.county||'');
+    setSel2('e-type',job.type||'Full-Time');
+    setSel2('e-sector',job.sector||'General');
+    setSel2('e-qual',job.qualification||'');
+    setSel2('e-exp',job.experience||'');
+    setSel2('e-featured',job.featured?'yes':'no');
+    document.getElementById('edit-msg').className='smsg';
+    document.getElementById('edit-msg').style.display='none';
+    document.getElementById('edit-modal').classList.add('open');
+  };
+  window.closeEdit=function(){document.getElementById('edit-modal').classList.remove('open');};
+  window.doSaveEdit=function(){
+    var jid=document.getElementById('e-id').value;
+    var title=(document.getElementById('e-title').value||'').trim();
+    var company=(document.getElementById('e-company').value||'').trim();
+    if(!title||!company){toast('Title and Company are required!');return;}
+    var jobs=getJobs();
+    var idx=jobs.findIndex(function(j){return j.id===jid;});
+    if(idx===-1){toast('Job not found!');return;}
+    jobs[idx]=Object.assign(jobs[idx],{
+      title:title,company:company,
+      location:document.getElementById('e-location').value||'Kenya',
+      county:document.getElementById('e-county').value||'Nairobi',
+      type:document.getElementById('e-type').value,
+      sector:document.getElementById('e-sector').value,
+      qualification:document.getElementById('e-qual').value,
+      experience:document.getElementById('e-exp').value,
+      salary:document.getElementById('e-salary').value||'Not stated',
+      deadline:document.getElementById('e-deadline').value,
+      description:document.getElementById('e-desc').value.trim(),
+      featured:document.getElementById('e-featured').value==='yes'
+    });
+    setJobs(jobs);
+    closeEdit();
+    renderListings();
+    renderFeatured();
+    updateDashboard();
+    toast('✅ Job updated!');
+  };
+  // Close edit modal when clicking outside
+  document.getElementById('edit-modal').addEventListener('click',function(e){if(e.target===this)closeEdit();});
 
   // ── FEATURED ─────────────────────────────
   function renderFeatured(){
