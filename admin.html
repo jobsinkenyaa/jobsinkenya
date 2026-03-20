@@ -2,904 +2,763 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Admin — Jobs in Kenya</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H254 Admin</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-:root{--g:#16a34a;--gd:#14532d;--gl:#dcfce7;--gold:#d97706;--red:#dc2626;--bg:#f3f4f6;--border:#e5e7eb;--tx:#111827;--mu:#6b7280;--side:#0d1f17;}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--tx);}
-button,input,select,textarea{font-family:'Inter',sans-serif;}
-#login{position:fixed;inset:0;background:linear-gradient(135deg,#052e16,#14532d,#166534);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px;}
-.lbox{background:#fff;border-radius:20px;padding:40px;width:100%;max-width:380px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.4);}
-.lbox .flag{font-size:3rem;margin-bottom:12px;}
-.lbox h1{font-size:1.5rem;font-weight:900;margin-bottom:4px;}
-.lbox .sub{color:var(--mu);font-size:.85rem;margin-bottom:28px;}
-.lbox input{display:block;width:100%;border:2px solid var(--border);border-radius:10px;padding:12px 14px;font-size:.95rem;margin-bottom:12px;outline:none;transition:border-color .2s;}
-.lbox input:focus{border-color:var(--g);}
-.lbtn{width:100%;background:var(--g);color:#fff;border:none;padding:13px;border-radius:10px;font-weight:800;font-size:1rem;cursor:pointer;}
-.lbtn:hover{background:#15803d;}
-.lerr{color:var(--red);font-size:.83rem;margin-top:10px;display:none;font-weight:700;}
-.lreset{margin-top:14px;font-size:.75rem;color:#9ca3af;}
-.lreset a{color:var(--g);font-weight:700;cursor:pointer;text-decoration:none;}
-#app{display:none;min-height:100vh;}
-.layout{display:flex;min-height:100vh;}
-.sidebar{width:230px;background:var(--side);color:#fff;flex-shrink:0;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;}
-.sb-logo{padding:22px 18px;border-bottom:1px solid rgba(255,255,255,.08);}
-.sb-logo h2{font-size:.95rem;font-weight:900;}
-.sb-logo span{font-size:.65rem;color:var(--gold);font-weight:700;letter-spacing:1px;text-transform:uppercase;}
-.sb-nav{flex:1;padding:12px 0;overflow-y:auto;}
-.sb-sec{font-size:.6rem;font-weight:800;color:rgba(255,255,255,.3);letter-spacing:1.5px;text-transform:uppercase;padding:14px 18px 5px;}
-.sb-item{display:flex;align-items:center;gap:9px;padding:10px 18px;cursor:pointer;font-size:.84rem;font-weight:600;color:rgba(255,255,255,.6);border-left:3px solid transparent;transition:all .15s;}
-.sb-item:hover{background:rgba(255,255,255,.05);color:#fff;}
-.sb-item.active{background:rgba(22,163,74,.2);color:#fff;border-left-color:var(--g);}
-.sb-bottom{padding:14px 18px;border-top:1px solid rgba(255,255,255,.08);}
-.sb-bottom button{width:100%;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:none;padding:9px;border-radius:8px;font-weight:700;font-size:.83rem;cursor:pointer;}
-.sb-bottom button:hover{background:rgba(255,255,255,.15);color:#fff;}
-.main{flex:1;display:flex;flex-direction:column;min-width:0;}
-.topbar{background:#fff;border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:10px;}
-.topbar h3{font-size:1.1rem;font-weight:800;}
-.pub-btn{background:var(--g);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-weight:700;font-size:.83rem;cursor:pointer;}
-.content{flex:1;padding:24px;overflow-y:auto;}
-.page{display:none;}.page.active{display:block;}
-.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px;margin-bottom:24px;}
-.stat{background:#fff;border:1px solid var(--border);border-radius:12px;padding:18px;}
-.stat .num{font-size:2rem;font-weight:900;margin-bottom:2px;}.stat .lbl{font-size:.78rem;color:var(--mu);font-weight:600;}
-.card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;margin-bottom:16px;}
-.card h4{font-size:.95rem;font-weight:800;margin-bottom:4px;}
-.card .sub{font-size:.82rem;color:var(--mu);margin-bottom:16px;line-height:1.6;}
-.fg{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;}
-.fg label{font-size:.68rem;font-weight:800;color:var(--mu);text-transform:uppercase;letter-spacing:.4px;}
-.fg input,.fg select,.fg textarea{border:1px solid var(--border);border-radius:8px;padding:9px 12px;font-size:.88rem;outline:none;transition:border-color .2s;background:#fff;resize:vertical;}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--g);}
-.form2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px;}
-.form2 .full{grid-column:1/-1;}
-.btn{padding:9px 18px;border-radius:8px;border:none;font-weight:700;font-size:.84rem;cursor:pointer;}
-.btn-g{background:var(--g);color:#fff;}.btn-gold{background:var(--gold);color:#fff;}
-.btn-out{background:#fff;border:1px solid var(--border);color:var(--mu);}
-.btn-blue{background:#2563eb;color:#fff;}.btn-red{background:var(--red);color:#fff;}
-.brow{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;}
-.tcard{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:18px;}
-table{width:100%;border-collapse:collapse;}
-th{background:var(--bg);padding:10px 14px;text-align:left;font-size:.7rem;font-weight:800;color:var(--mu);text-transform:uppercase;letter-spacing:.4px;}
-td{padding:11px 14px;border-top:1px solid var(--border);font-size:.85rem;vertical-align:middle;}
-tr:hover td{background:#fafafa;}
-.badge{font-size:.68rem;font-weight:800;padding:3px 9px;border-radius:20px;display:inline-block;}
-.b-act{background:#dcfce7;color:#16a34a;}.b-feat{background:#fef9c3;color:#ca8a04;}.b-exp{background:#fee2e2;color:#dc2626;}
-.abtn{border:none;padding:4px 10px;border-radius:6px;font-size:.72rem;font-weight:700;cursor:pointer;margin-right:4px;}
-.ab-feat{background:#fef3c7;color:#b45309;}.ab-feat:hover{background:var(--gold);color:#fff;}
-.ab-del{background:#fee2e2;color:#dc2626;}.ab-del:hover{background:var(--red);color:#fff;}
-.ab-edit{background:#dbeafe;color:#1d4ed8;}.ab-edit:hover{background:#2563eb;color:#fff;}
-#edit-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9999;align-items:center;justify-content:center;padding:16px;}
-#edit-modal.open{display:flex;}
-.edit-box{background:#fff;border-radius:16px;padding:24px;width:100%;max-width:700px;max-height:90vh;overflow-y:auto;box-shadow:0 24px 60px rgba(0,0,0,.3);}
-.edit-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
-.edit-hdr h4{font-size:1rem;font-weight:900;color:var(--g);}
-.edit-close{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--mu);line-height:1;}
-.dz{border:2px dashed var(--border);border-radius:10px;padding:32px;text-align:center;cursor:pointer;margin-bottom:12px;}
-.dz:hover{border-color:var(--g);}
-.smsg{padding:10px 14px;border-radius:8px;font-size:.83rem;font-weight:700;margin-top:10px;display:none;white-space:pre-wrap;}
-.smsg.ok{background:#dcfce7;border:1px solid #bbf7d0;color:#15803d;display:block;}
-.smsg.err{background:#fee2e2;border:1px solid #fecaca;color:#dc2626;display:block;}
-.smsg.info{background:#dbeafe;border:1px solid #bfdbfe;color:#1d4ed8;display:block;}
-.prog{margin-top:12px;display:none;}
-.pbar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;}
-.pfill{height:100%;background:var(--g);width:0%;border-radius:4px;transition:width .4s;}
-.ptxt{font-size:.75rem;color:var(--mu);margin-top:6px;font-weight:600;}
-.tip{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px 14px;font-size:.78rem;color:var(--mu);line-height:2;margin-bottom:12px;}
-.tip strong{color:var(--tx);}
-.fbtn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:6px 13px;font-size:.78rem;font-weight:700;cursor:pointer;}
-.fbtn:hover,.fbtn.on{background:var(--g);border-color:var(--g);color:#fff;}
-.fbtn.danger{border-color:var(--red);color:var(--red);}
-.fbtn.danger:hover{background:var(--red);color:#fff;}
-#toast{position:fixed;bottom:20px;right:20px;background:var(--gd);color:#fff;padding:11px 18px;border-radius:10px;font-weight:700;font-size:.85rem;z-index:9999;display:none;box-shadow:0 8px 24px rgba(0,0,0,.2);}
-@media(max-width:768px){.sidebar{display:none;}.content{padding:14px;}}
-@media(max-width:600px){.form2{grid-template-columns:1fr;}}
+body{background:#0d0d0f;color:#e0e0e0;font-family:'Segoe UI',sans-serif;min-height:100vh;}
+
+/* LOGIN */
+#loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;}
+.login-box{background:#141418;border:1px solid #2a2a35;border-top:3px solid #e8192c;border-radius:12px;padding:40px;width:360px;max-width:90vw;}
+.login-logo{font-size:26px;font-weight:900;letter-spacing:3px;color:#fff;margin-bottom:4px;}
+.login-logo span{color:#e8192c;}
+.login-sub{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#666;margin-bottom:28px;}
+.login-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#888;margin-bottom:6px;display:block;}
+.login-input{width:100%;background:#1c1c22;border:1px solid #2a2a35;color:#fff;font-size:13px;padding:10px 14px;border-radius:6px;outline:none;margin-bottom:14px;}
+.login-input:focus{border-color:#e8192c;}
+.login-btn{width:100%;background:#e8192c;border:none;color:#fff;font-size:13px;font-weight:700;letter-spacing:1px;padding:12px;border-radius:6px;cursor:pointer;margin-top:4px;}
+.login-btn:hover{background:#c0111f;}
+.login-error{color:#ff6b6b;font-size:12px;margin-top:10px;display:none;text-align:center;}
+
+/* ADMIN PANEL */
+#adminScreen{display:none;}
+.topbar{background:#141418;border-bottom:1px solid #2a2a35;padding:0 24px;display:flex;align-items:center;gap:16px;height:56px;}
+.topbar-logo{font-size:18px;font-weight:900;letter-spacing:2px;color:#fff;flex:1;}
+.topbar-logo span{color:#e8192c;}
+.topbar-btn{background:none;border:1px solid #333;color:#aaa;font-size:12px;padding:6px 14px;border-radius:6px;cursor:pointer;}
+.topbar-btn:hover{background:#1c1c22;color:#fff;}
+.topbar-btn.green{background:#238636;border-color:#238636;color:#fff;}
+.topbar-btn.green:hover{background:#1a6e2a;}
+.topbar-btn.red{background:#e8192c;border-color:#e8192c;color:#fff;}
+
+/* TOKEN BAR */
+.token-bar{background:#0f1117;border-bottom:1px solid #1e2030;padding:10px 24px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.token-bar label{font-size:11px;font-weight:700;color:#e8192c;letter-spacing:1px;white-space:nowrap;}
+.token-input{flex:1;min-width:200px;background:#1c1c22;border:1px solid #333;color:#fff;padding:7px 12px;border-radius:6px;font-size:12px;font-family:monospace;outline:none;}
+.token-input:focus{border-color:#e8192c;}
+.token-status{font-size:11px;color:#666;white-space:nowrap;}
+.token-link{font-size:11px;color:#58a6ff;text-decoration:none;white-space:nowrap;}
+
+/* MAIN LAYOUT */
+.main{display:flex;height:calc(100vh - 96px);}
+.sidebar{width:280px;background:#141418;border-right:1px solid #2a2a35;overflow-y:auto;flex-shrink:0;}
+.sidebar-header{padding:16px;border-bottom:1px solid #2a2a35;display:flex;align-items:center;gap:8px;}
+.sidebar-title{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#888;flex:1;}
+.new-btn{background:#e8192c;border:none;color:#fff;font-size:11px;font-weight:700;padding:6px 12px;border-radius:6px;cursor:pointer;white-space:nowrap;}
+.new-btn:hover{background:#c0111f;}
+.sidebar-search{padding:10px 16px;border-bottom:1px solid #2a2a35;}
+.search-input{width:100%;background:#1c1c22;border:1px solid #2a2a35;color:#fff;font-size:12px;padding:7px 10px;border-radius:6px;outline:none;}
+.search-input:focus{border-color:#e8192c;}
+.article-list{padding:8px;}
+.article-item{padding:10px 12px;border-radius:6px;cursor:pointer;border:1px solid transparent;margin-bottom:4px;}
+.article-item:hover{background:#1c1c22;}
+.article-item.active{background:#1c1c22;border-color:#e8192c;}
+.article-item-title{font-size:12px;font-weight:600;color:#e0e0e0;line-height:1.4;margin-bottom:4px;}
+.article-item-meta{font-size:10px;color:#555;display:flex;gap:8px;}
+.article-item-cat{color:#e8192c;}
+.article-item-del{float:right;background:none;border:none;color:#444;cursor:pointer;font-size:13px;padding:0 2px;}
+.article-item-del:hover{color:#e8192c;}
+.empty-list{padding:32px 16px;text-align:center;color:#444;font-size:13px;}
+
+/* EDITOR */
+.editor{flex:1;overflow-y:auto;padding:24px;}
+.editor-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:#333;text-align:center;}
+.editor-empty-icon{font-size:48px;margin-bottom:16px;}
+.editor-empty-text{font-size:14px;}
+.editor-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid #2a2a35;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{display:flex;flex-direction:column;gap:6px;}
+.form-group.full{grid-column:1/-1;}
+.form-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#666;}
+.form-input,.form-select,.form-textarea{background:#1c1c22;border:1px solid #2a2a35;color:#fff;font-size:13px;padding:10px 12px;border-radius:6px;outline:none;font-family:'Segoe UI',sans-serif;width:100%;}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:#e8192c;}
+.form-select option{background:#1c1c22;}
+.form-textarea{resize:vertical;min-height:90px;}
+.form-textarea.tall{min-height:180px;}
+.form-actions{margin-top:20px;display:flex;gap:10px;}
+.save-btn{background:#e8192c;border:none;color:#fff;font-size:13px;font-weight:700;padding:12px 28px;border-radius:6px;cursor:pointer;}
+.save-btn:hover{background:#c0111f;}
+.cancel-btn{background:none;border:1px solid #333;color:#888;font-size:13px;padding:12px 20px;border-radius:6px;cursor:pointer;}
+.cancel-btn:hover{background:#1c1c22;color:#fff;}
+
+/* TOAST */
+.toast{position:fixed;bottom:24px;right:24px;background:#238636;color:#fff;font-size:13px;font-weight:600;padding:12px 20px;border-radius:8px;opacity:0;transition:opacity 0.3s;pointer-events:none;z-index:999;}
+.toast.show{opacity:1;}
+.toast.error{background:#e8192c;}
+
+@media(max-width:640px){
+  .main{flex-direction:column;height:auto;}
+  .sidebar{width:100%;height:auto;max-height:40vh;}
+  .form-grid{grid-template-columns:1fr;}
+  .form-group.full{grid-column:1;}
+}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
 </head>
 <body>
 
-<div id="login">
-  <div class="lbox">
-    <div class="flag">🇰🇪</div>
-    <h1>Admin Portal</h1>
-    <div class="sub">Jobs in Kenya · Private Access</div>
-    <input type="text" id="lu" placeholder="Username">
-    <input type="password" id="lp" placeholder="Password">
-    <button class="lbtn" id="lbtn">Sign In →</button>
-    <div class="lerr" id="lerr">❌ Wrong username or password</div>
-    <div class="lreset">Forgot? <a onclick="doReset()">Reset to default</a></div>
+<!-- LOGIN -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo"><span>HUSTLE</span> 254</div>
+    <div class="login-sub">Admin Panel</div>
+    <label class="login-label">Username</label>
+    <input class="login-input" id="loginUser" type="text" placeholder="Username" autocomplete="off" onkeyup="if(event.key==='Enter')doLogin()">
+    <label class="login-label">Password</label>
+    <input class="login-input" id="loginPass" type="password" placeholder="••••••••" onkeyup="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">🔐 Login</button>
+    <div class="login-error" id="loginError">❌ Wrong username or password</div>
   </div>
 </div>
 
-<div id="app">
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="sb-logo"><h2>🇰🇪 Jobs Kenya</h2><span>Admin Dashboard</span></div>
-      <nav class="sb-nav">
-        <div class="sb-sec">Overview</div>
-        <div class="sb-item active" onclick="goPage('dashboard',this)">📊 Dashboard</div>
-        <div class="sb-sec">Add Jobs</div>
-        <div class="sb-item" onclick="goPage('paste',this)">📋 Paste a Job</div>
-        <div class="sb-item" onclick="goPage('bulk',this)">📦 Bulk Paste</div>
-        <div class="sb-item" onclick="goPage('csv',this)">📂 Upload CSV</div>
-        <div class="sb-sec">Manage</div>
-        <div class="sb-item" onclick="goPage('listings',this)">💼 All Listings</div>
-        <div class="sb-item" onclick="goPage('featured',this)">⭐ Featured Jobs</div>
-        <div class="sb-sec">Publish</div>
-        <div class="sb-item" onclick="goPage('publish',this)">🚀 Publish to Site</div>
-        <div class="sb-sec">Settings</div>
-        <div class="sb-item" onclick="goPage('settings',this)">⚙️ Settings</div>
-      </nav>
-      <div class="sb-bottom"><button onclick="doLogout()">🚪 Sign Out</button></div>
-    </aside>
+<!-- ADMIN -->
+<div id="adminScreen">
 
-    <div class="main">
-      <div class="topbar">
-        <h3 id="ptitle">📊 Dashboard</h3>
-        <button class="pub-btn" onclick="goPage('publish',null)">🚀 Publish Now</button>
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-logo"><span>HUSTLE</span> 254 &nbsp;<span style="color:#444;font-size:12px;font-weight:400;">ADMIN</span></div>
+    <button class="topbar-btn" onclick="openImport()" style="background:#0d419d;border-color:#0d419d;color:#fff;">📂 Import File</button><button class="topbar-btn green" onclick="publishToGitHub()">🚀 Publish Now</button>
+    <button class="topbar-btn" onclick="doLogout()">Logout</button>
+  </div>
+
+  <!-- TOKEN BAR -->
+  <div class="token-bar">
+    <label>🔑 GITHUB TOKEN</label>
+    <input class="token-input" id="tokenInput" type="password" placeholder="Paste token here (ghp_...) — required to publish">
+    <span class="token-status" id="tokenStatus">not set</span>
+    <a class="token-link" href="https://github.com/settings/tokens/new" target="_blank">Get token →</a>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-title">Articles (<span id="articleCount">0</span>)</span>
+        <button class="new-btn" onclick="newArticle()">＋ New</button><button class="new-btn" onclick="openImport()" style="background:#0d419d;margin-left:4px;">📂 Import</button>
       </div>
-      <div class="content">
+      <div class="sidebar-search">
+        <input class="search-input" id="searchInput" placeholder="🔍 Search..." oninput="filterList()">
+      </div>
+      <div class="article-list" id="articleList"></div>
+    </div>
 
-        <!-- DASHBOARD -->
-        <div class="page active" id="pg-dashboard">
-          <div class="stats">
-            <div class="stat"><div class="num" id="d-total">0</div><div class="lbl">Total Jobs</div></div>
-            <div class="stat"><div class="num" id="d-active">0</div><div class="lbl">Active</div></div>
-            <div class="stat"><div class="num" id="d-feat">0</div><div class="lbl">Featured</div></div>
-            <div class="stat"><div class="num" id="d-exp">0</div><div class="lbl">Expired</div></div>
+    <!-- EDITOR -->
+    <div class="editor" id="editor">
+      <div class="editor-empty" id="editorEmpty">
+        <div class="editor-empty-icon">✍️</div>
+        <div class="editor-empty-text">Click <strong>＋ New</strong> to write an article<br>or select one from the list to edit</div>
+      </div>
+      <div id="editorForm" style="display:none;">
+        <div class="editor-title" id="editorTitle">New Article</div>
+        <input type="hidden" id="editId">
+        <div class="form-grid">
+          <div class="form-group full">
+            <label class="form-label">Title *</label>
+            <input class="form-input" id="editTitle" placeholder="Article headline...">
           </div>
-          <div class="card">
-            <h4>⚡ Quick Actions</h4>
-            <div class="brow" style="margin-top:12px;">
-              <button class="btn btn-g" onclick="goPage('paste',null)">📋 Paste a Job</button>
-              <button class="btn btn-gold" onclick="goPage('bulk',null)">📦 Bulk Paste</button>
-              <button class="btn btn-blue" onclick="goPage('csv',null)">📂 Upload CSV</button>
-              <button class="btn btn-g" onclick="goPage('publish',null)">🚀 Publish</button>
-            </div>
+          <div class="form-group">
+            <label class="form-label">Category</label>
+            <select class="form-select" id="editCategory">
+              <option>Kenya</option><option>World</option><option>Politics</option>
+              <option>Business</option><option>Technology</option><option>Sports</option>
+              <option>Health</option><option>Entertainment</option>
+            </select>
           </div>
-          <div class="tcard">
-            <div style="padding:14px 18px;border-bottom:1px solid var(--border);"><h4>📋 Recent Jobs</h4></div>
-            <div style="overflow-x:auto;"><table>
-              <thead><tr><th>Title</th><th>Company</th><th>Type</th><th>Deadline</th><th>Status</th></tr></thead>
-              <tbody id="dash-table"></tbody>
-            </table></div>
+          <div class="form-group">
+            <label class="form-label">Region</label>
+            <input class="form-input" id="editRegion" placeholder="e.g. Kenya, USA, Africa...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date</label>
+            <input class="form-input" id="editDate" type="date">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Image URL</label>
+            <input class="form-input" id="editImg" placeholder="https://images.unsplash.com/...">
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Summary (shown on cards)</label>
+            <textarea class="form-textarea" id="editSummary" placeholder="1-2 sentence summary..."></textarea>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Full Article Body</label>
+            <textarea class="form-textarea tall" id="editBody" placeholder="Full article... use blank lines between paragraphs."></textarea>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Social Teaser (for Facebook/WhatsApp)</label>
+            <textarea class="form-textarea" id="editTeaser" placeholder="🔥 Catchy teaser with emojis..."></textarea>
           </div>
         </div>
-
-        <!-- PASTE A JOB -->
-        <div class="page" id="pg-paste">
-          <div class="card" style="border-color:var(--g);">
-            <h4>⚡ Smart Paste</h4>
-            <div class="sub">Paste any job text below and click Auto-Fill.</div>
-            <div class="fg"><label>Paste Job Text</label><textarea id="paste-raw" style="min-height:140px;" placeholder="Paste full job listing here..."></textarea></div>
-            <div class="brow">
-              <button class="btn btn-g" onclick="doSmartPaste()">⚡ Auto-Fill Fields</button>
-              <button class="btn btn-out" onclick="document.getElementById('paste-raw').value=''">Clear</button>
-            </div>
-          </div>
-          <div class="card">
-            <h4>📝 Job Details</h4>
-            <div class="sub">Review and edit the details below, then save.</div>
-            <div class="form2">
-              <div class="fg"><label>Title *</label><input id="f-title" placeholder="e.g. Software Engineer"></div>
-              <div class="fg"><label>Company *</label><input id="f-company" placeholder="e.g. Safaricom PLC"></div>
-              <div class="fg"><label>Location</label><input id="f-location" placeholder="e.g. Nairobi, Kenya"></div>
-              <div class="fg"><label>County</label><select id="f-county">
-                <option value="">Select county</option>
-                <option>Nairobi</option><option>Mombasa</option><option>Kisumu</option><option>Nakuru</option>
-                <option>Eldoret</option><option>Kiambu</option><option>Machakos</option><option>Nyeri</option>
-                <option>Meru</option><option>Kakamega</option><option>Kisii</option><option>Kilifi</option>
-                <option>Embu</option><option>Garissa</option><option>Bungoma</option><option>Kajiado</option>
-                <option>Kericho</option><option>Turkana</option><option>Homa Bay</option><option>Narok</option>
-                <option>Remote</option>
-              </select></div>
-              <div class="fg"><label>Type</label><select id="f-type">
-                <option>Full-Time</option><option>Part-Time</option><option>Internship</option>
-                <option>Government</option><option>NGO</option><option>Remote</option><option>Contract</option>
-              </select></div>
-              <div class="fg"><label>Sector</label><select id="f-sector">
-                <option>General</option><option>ICT & Technology</option><option>Data & AI</option>
-                <option>Health & Medicine</option><option>Finance & Banking</option><option>Engineering</option>
-                <option>Education & Teaching</option><option>Agriculture & Food</option><option>Marketing & Sales</option>
-                <option>NGO / Non-Profit</option><option>Legal & Compliance</option><option>Human Resources</option>
-                <option>Transport & Logistics</option><option>Customer Service</option><option>Hospitality & Tourism</option>
-                <option>Government / Civil Service</option><option>Procurement & Purchasing</option>
-              </select></div>
-              <div class="fg"><label>Qualification</label><select id="f-qual">
-                <option value="">Not specified</option><option>KCSE</option><option>Certificate</option>
-                <option>Diploma</option><option>Bachelor Degree</option><option>Masters</option><option>PhD</option>
-              </select></div>
-              <div class="fg"><label>Experience</label><select id="f-exp">
-                <option value="">Not specified</option><option>No Experience</option><option>Less than 1 year</option>
-                <option>1 - 2 years</option><option>2 - 3 years</option><option>3 - 5 years</option>
-                <option>5 - 7 years</option><option>7+ years</option>
-              </select></div>
-              <div class="fg"><label>Salary</label><input id="f-salary" placeholder="e.g. KSh 50,000/month"></div>
-              <div class="fg"><label>Deadline</label><input type="date" id="f-deadline"></div>
-              <div class="fg"><label>Featured ⭐</label><select id="f-featured">
-                <option value="no">No</option><option value="yes">Yes — show at top</option>
-              </select></div>
-              <div class="fg full"><label>Description & How to Apply</label>
-                <textarea id="f-desc" style="min-height:180px;" placeholder="Full description, requirements, how to apply..."></textarea>
-              </div>
-            </div>
-            <div class="brow">
-              <button class="btn btn-g" onclick="doSaveJob()">💾 Save Job</button>
-              <button class="btn btn-out" onclick="doClearForm()">🗑 Clear</button>
-            </div>
-            <div class="smsg" id="save-msg"></div>
-          </div>
+        <div class="form-actions">
+          <button class="save-btn" onclick="saveArticle()">💾 Save & Publish</button>
+          <button class="cancel-btn" onclick="cancelEdit()">Cancel</button>
         </div>
-
-        <!-- BULK PASTE -->
-        <div class="page" id="pg-bulk">
-          <div class="card" style="border-color:var(--g);">
-            <h4>📦 Bulk Paste</h4>
-            <div class="sub">Paste multiple jobs separated by <strong>---</strong> on its own line.</div>
-            <div class="tip"><strong>Format:</strong><br>Job Title at Company Name<br>Location: Nairobi | Deadline: 30 April 2026<br>Description...<br>---<br>Next Job Title at Company<br>Description...</div>
-            <div class="fg"><label>Paste All Jobs Here</label><textarea id="bulk-raw" style="min-height:260px;" placeholder="Paste jobs separated by ---"></textarea></div>
-            <div class="brow">
-              <button class="btn btn-g" onclick="doBulkPreview()">🔍 Preview Jobs</button>
-              <button class="btn btn-out" onclick="document.getElementById('bulk-raw').value='';document.getElementById('bulk-prev').style.display='none'">Clear</button>
-            </div>
-          </div>
-          <div id="bulk-prev" style="display:none;">
-            <div class="card">
-              <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
-                <h4 id="bulk-title">0 jobs found</h4>
-                <div class="brow" style="margin:0;">
-                  <button class="btn btn-g" onclick="doBulkImport()">✅ Import All</button>
-                  <button class="btn btn-out" onclick="document.getElementById('bulk-prev').style.display='none'">Cancel</button>
-                </div>
-              </div>
-              <div id="bulk-list"></div>
-              <div class="smsg" id="bulk-msg"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- CSV -->
-        <div class="page" id="pg-csv">
-          <div class="card">
-            <h4>📂 Upload CSV</h4>
-            <div class="sub">Columns: <strong>title, company, location, county, type, sector, salary, deadline, description</strong></div>
-            <div class="dz" onclick="document.getElementById('csv-file').click()"
-              ondragover="event.preventDefault();this.style.borderColor='var(--g)'"
-              ondragleave="this.style.borderColor=''"
-              ondrop="event.preventDefault();doReadCSV(event.dataTransfer.files[0])">
-              <div style="font-size:2rem;margin-bottom:8px;">📊</div>
-              <div style="font-weight:700;color:var(--mu);">Click to select CSV or drag &amp; drop</div>
-            </div>
-            <input type="file" id="csv-file" accept=".csv" style="display:none" onchange="doReadCSV(this.files[0])">
-            <div class="smsg" id="csv-msg"></div>
-            <div id="csv-prev" style="display:none;margin-top:12px;">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px;">
-                <strong id="csv-count" style="font-size:.85rem;"></strong>
-                <button class="btn btn-g" onclick="doCSVImport()">✅ Import All</button>
-              </div>
-              <div id="csv-list"></div>
-            </div>
-          </div>
-          <div class="card">
-            <h4>⬇️ Download Template</h4>
-            <div class="sub">Fill in Excel or Google Sheets, then upload above.</div>
-            <button class="btn btn-out" onclick="doDownloadTemplate()">⬇️ Download CSV Template</button>
-          </div>
-        </div>
-
-        <!-- ALL LISTINGS -->
-        <div class="page" id="pg-listings">
-          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
-            <h3 style="font-size:1.1rem;font-weight:800;">💼 All Listings</h3>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;">
-              <button class="fbtn on" onclick="setListFilter('all',this)">All</button>
-              <button class="fbtn" onclick="setListFilter('active',this)">Active</button>
-              <button class="fbtn" onclick="setListFilter('featured',this)">⭐ Featured</button>
-              <button class="fbtn" onclick="setListFilter('expired',this)">Expired</button>
-              <button class="fbtn danger" onclick="doDeleteAll()">🗑 Delete All</button>
-            </div>
-          </div>
-          <input id="list-search" placeholder="🔍 Search title or company..." style="border:1px solid var(--border);border-radius:8px;padding:9px 13px;font-size:.87rem;outline:none;width:100%;max-width:340px;margin-bottom:12px;" oninput="renderListings()">
-          <div class="tcard">
-            <div style="overflow-x:auto;"><table>
-              <thead><tr><th>Title</th><th>Company</th><th>County</th><th>Type</th><th>Deadline</th><th>Status</th><th>Actions</th></tr></thead>
-              <tbody id="list-table"></tbody>
-            </table></div>
-            <div id="list-empty" style="display:none;text-align:center;padding:32px;color:var(--mu);">No jobs found.</div>
-          </div>
-        </div>
-
-        <!-- FEATURED -->
-        <div class="page" id="pg-featured">
-          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;">
-            <h3 style="font-size:1.1rem;font-weight:800;">⭐ Featured Jobs (<span id="feat-count">0</span>)</h3>
-            <button class="btn btn-gold" onclick="goPage('paste',null)">+ Add Featured Job</button>
-          </div>
-          <div class="card" style="background:#fffbeb;border-color:#fde68a;">
-            <h4>💡 Earn from Featured Jobs</h4>
-            <div class="sub">Charge employers KSh 500–3,000 per listing. Mark as Featured when saving a job.</div>
-          </div>
-          <div class="tcard">
-            <div style="overflow-x:auto;"><table>
-              <thead><tr><th>Title</th><th>Company</th><th>County</th><th>Deadline</th><th>Actions</th></tr></thead>
-              <tbody id="feat-table"></tbody>
-            </table></div>
-            <div id="feat-empty" style="display:none;text-align:center;padding:32px;color:var(--mu);">No featured jobs yet.</div>
-          </div>
-        </div>
-
-        <!-- PUBLISH -->
-        <div class="page" id="pg-publish">
-          <div class="card" style="border-color:var(--g);">
-            <h4 style="color:var(--g);font-size:1.1rem;">🚀 Publish to Site</h4>
-            <div class="sub">Uploads your jobs to GitHub. Your website updates in ~2 minutes.</div>
-            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;background:var(--bg);border-radius:10px;padding:16px;margin-bottom:16px;text-align:center;">
-              <div><div style="font-size:1.8rem;font-weight:900;color:var(--g);" id="pub-total">0</div><div style="font-size:.72rem;color:var(--mu);font-weight:700;">Total</div></div>
-              <div><div style="font-size:1.8rem;font-weight:900;color:var(--gold);" id="pub-feat">0</div><div style="font-size:.72rem;color:var(--mu);font-weight:700;">Featured</div></div>
-              <div><div style="font-size:1.8rem;font-weight:900;color:#16a34a;" id="pub-active">0</div><div style="font-size:.72rem;color:var(--mu);font-weight:700;">Active</div></div>
-            </div>
-            <div class="brow">
-              <button class="btn btn-g" id="pub-btn" onclick="doPublish()" style="font-size:.95rem;padding:12px 28px;">🚀 Publish Now</button>
-              <button class="btn btn-out" onclick="doExportJSON()">⬇️ Download jobs.json</button>
-              <button class="btn btn-blue" onclick="doVerifyLive()">🔍 Check Live Site</button>
-            </div>
-            <div class="prog" id="pub-prog">
-              <div class="pbar"><div class="pfill" id="pub-fill"></div></div>
-              <div class="ptxt" id="pub-txt"></div>
-            </div>
-            <div class="smsg" id="pub-msg"></div>
-          </div>
-          <div class="card">
-            <h4>📖 Manual Upload (backup method)</h4>
-            <div class="tip">
-              1. Click "⬇️ Download jobs.json" above<br>
-              2. Go to <strong>github.com/jobsinkenyaa/jobsinkenya</strong><br>
-              3. Click <strong>Add file → Upload files</strong><br>
-              4. Drag in jobs.json → Click <strong>Commit changes</strong><br>
-              ✅ Site updates within ~2 minutes
-            </div>
-          </div>
-        </div>
-
-        <!-- SETTINGS -->
-        <div class="page" id="pg-settings">
-          <div class="card" style="border-color:var(--g);">
-            <h4>🔑 GitHub Settings</h4>
-            <div class="sub">Required for one-click publishing. Saved only in this browser.</div>
-            <div class="tip">
-              <strong>How to get a GitHub Token:</strong><br>
-              1. Go to <strong>github.com → click your profile photo → Settings</strong><br>
-              2. Scroll to the bottom → <strong>Developer settings</strong><br>
-              3. Personal access tokens → <strong>Tokens (classic)</strong><br>
-              4. Click <strong>Generate new token (classic)</strong><br>
-              5. Expiration: <strong>No expiration</strong> · Tick ✅ <strong>repo</strong><br>
-              6. Click <strong>Generate token</strong> → copy it immediately!
-            </div>
-            <div class="fg"><label>GitHub Token (starts with ghp_)</label><input type="password" id="s-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"></div>
-            <div class="fg"><label>GitHub Username</label><input id="s-user" placeholder="jobsinkenyaa"></div>
-            <div class="fg"><label>Repository Name</label><input id="s-repo" placeholder="jobsinkenya"></div>
-            <div class="fg"><label>Branch</label><input id="s-branch" placeholder="main"></div>
-            <div class="brow">
-              <button class="btn btn-g" onclick="doSaveSettings()">💾 Save Settings</button>
-              <button class="btn btn-blue" onclick="doTestToken()">🔗 Test Connection</button>
-            </div>
-            <div class="smsg" id="gh-msg"></div>
-          </div>
-          <div class="card">
-            <h4>🔐 Change Login</h4>
-            <div class="sub">Update your admin username and password.</div>
-            <div class="form2">
-              <div class="fg"><label>New Username</label><input id="s-newu" placeholder="admin"></div>
-              <div class="fg"><label>New Password</label><input type="password" id="s-newp" placeholder="New password"></div>
-            </div>
-            <button class="btn btn-g" onclick="doSaveCreds()">💾 Save Login</button>
-            <div class="smsg" id="creds-msg"></div>
-          </div>
-        </div>
-
       </div>
     </div>
+
   </div>
 </div>
 
-<!-- EDIT MODAL -->
-<div id="edit-modal">
-  <div class="edit-box">
-    <div class="edit-hdr">
-      <h4>✏️ Edit Job</h4>
-      <button class="edit-close" onclick="closeEdit()">✕</button>
-    </div>
-    <input type="hidden" id="e-id">
-    <div class="form2">
-      <div class="fg"><label>Title *</label><input id="e-title" placeholder="Job title"></div>
-      <div class="fg"><label>Company *</label><input id="e-company" placeholder="Company name"></div>
-      <div class="fg"><label>Location</label><input id="e-location" placeholder="e.g. Nairobi, Kenya"></div>
-      <div class="fg"><label>County</label><select id="e-county">
-        <option value="">Select county</option>
-        <option>Nairobi</option><option>Mombasa</option><option>Kisumu</option><option>Nakuru</option>
-        <option>Eldoret</option><option>Kiambu</option><option>Machakos</option><option>Nyeri</option>
-        <option>Meru</option><option>Kakamega</option><option>Kisii</option><option>Kilifi</option>
-        <option>Embu</option><option>Garissa</option><option>Bungoma</option><option>Kajiado</option>
-        <option>Kericho</option><option>Turkana</option><option>Homa Bay</option><option>Narok</option>
-        <option>Remote</option>
-      </select></div>
-      <div class="fg"><label>Type</label><select id="e-type">
-        <option>Full-Time</option><option>Part-Time</option><option>Internship</option>
-        <option>Government</option><option>NGO</option><option>Remote</option><option>Contract</option>
-      </select></div>
-      <div class="fg"><label>Sector</label><select id="e-sector">
-        <option>General</option><option>ICT &amp; Technology</option><option>Data &amp; AI</option>
-        <option>Health &amp; Medicine</option><option>Finance &amp; Banking</option><option>Engineering</option>
-        <option>Education &amp; Teaching</option><option>Agriculture &amp; Food</option><option>Marketing &amp; Sales</option>
-        <option>NGO / Non-Profit</option><option>Legal &amp; Compliance</option><option>Human Resources</option>
-        <option>Transport &amp; Logistics</option><option>Customer Service</option><option>Hospitality &amp; Tourism</option>
-        <option>Government / Civil Service</option><option>Procurement &amp; Purchasing</option>
-      </select></div>
-      <div class="fg"><label>Qualification</label><select id="e-qual">
-        <option value="">Not specified</option><option>KCSE</option><option>Certificate</option>
-        <option>Diploma</option><option>Bachelor Degree</option><option>Masters</option><option>PhD</option>
-      </select></div>
-      <div class="fg"><label>Experience</label><select id="e-exp">
-        <option value="">Not specified</option><option>No Experience</option><option>Less than 1 year</option>
-        <option>1 - 2 years</option><option>2 - 3 years</option><option>3 - 5 years</option>
-        <option>5 - 7 years</option><option>7+ years</option>
-      </select></div>
-      <div class="fg"><label>Salary</label><input id="e-salary" placeholder="e.g. KSh 50,000/month"></div>
-      <div class="fg"><label>Deadline</label><input type="date" id="e-deadline"></div>
-      <div class="fg"><label>Featured ⭐</label><select id="e-featured">
-        <option value="no">No</option><option value="yes">Yes — show at top</option>
-      </select></div>
-      <div class="fg full"><label>Description &amp; How to Apply</label>
-        <textarea id="e-desc" style="min-height:180px;" placeholder="Full description, requirements, how to apply..."></textarea>
-      </div>
-    </div>
-    <div class="brow" style="margin-top:4px;">
-      <button class="btn btn-g" onclick="doSaveEdit()">💾 Save Changes</button>
-      <button class="btn btn-out" onclick="closeEdit()">Cancel</button>
-    </div>
-    <div class="smsg" id="edit-msg"></div>
-  </div>
-</div>
-
-
-<div id="toast"></div>
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
 <script>
-(function(){
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+const ADMIN_USER   = "Benedict";
+const ADMIN_PASS   = "Benedict12#";
+const GITHUB_OWNER = "hotnewss";
+const GITHUB_REPO  = "hotnews";
+const GITHUB_FILE  = "index.html";
 
-  // ── HELPERS ──────────────────────────────
-  function id(x){return document.getElementById(x);}
-  function toast(msg){var t=id('toast');t.textContent=msg;t.style.display='block';clearTimeout(t._t);t._t=setTimeout(function(){t.style.display='none';},3200);}
-  function showMsg(el,msg,type){var e=id(el);if(!e)return;e.textContent=msg;e.className='smsg '+type;}
-  function setVal(el,val){var e=id(el);if(e&&val!=null)e.value=val;}
-  function setSel(el,val){var e=id(el);if(!e||!val)return;for(var i=0;i<e.options.length;i++){if(e.options[i].value===val||e.options[i].text===val){e.selectedIndex=i;return;}}}
-  function getJobs(){try{return JSON.parse(localStorage.getItem('kj')||'[]');}catch(e){return[];}}
-  function setJobs(j){localStorage.setItem('kj',JSON.stringify(j));}
-  function isExpired(j){
-    var today=new Date();today.setHours(0,0,0,0);
-    if(j.deadline){var dl=new Date(j.deadline);return!isNaN(dl)&&dl<today;}
-    if(j.date_added){return(today-new Date(j.date_added))/86400000>30;}
-    return false;
-  }
-  function ghHdr(token){
-    return{'Authorization':'Bearer '+token,'Accept':'application/vnd.github+json','Content-Type':'application/json','X-GitHub-Api-Version':'2022-11-28'};
-  }
-  function toB64(str){
-    var bytes=new TextEncoder().encode(str),bin='';
-    bytes.forEach(function(b){bin+=String.fromCharCode(b);});
-    return btoa(bin);
-  }
-  var TITLES={dashboard:'📊 Dashboard',paste:'📋 Paste a Job',bulk:'📦 Bulk Paste',csv:'📂 Upload CSV',listings:'💼 All Listings',featured:'⭐ Featured Jobs',publish:'🚀 Publish to Site',settings:'⚙️ Settings'};
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let ARTICLES = [];
+let editingId = null;
+let githubToken = "";
 
-  // ── AUTH ─────────────────────────────────
-  function doLogin(){
-    var u=(id('lu').value||'').trim(),p=(id('lp').value||'').trim();
-    var cu=localStorage.getItem('au')||'admin',cp=localStorage.getItem('ap')||'Benedict12#';
-    if(u===cu&&p===cp){
-      sessionStorage.setItem('li','1');
-      id('login').style.display='none';id('app').style.display='block';
-      doInit();toast('✅ Welcome back!');
-    }else{
-      id('lerr').style.display='block';
-      setTimeout(function(){id('lerr').style.display='none';},3000);
+// ── LOGIN ─────────────────────────────────────────────────────────────────────
+function doLogin(){
+  const u = document.getElementById("loginUser").value.trim();
+  const p = document.getElementById("loginPass").value;
+  if(u === ADMIN_USER && p === ADMIN_PASS){
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("adminScreen").style.display = "block";
+    loadFromGitHub();
+  } else {
+    const err = document.getElementById("loginError");
+    err.style.display = "block";
+    setTimeout(()=> err.style.display="none", 2500);
+  }
+}
+
+function doLogout(){
+  document.getElementById("adminScreen").style.display = "none";
+  document.getElementById("loginScreen").style.display = "flex";
+  document.getElementById("loginUser").value = "";
+  document.getElementById("loginPass").value = "";
+  document.getElementById("tokenInput").value = "";
+  githubToken = "";
+  ARTICLES = [];
+}
+
+// ── TOKEN ─────────────────────────────────────────────────────────────────────
+document.getElementById("tokenInput").addEventListener("input", function(){
+  githubToken = this.value.trim();
+  const status = document.getElementById("tokenStatus");
+  if(githubToken){
+    status.textContent = "✅ token set";
+    status.style.color = "#3fb950";
+  } else {
+    status.textContent = "not set";
+    status.style.color = "#666";
+  }
+});
+
+// ── LOAD ARTICLES FROM GITHUB ─────────────────────────────────────────────────
+async function loadFromGitHub(){
+  showToast("⏳ Loading articles from GitHub...");
+  try {
+    const url = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+    const headers = {"Accept":"application/vnd.github.v3+json"};
+    if(githubToken) headers["Authorization"] = "token "+githubToken;
+    const res = await fetch(url, {headers});
+    if(!res.ok) throw new Error("Cannot load from GitHub: "+res.status);
+    const data = await res.json();
+    const html = decodeURIComponent(escape(atob(data.content.replace(/\n/g,""))));
+    // Extract ARTICLES array
+    const marker = "const ARTICLES = [";
+    const s = html.indexOf(marker);
+    let depth=0, e=-1;
+    for(let i=s+marker.length-1;i<html.length;i++){
+      if(html[i]==="[") depth++;
+      else if(html[i]==="]"){ depth--; if(depth===0){e=i+1;break;} }
     }
-  }
-  window.doLogout=function(){sessionStorage.removeItem('li');id('app').style.display='none';id('login').style.display='flex';id('lu').value='';id('lp').value='';};
-  window.doReset=function(){localStorage.removeItem('au');localStorage.removeItem('ap');alert('Reset done!\nUsername: admin\nPassword: Benedict12#');};
-  window.doSaveCreds=function(){
-    var u=(id('s-newu').value||'').trim(),p=(id('s-newp').value||'').trim();
-    if(!u||!p){toast('Enter both fields!');return;}
-    localStorage.setItem('au',u);localStorage.setItem('ap',p);
-    showMsg('creds-msg','✅ Login updated successfully!','ok');toast('✅ Saved!');
-  };
-  id('lbtn').onclick=doLogin;
-  id('lu').onkeydown=function(e){if(e.key==='Enter')doLogin();};
-  id('lp').onkeydown=function(e){if(e.key==='Enter')doLogin();};
-  if(sessionStorage.getItem('li')==='1'){id('login').style.display='none';id('app').style.display='block';}
-
-  // ── INIT & NAV ────────────────────────────
-  function doInit(){loadSettings();updateDashboard();}
-  if(sessionStorage.getItem('li')==='1')doInit();
-
-  window.goPage=function(name,el){
-    document.querySelectorAll('.page').forEach(function(p){p.classList.remove('active');});
-    document.querySelectorAll('.sb-item').forEach(function(s){s.classList.remove('active');});
-    var pg=id('pg-'+name);if(pg)pg.classList.add('active');
-    if(el)el.classList.add('active');
-    id('ptitle').textContent=TITLES[name]||'';
-    if(name==='dashboard')updateDashboard();
-    if(name==='listings')renderListings();
-    if(name==='featured')renderFeatured();
-    if(name==='publish')updatePublishStats();
-  };
-
-  // ── DASHBOARD ────────────────────────────
-  function updateDashboard(){
-    var jobs=getJobs(),active=0,feat=0,exp=0;
-    jobs.forEach(function(j){if(j.featured)feat++;if(isExpired(j))exp++;else active++;});
-    id('d-total').textContent=jobs.length;id('d-active').textContent=active;id('d-feat').textContent=feat;id('d-exp').textContent=exp;
-    var tb=id('dash-table');
-    if(!jobs.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--mu);">No jobs yet. Add your first job above!</td></tr>';return;}
-    tb.innerHTML=jobs.slice(0,8).map(function(j){
-      var badge=j.featured?'<span class="badge b-feat">⭐ Featured</span>':isExpired(j)?'<span class="badge b-exp">Expired</span>':'<span class="badge b-act">Active</span>';
-      var dl=j.deadline?new Date(j.deadline).toLocaleDateString('en-KE',{day:'numeric',month:'short'}):'—';
-      return '<tr><td><strong>'+(j.title||'Untitled')+'</strong></td><td>'+(j.company||'—')+'</td><td>'+(j.type||'—')+'</td><td>'+dl+'</td><td>'+badge+'</td></tr>';
-    }).join('');
-  }
-
-  // ── PARSE ────────────────────────────────
-  function parseJob(text){
-    var lines=text.split('\n').map(function(l){return l.trim();}).filter(Boolean);
-    var first=lines[0]||'',title='',company='';
-    var am=first.match(/^(.+?)\s+(?:at|@)\s+(.+)$/i);
-    if(am){title=am[1].trim();company=am[2].trim();}else title=first.substring(0,80);
-    var rt=text.toLowerCase();
-    var counties=['Mombasa','Kisumu','Nakuru','Eldoret','Kiambu','Machakos','Nyeri','Meru','Kakamega','Kisii','Kilifi','Embu','Garissa','Bungoma','Kajiado','Kericho','Turkana','Homa Bay','Narok','Nairobi'];
-    var county='Nairobi';
-    var lm=text.match(/location[:\s]+([A-Za-z\s,]+?)(?:\n|$)/i);
-    if(lm)county=lm[1].trim().split(',')[0];
-    else for(var i=0;i<counties.length;i++){if(rt.includes(counties[i].toLowerCase())){county=counties[i];break;}}
-    var type='Full-Time';
-    if(/intern|attachment|trainee/.test(rt))type='Internship';
-    else if(/part.time/.test(rt))type='Part-Time';
-    else if(/government|ministry/.test(rt))type='Government';
-    else if(/\bngo\b|unicef|undp/.test(rt))type='NGO';
-    else if(/remote|work from home/.test(rt))type='Remote';
-    else if(/contract|consultant/.test(rt))type='Contract';
-    var sector='General';
-    if(/software|developer|ict|cyber/.test(rt))sector='ICT & Technology';
-    else if(/nurse|doctor|medical|health/.test(rt))sector='Health & Medicine';
-    else if(/financ|account|audit|banking/.test(rt))sector='Finance & Banking';
-    else if(/engineer|civil|mechanical/.test(rt))sector='Engineering';
-    else if(/teach|tutor|lecturer|education/.test(rt))sector='Education & Teaching';
-    else if(/farm|agri|crop|livestock/.test(rt))sector='Agriculture & Food';
-    else if(/market|sales|brand/.test(rt))sector='Marketing & Sales';
-    else if(/\bngo\b|humanitarian/.test(rt))sector='NGO / Non-Profit';
-    else if(/legal|lawyer/.test(rt))sector='Legal & Compliance';
-    else if(/\bhr\b|human resource/.test(rt))sector='Human Resources';
-    var qual='';
-    if(/phd|doctorate/.test(rt))qual='PhD';
-    else if(/master|mba|msc/.test(rt))qual='Masters';
-    else if(/bachelor|degree|bsc/.test(rt))qual='Bachelor Degree';
-    else if(/diploma/.test(rt))qual='Diploma';
-    else if(/certificate/.test(rt))qual='Certificate';
-    var exp='';
-    var em=text.match(/(\d+)\s*(?:years?|yrs?)\s*(?:experience|exp)/i);
-    if(em){var y=parseInt(em[1]);if(y<2)exp='1 - 2 years';else if(y<3)exp='2 - 3 years';else if(y<5)exp='3 - 5 years';else if(y<7)exp='5 - 7 years';else exp='7+ years';}
-    var salary='Not stated';
-    var sm=text.match(/(?:salary|pay)[:\s]+(KSh?[\d,\s\-]+(?:\/month)?)/i);
-    if(sm)salary=sm[1].trim();
-    var deadline='';
-    var dm=text.match(/(?:deadline|closing date|apply by)[:\s]+([\w\s,\/]+\d{4})/i);
-    if(dm){try{var d=new Date(dm[1]);if(!isNaN(d))deadline=d.toISOString().split('T')[0];}catch(ex){}}
-    return{title:title,company:company,location:county+', Kenya',county:county,type:type,sector:sector,qual:qual,exp:exp,salary:salary,deadline:deadline};
-  }
-
-  // ── PASTE ────────────────────────────────
-  window.doSmartPaste=function(){
-    var raw=(id('paste-raw').value||'').trim();if(!raw){toast('Paste job text first!');return;}
-    var j=parseJob(raw);
-    setVal('f-title',j.title);setVal('f-company',j.company);setVal('f-location',j.location);
-    setVal('f-salary',j.salary!=='Not stated'?j.salary:'');setVal('f-deadline',j.deadline);setVal('f-desc',raw);
-    setSel('f-type',j.type);setSel('f-sector',j.sector);setSel('f-qual',j.qual);setSel('f-exp',j.exp);setSel('f-county',j.county);
-    toast('✅ Fields filled!');id('f-title').scrollIntoView({behavior:'smooth'});
-  };
-  window.doSaveJob=function(){
-    var title=(id('f-title').value||'').trim(),company=(id('f-company').value||'').trim();
-    if(!title||!company){toast('Title and Company are required!');return;}
-    var job={
-      id:'j'+Date.now()+Math.random().toString(36).slice(2,5),
-      title:title,company:company,
-      location:id('f-location').value||'Kenya',county:id('f-county').value||'Nairobi',
-      type:id('f-type').value,sector:id('f-sector').value,
-      qualification:id('f-qual').value,experience:id('f-exp').value,
-      salary:id('f-salary').value||'Not stated',deadline:id('f-deadline').value,
-      description:id('f-desc').value.trim(),
-      featured:id('f-featured').value==='yes',
-      date_added:new Date().toISOString(),via:'manual'
-    };
-    var jobs=getJobs();jobs.unshift(job);setJobs(jobs);
-    doClearForm();
-    showMsg('save-msg','✅ "'+title+'" saved! Go to 🚀 Publish to Site to make it live.','ok');
-    toast('✅ Job saved!');
-    updateDashboard();
-  };
-  window.doClearForm=function(){
-    ['f-title','f-company','f-location','f-salary','f-deadline','f-desc','paste-raw'].forEach(function(x){var e=id(x);if(e)e.value='';});
-    ['f-qual','f-exp','f-county','f-featured'].forEach(function(x){var e=id(x);if(e)e.selectedIndex=0;});
-  };
-
-  // ── BULK ─────────────────────────────────
-  var BULK_JOBS=[];
-  window.doBulkPreview=function(){
-    var raw=(id('bulk-raw').value||'').trim();if(!raw){toast('Paste jobs first!');return;}
-    var parts=raw.split(/\n---+\n|---+\n|\n---+/).map(function(p){return p.trim();}).filter(function(p){return p.length>20;});
-    if(!parts.length){toast('Separate jobs with --- on its own line');return;}
-    BULK_JOBS=parts.map(function(p,i){
-      var j=parseJob(p);
-      return{id:'jb'+Date.now()+i,title:j.title,company:j.company,location:j.location,county:j.county,type:j.type,sector:j.sector,qualification:j.qual,experience:j.exp,salary:j.salary,deadline:j.deadline,description:p,featured:false,date_added:new Date().toISOString(),via:'bulk'};
-    });
-    id('bulk-title').textContent=BULK_JOBS.length+' jobs found';
-    id('bulk-list').innerHTML=BULK_JOBS.map(function(j,i){
-      return '<div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:11px;margin-bottom:7px;"><div style="font-weight:700;font-size:.88rem;">'+(i+1)+'. '+j.title+'</div><div style="color:var(--mu);font-size:.76rem;margin-top:2px;">'+j.company+' · '+j.location+'</div></div>';
-    }).join('');
-    id('bulk-prev').style.display='block';toast('Found '+BULK_JOBS.length+' jobs!');
-  };
-  window.doBulkImport=function(){
-    if(!BULK_JOBS.length){toast('No jobs to import');return;}
-    var jobs=getJobs();BULK_JOBS.forEach(function(j){jobs.unshift(j);});setJobs(jobs);
-    var n=BULK_JOBS.length;BULK_JOBS=[];id('bulk-raw').value='';id('bulk-prev').style.display='none';
-    showMsg('bulk-msg','✅ '+n+' jobs imported! Go to 🚀 Publish to Site to make them live.','ok');
-    toast('✅ '+n+' jobs imported!');updateDashboard();
-  };
-
-  // ── CSV ──────────────────────────────────
-  var CSV_DATA=[];
-  window.doReadCSV=function(file){
-    if(!file)return;
-    var r=new FileReader();
-    r.onload=function(e){
-      try{
-        var lines=e.target.result.split('\n').filter(function(l){return l.trim();});
-        var hdrs=lines[0].split(',').map(function(h){return h.trim().toLowerCase().replace(/['"]/g,'');});
-        CSV_DATA=[];
-        for(var i=1;i<lines.length;i++){
-          var vals=splitCSV(lines[i]),obj={};
-          hdrs.forEach(function(h,idx){obj[h]=(vals[idx]||'').trim().replace(/^"|"$/g,'');});
-          if(obj.title)CSV_DATA.push(obj);
-        }
-        id('csv-count').textContent=CSV_DATA.length+' jobs ready to import';
-        id('csv-list').innerHTML=CSV_DATA.slice(0,5).map(function(r){
-          return '<div style="background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:9px;margin-bottom:7px;font-size:.84rem;"><strong>'+r.title+'</strong> — '+(r.company||'')+'</div>';
-        }).join('')+(CSV_DATA.length>5?'<div style="font-size:.8rem;color:var(--mu);padding:6px;">...and '+(CSV_DATA.length-5)+' more</div>':'');
-        id('csv-prev').style.display='block';
-        showMsg('csv-msg','✅ '+CSV_DATA.length+' jobs found. Click Import All to save them.','ok');
-      }catch(err){showMsg('csv-msg','❌ Error reading CSV: '+err.message,'err');}
-    };
-    r.readAsText(file);
-  };
-  function splitCSV(line){var res=[],cur='',q=false;for(var i=0;i<line.length;i++){var c=line[i];if(c==='"')q=!q;else if(c===','&&!q){res.push(cur);cur='';}else cur+=c;}res.push(cur);return res;}
-  window.doCSVImport=function(){
-    if(!CSV_DATA.length){toast('No data to import');return;}
-    var jobs=getJobs(),added=0;
-    CSV_DATA.forEach(function(r){
-      if(!r.title)return;
-      jobs.unshift({id:'jc'+Date.now()+(added++),title:r.title,company:r.company||'Unknown',location:r.location||'Kenya',county:r.county||'Nairobi',type:r.type||'Full-Time',sector:r.sector||'General',salary:r.salary||'Not stated',deadline:r.deadline||'',description:r.description||'',featured:false,date_added:new Date().toISOString(),via:'csv'});
-    });
-    setJobs(jobs);
-    showMsg('csv-msg','✅ '+added+' jobs imported! Go to 🚀 Publish to Site to make them live.','ok');
-    toast('✅ '+added+' jobs imported!');
-    CSV_DATA=[];id('csv-prev').style.display='none';updateDashboard();
-  };
-  window.doDownloadTemplate=function(){
-    var a=document.createElement('a');
-    a.href='data:text/csv;charset=utf-8,'+encodeURIComponent('title,company,location,county,type,sector,salary,deadline,description\n"Software Engineer","Safaricom PLC","Nairobi, Kenya","Nairobi","Full-Time","ICT & Technology","KSh 120000/month","2026-04-30","Description here"\n');
-    a.download='jobs_template.csv';a.click();
-  };
-
-  // ── LISTINGS ─────────────────────────────
-  var LIST_FILTER='all';
-  window.setListFilter=function(f,el){
-    LIST_FILTER=f;
-    document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('on');});
-    if(el)el.classList.add('on');renderListings();
-  };
-  function renderListings(){
-    var jobs=getJobs();
-    var q=(id('list-search').value||'').toLowerCase();
-    if(q)jobs=jobs.filter(function(j){return((j.title||'')+(j.company||'')).toLowerCase().includes(q);});
-    if(LIST_FILTER==='active')jobs=jobs.filter(function(j){return!isExpired(j);});
-    else if(LIST_FILTER==='expired')jobs=jobs.filter(function(j){return isExpired(j);});
-    else if(LIST_FILTER==='featured')jobs=jobs.filter(function(j){return j.featured;});
-    id('list-empty').style.display=jobs.length?'none':'block';
-    id('list-table').innerHTML=jobs.map(function(j){
-      var badge=j.featured?'<span class="badge b-feat">⭐</span>':isExpired(j)?'<span class="badge b-exp">Expired</span>':'<span class="badge b-act">Active</span>';
-      var dl=j.deadline?new Date(j.deadline).toLocaleDateString('en-KE',{day:'numeric',month:'short'}):'—';
-      return '<tr><td><strong>'+(j.title||'Untitled')+'</strong></td><td>'+(j.company||'—')+'</td><td>'+(j.county||'—')+'</td><td>'+(j.type||'—')+'</td><td>'+dl+'</td><td>'+badge+'</td><td>'
-        +'<button class="abtn ab-feat" onclick="doToggleFeat(\''+j.id+'\')">'+(j.featured?'★ Unfeature':'☆ Feature')+'</button>'
-        +'<button class="abtn ab-edit" onclick="doEditJob(\''+j.id+'\')" >✏️ Edit</button>'
-        +'<button class="abtn ab-del" onclick="doDelJob(\''+j.id+'\')">🗑</button></td></tr>';
-    }).join('');
-  }
-  window.doDelJob=function(jid){if(!confirm('Delete this job?'))return;setJobs(getJobs().filter(function(j){return j.id!==jid;}));renderListings();updateDashboard();toast('Deleted!');};
-  window.doToggleFeat=function(jid){setJobs(getJobs().map(function(j){if(j.id===jid)j.featured=!j.featured;return j;}));renderListings();renderFeatured();toast('Updated!');};
-  window.doDeleteAll=function(){if(!confirm('Delete ALL '+getJobs().length+' jobs? This cannot be undone!'))return;setJobs([]);renderListings();updateDashboard();toast('All deleted.');};
-
-
-  // ── EDIT JOB ─────────────────────────────
-  function setSel2(el,val){var e=document.getElementById(el);if(!e||!val)return;for(var i=0;i<e.options.length;i++){if(e.options[i].value===val||e.options[i].text===val){e.selectedIndex=i;return;}}}
-  window.doEditJob=function(jid){
-    var job=getJobs().find(function(j){return j.id===jid;});
-    if(!job){toast('Job not found!');return;}
-    document.getElementById('e-id').value=job.id;
-    document.getElementById('e-title').value=job.title||'';
-    document.getElementById('e-company').value=job.company||'';
-    document.getElementById('e-location').value=job.location||'';
-    document.getElementById('e-salary').value=job.salary||'';
-    document.getElementById('e-deadline').value=job.deadline||'';
-    document.getElementById('e-desc').value=job.description||'';
-    setSel2('e-county',job.county||'');
-    setSel2('e-type',job.type||'Full-Time');
-    setSel2('e-sector',job.sector||'General');
-    setSel2('e-qual',job.qualification||'');
-    setSel2('e-exp',job.experience||'');
-    setSel2('e-featured',job.featured?'yes':'no');
-    document.getElementById('edit-msg').className='smsg';
-    document.getElementById('edit-msg').style.display='none';
-    document.getElementById('edit-modal').classList.add('open');
-  };
-  window.closeEdit=function(){document.getElementById('edit-modal').classList.remove('open');};
-  window.doSaveEdit=function(){
-    var jid=document.getElementById('e-id').value;
-    var title=(document.getElementById('e-title').value||'').trim();
-    var company=(document.getElementById('e-company').value||'').trim();
-    if(!title||!company){toast('Title and Company are required!');return;}
-    var jobs=getJobs();
-    var idx=jobs.findIndex(function(j){return j.id===jid;});
-    if(idx===-1){toast('Job not found!');return;}
-    jobs[idx]=Object.assign(jobs[idx],{
-      title:title,company:company,
-      location:document.getElementById('e-location').value||'Kenya',
-      county:document.getElementById('e-county').value||'Nairobi',
-      type:document.getElementById('e-type').value,
-      sector:document.getElementById('e-sector').value,
-      qualification:document.getElementById('e-qual').value,
-      experience:document.getElementById('e-exp').value,
-      salary:document.getElementById('e-salary').value||'Not stated',
-      deadline:document.getElementById('e-deadline').value,
-      description:document.getElementById('e-desc').value.trim(),
-      featured:document.getElementById('e-featured').value==='yes'
-    });
-    setJobs(jobs);
-    closeEdit();
-    renderListings();
-    renderFeatured();
-    updateDashboard();
-    toast('✅ Job updated!');
-  };
-  // Close edit modal when clicking outside
-  document.getElementById('edit-modal').addEventListener('click',function(e){if(e.target===this)closeEdit();});
-
-  // ── FEATURED ─────────────────────────────
-  function renderFeatured(){
-    var jobs=getJobs().filter(function(j){return j.featured;});
-    id('feat-count').textContent=jobs.length;
-    id('feat-empty').style.display=jobs.length?'none':'block';
-    id('feat-table').innerHTML=jobs.map(function(j){
-      var dl=j.deadline?new Date(j.deadline).toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'}):'No deadline';
-      return '<tr><td><strong>'+(j.title||'Untitled')+'</strong></td><td>'+(j.company||'—')+'</td><td>'+(j.county||'—')+'</td><td>'+dl+'</td><td>'
-        +'<button class="abtn ab-feat" onclick="doToggleFeat(\''+j.id+'\')">★ Unfeature</button>'
-        +'<button class="abtn ab-del" onclick="doDelJob(\''+j.id+'\')">🗑</button></td></tr>';
-    }).join('');
-  }
-
-  // ── PUBLISH ──────────────────────────────
-  function updatePublishStats(){
-    var jobs=getJobs(),active=0,feat=0;
-    jobs.forEach(function(j){if(j.featured)feat++;if(!isExpired(j))active++;});
-    id('pub-total').textContent=jobs.length;id('pub-feat').textContent=feat;id('pub-active').textContent=active;
-  }
-  window.doExportJSON=function(){
-    var blob=new Blob([JSON.stringify(getJobs(),null,2)],{type:'application/json'});
-    var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='jobs.json';a.click();
-    toast('✅ Downloaded!');
-  };
-  window.doVerifyLive=function(){
-    var user=(localStorage.getItem('gh_user')||'jobsinkenyaa').trim();
-    var repo=(localStorage.getItem('gh_repo')||'jobsinkenya').trim();
-    var url='https://raw.githubusercontent.com/'+user+'/'+repo+'/main/jobs.json?t='+Date.now();
-    window.open(url,'_blank');
-    showMsg('pub-msg','🔍 Opened live jobs.json in a new tab. If you see your job data as JSON, publishing is working correctly!','info');
-  };
-  window.doPublish=async function(){
-    var token=(localStorage.getItem('gh_token')||'').trim();
-    var user=(localStorage.getItem('gh_user')||'jobsinkenyaa').trim();
-    var repo=(localStorage.getItem('gh_repo')||'jobsinkenya').trim();
-    var branch=(localStorage.getItem('gh_branch')||'main').trim();
-    if(!token){showMsg('pub-msg','❌ No GitHub token found. Go to ⚙️ Settings and save your token first.','err');return;}
-    var jobs=getJobs();
-    if(!jobs.length){showMsg('pub-msg','⚠️ No jobs to publish yet. Add some jobs first!','info');return;}
-    var btn=id('pub-btn'),fill=id('pub-fill'),txt=id('pub-txt');
-    btn.disabled=true;btn.textContent='Publishing...';
-    id('pub-msg').className='smsg';id('pub-msg').style.display='none';
-    id('pub-prog').style.display='block';
-    fill.style.width='10%';txt.textContent='Preparing '+jobs.length+' jobs...';
-    try{
-      var apiUrl='https://api.github.com/repos/'+user+'/'+repo+'/contents/jobs.json';
-      var hdrs=ghHdr(token);
-      // Get existing SHA if file exists
-      fill.style.width='30%';txt.textContent='Checking existing file...';
-      var sha='';
-      try{var rg=await fetch(apiUrl,{headers:hdrs});if(rg.ok){var dg=await rg.json();sha=dg.sha||'';}}catch(ex){}
-      // Upload
-      fill.style.width='60%';txt.textContent='Uploading '+jobs.length+' jobs to GitHub...';
-      var body={message:'Update jobs: '+jobs.length+' listings — '+new Date().toDateString(),content:toB64(JSON.stringify(jobs,null,2)),branch:branch};
-      if(sha)body.sha=sha;
-      var rp=await fetch(apiUrl,{method:'PUT',headers:hdrs,body:JSON.stringify(body)});
-      fill.style.width='100%';
-      if(rp.ok){
-        txt.textContent='✅ Published successfully!';
-        showMsg('pub-msg','✅ '+jobs.length+' jobs published to GitHub!\n\nYour site https://'+user+'.github.io/'+repo+'/ will update in ~2 minutes.\n\nClick "🔍 Check Live Site" to verify after 2 min.','ok');
-        toast('✅ Published!');
-      }else{
-        var err=await rp.json();
-        txt.textContent='❌ Failed';
-        var hint='';
-        if((err.message||'').includes('Bad credentials'))hint='\n\n→ Fix: Your token is invalid or expired.\n   Go to ⚙️ Settings → generate a new token at github.com/settings/tokens';
-        else if((err.message||'').includes('Not Found'))hint='\n\n→ Fix: Repo not found.\n   Go to ⚙️ Settings → check your username and repo name.';
-        else if((err.message||'').includes('Resource not accessible'))hint='\n\n→ Fix: Token does not have write permission.\n   Regenerate token with the "repo" scope ticked.';
-        showMsg('pub-msg','❌ GitHub Error: '+(err.message||'Unknown error')+hint,'err');
-      }
-    }catch(e){
-      fill.style.width='100%';txt.textContent='❌ Error';
-      showMsg('pub-msg','❌ Network error: '+e.message+'\n\nCheck your internet connection and try again.','err');
-    }finally{
-      btn.disabled=false;btn.textContent='🚀 Publish Now';
+    if(s===-1||e===-1){ ARTICLES=[]; }
+    else {
+      try { ARTICLES = eval(html.slice(s+marker.length-1, e)); }
+      catch(err){ ARTICLES=[]; }
     }
-  };
-
-  // ── SETTINGS ─────────────────────────────
-  function loadSettings(){
-    var t=localStorage.getItem('gh_token'),u=localStorage.getItem('gh_user'),r=localStorage.getItem('gh_repo'),b=localStorage.getItem('gh_branch');
-    if(t)setVal('s-token',t);
-    setVal('s-user',u||'jobsinkenyaa');
-    setVal('s-repo',r||'jobsinkenya');
-    setVal('s-branch',b||'main');
+    renderList();
+    showToast("✅ Loaded "+ARTICLES.length+" articles");
+  } catch(err){
+    showToast("⚠️ Could not load articles: "+err.message, true);
+    ARTICLES = [];
+    renderList();
   }
-  window.doSaveSettings=function(){
-    var t=(id('s-token').value||'').trim();
-    if(!t){toast('Enter your GitHub token!');return;}
-    localStorage.setItem('gh_token',t);
-    localStorage.setItem('gh_user',(id('s-user').value||'jobsinkenyaa').trim());
-    localStorage.setItem('gh_repo',(id('s-repo').value||'jobsinkenya').trim());
-    localStorage.setItem('gh_branch',(id('s-branch').value||'main').trim());
-    showMsg('gh-msg','✅ Settings saved! Click "Test Connection" to verify.','ok');
-    toast('✅ Settings saved!');
-  };
-  window.doTestToken=async function(){
-    var token=(localStorage.getItem('gh_token')||'').trim();
-    var user=(localStorage.getItem('gh_user')||'jobsinkenyaa').trim();
-    var repo=(localStorage.getItem('gh_repo')||'jobsinkenya').trim();
-    if(!token){showMsg('gh-msg','❌ Save your settings first!','err');return;}
-    showMsg('gh-msg','⏳ Testing connection to '+user+'/'+repo+'...','info');
-    try{
-      var r=await fetch('https://api.github.com/repos/'+user+'/'+repo,{headers:ghHdr(token)});
-      if(r.ok){
-        var d=await r.json();
-        showMsg('gh-msg','✅ Connected! Repo "'+d.full_name+'" found. You can now publish.','ok');
-        toast('✅ Connection works!');
-      }else{
-        var e=await r.json();
-        var hint='';
-        if((e.message||'').includes('Bad credentials'))hint='\n→ Token is invalid or expired. Generate a new one.';
-        else if((e.message||'').includes('Not Found'))hint='\n→ Repo "'+user+'/'+repo+'" not found. Check spelling.';
-        showMsg('gh-msg','❌ '+(e.message||'Failed')+hint,'err');
-      }
-    }catch(e){showMsg('gh-msg','❌ Network error: '+e.message,'err');}
-  };
+}
 
-})();
+// ── ARTICLE LIST ──────────────────────────────────────────────────────────────
+function renderList(){
+  const q = document.getElementById("searchInput").value.toLowerCase();
+  const filtered = ARTICLES.filter(a =>
+    a.title.toLowerCase().includes(q) || (a.category||"").toLowerCase().includes(q)
+  );
+  document.getElementById("articleCount").textContent = ARTICLES.length;
+  const list = document.getElementById("articleList");
+  if(filtered.length === 0){
+    list.innerHTML = '<div class="empty-list">No articles yet.<br>Click ＋ New to add one.</div>';
+    return;
+  }
+  list.innerHTML = filtered.map(a => `
+    <div class="article-item ${editingId===a.id?'active':''}" onclick="editArticle(${a.id})">
+      <button class="article-item-del" onclick="event.stopPropagation();deleteArticle(${a.id})">🗑</button>
+      <div class="article-item-title">${a.title}</div>
+      <div class="article-item-meta">
+        <span class="article-item-cat">${a.category||""}</span>
+        <span>${a.date||""}</span>
+      </div>
+    </div>
+  `).join("");
+}
+
+function filterList(){ renderList(); }
+
+// ── NEW ARTICLE ───────────────────────────────────────────────────────────────
+function newArticle(){
+  editingId = null;
+  const newId = ARTICLES.length > 0 ? Math.max(...ARTICLES.map(a=>a.id))+1 : 1;
+  document.getElementById("editId").value = newId;
+  document.getElementById("editTitle").value = "";
+  document.getElementById("editCategory").value = "Kenya";
+  document.getElementById("editRegion").value = "Kenya";
+  document.getElementById("editDate").value = new Date().toISOString().split("T")[0];
+  document.getElementById("editImg").value = "";
+  document.getElementById("editSummary").value = "";
+  document.getElementById("editBody").value = "";
+  document.getElementById("editTeaser").value = "";
+  document.getElementById("editorTitle").textContent = "✍️ New Article";
+  document.getElementById("editorEmpty").style.display = "none";
+  document.getElementById("editorForm").style.display = "block";
+}
+
+// ── EDIT ARTICLE ──────────────────────────────────────────────────────────────
+function editArticle(id){
+  const a = ARTICLES.find(x=>x.id===id);
+  if(!a) return;
+  editingId = id;
+  document.getElementById("editId").value = a.id;
+  document.getElementById("editTitle").value = a.title||"";
+  document.getElementById("editCategory").value = a.category||"Kenya";
+  document.getElementById("editRegion").value = a.region||"";
+  document.getElementById("editDate").value = a.date||"";
+  document.getElementById("editImg").value = a.img||"";
+  document.getElementById("editSummary").value = a.summary||"";
+  document.getElementById("editBody").value = a.body||"";
+  document.getElementById("editTeaser").value = a.teaser||"";
+  document.getElementById("editorTitle").textContent = "✏️ Edit Article";
+  document.getElementById("editorEmpty").style.display = "none";
+  document.getElementById("editorForm").style.display = "block";
+  renderList();
+}
+
+// ── SAVE ARTICLE ──────────────────────────────────────────────────────────────
+function saveArticle(){
+  const title = document.getElementById("editTitle").value.trim();
+  if(!title){ alert("Title is required."); return; }
+  const article = {
+    id:       editingId || parseInt(document.getElementById("editId").value),
+    title,
+    category: document.getElementById("editCategory").value,
+    region:   document.getElementById("editRegion").value.trim(),
+    date:     document.getElementById("editDate").value.trim(),
+    img:      document.getElementById("editImg").value.trim(),
+    summary:  document.getElementById("editSummary").value.trim(),
+    body:     document.getElementById("editBody").value.trim(),
+    teaser:   document.getElementById("editTeaser").value.trim()
+  };
+  if(editingId){
+    const idx = ARTICLES.findIndex(x=>x.id===editingId);
+    if(idx!==-1) ARTICLES[idx] = article;
+  } else {
+    ARTICLES.unshift(article); // new articles always on top
+  }
+  cancelEdit();
+  renderList();
+  publishToGitHub();
+}
+
+// ── DELETE ARTICLE ────────────────────────────────────────────────────────────
+function deleteArticle(id){
+  if(!confirm("Delete this article? Cannot be undone.")) return;
+  ARTICLES = ARTICLES.filter(a=>a.id!==id);
+  if(editingId===id) cancelEdit();
+  renderList();
+  publishToGitHub();
+}
+
+function cancelEdit(){
+  editingId = null;
+  document.getElementById("editorForm").style.display = "none";
+  document.getElementById("editorEmpty").style.display = "flex";
+  renderList();
+}
+
+// ── SERIALIZE & BUILD HTML ────────────────────────────────────────────────────
+function serializeArticles(){
+  return ARTICLES.map(a => {
+    const esc = s => (s||"").replace(/\\/g,"\\\\").replace(/`/g,"\\`").replace(/\${/g,"\\${");
+    return "  {id:"+a.id+",title:"+JSON.stringify(a.title)+
+      ",category:"+JSON.stringify(a.category)+
+      ",region:"+JSON.stringify(a.region)+
+      ",img:"+JSON.stringify(a.img||"")+
+      ",summary:"+JSON.stringify(a.summary||"")+
+      ",body:`"+esc(a.body||"")+"`"+
+      ",date:"+JSON.stringify(a.date||"")+
+      ",teaser:"+JSON.stringify(a.teaser||"")+"}";
+  }).join(",\n");
+}
+
+// ── PUBLISH TO GITHUB ─────────────────────────────────────────────────────────
+async function publishToGitHub(){
+  const token = document.getElementById("tokenInput").value.trim();
+  if(!token){
+    showToast("⚠️ Paste your GitHub token first!", true);
+    document.getElementById("tokenInput").focus();
+    return;
+  }
+  showToast("⏳ Publishing to GitHub...");
+  const apiUrl = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+  const headers = {
+    "Authorization": "token "+token,
+    "Accept": "application/vnd.github.v3+json",
+    "Content-Type": "application/json"
+  };
+  try {
+    // 1. Get current file + SHA
+    const r1 = await fetch(apiUrl, {headers});
+    if(!r1.ok) throw new Error("Cannot read index.html from GitHub ("+r1.status+")");
+    const fileData = await r1.json();
+    const sha = fileData.sha;
+    const currentHTML = decodeURIComponent(escape(atob(fileData.content.replace(/\n/g,""))));
+
+    // 2. Replace ARTICLES array in the live index.html
+    const marker = "const ARTICLES = [";
+    const s = currentHTML.indexOf(marker);
+    if(s===-1) throw new Error("Could not find ARTICLES in index.html");
+    // Find closing ] accounting for empty [] or full array
+    let depth=0, e=-1;
+    for(let i=s+marker.length-1;i<currentHTML.length;i++){
+      if(currentHTML[i]==="[") depth++;
+      else if(currentHTML[i]==="]"){ depth--; if(depth===0){e=i+1;break;} }
+    }
+    if(e===-1) throw new Error("Could not find end of ARTICLES array in index.html");
+    const newHTML = currentHTML.slice(0,s)+"const ARTICLES = [\n"+serializeArticles()+"\n]"+currentHTML.slice(e);
+
+    // 3. Push to GitHub
+    const encoded = btoa(unescape(encodeURIComponent(newHTML)));
+    const r2 = await fetch(apiUrl, {
+      method:"PUT", headers,
+      body: JSON.stringify({
+        message: "Publish "+new Date().toISOString().slice(0,16).replace("T"," "),
+        content: encoded,
+        sha
+      })
+    });
+    if(!r2.ok){ const err=await r2.json(); throw new Error(err.message||r2.status); }
+    showToast("🚀 Published! Live on hustle254.com in ~30 seconds.");
+  } catch(err){
+    showToast("❌ "+err.message, true);
+    console.error(err);
+  }
+}
+
+// ── TOAST ─────────────────────────────────────────────────────────────────────
+function showToast(msg, isError=false){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.className = "toast show" + (isError?" error":"");
+  clearTimeout(t._timer);
+  t._timer = setTimeout(()=> t.className="toast", 4000);
+}
 </script>
+
+<script>
+// ── IMPORT SYSTEM ─────────────────────────────────────────────────────────────
+let importedArticles = [];
+
+function openImport(){
+  document.getElementById('importModal').style.display='flex';
+  importedArticles=[];
+  document.getElementById('importPreview').style.display='none';
+  document.getElementById('importError').style.display='none';
+  document.getElementById('importBtn').style.display='none';
+  document.getElementById('fileInput').value='';
+}
+
+function closeImport(){
+  document.getElementById('importModal').style.display='none';
+}
+
+function handleDrop(e){
+  e.preventDefault();
+  document.getElementById('dropZone').style.borderColor='#2a2a35';
+  const file = e.dataTransfer.files[0];
+  if(file) processFile(file);
+}
+
+function handleFileSelect(e){
+  const file = e.target.files[0];
+  if(file) processFile(file);
+}
+
+function processFile(file){
+  document.getElementById('importError').style.display='none';
+  document.getElementById('importPreview').style.display='none';
+  document.getElementById('importBtn').style.display='none';
+  const name = file.name.toLowerCase();
+  if(name.endsWith('.csv')){
+    const reader = new FileReader();
+    reader.onload = e => parseCSV(e.target.result);
+    reader.readAsText(file);
+  } else if(name.endsWith('.xlsx')||name.endsWith('.xls')){
+    const reader = new FileReader();
+    reader.onload = e => parseExcel(e.target.result);
+    reader.readAsArrayBuffer(file);
+  } else if(name.endsWith('.docx')){
+    const reader = new FileReader();
+    reader.onload = e => parseDocx(e.target.result);
+    reader.readAsArrayBuffer(file);
+  } else if(name.endsWith('.pdf')){
+    const reader = new FileReader();
+    reader.onload = e => parsePdf(e.target.result);
+    reader.readAsArrayBuffer(file);
+  } else {
+    showImportError('Unsupported file type. Please use .csv, .xlsx, .docx or .pdf');
+  }
+}
+
+async function parseDocx(buffer){
+  try {
+    // Extract images as base64 data URLs
+    const imageMap = {};
+    const result = await mammoth.convertToHtml({arrayBuffer: buffer}, {
+      convertImage: mammoth.images.imgElement(function(image){
+        return image.read('base64').then(function(imageContent){
+          const src = 'data:'+image.contentType+';base64,'+imageContent;
+          const key = 'img_'+Object.keys(imageMap).length;
+          imageMap[key] = src;
+          return {src: key};
+        });
+      })
+    });
+    const html = result.value;
+    // Parse the HTML to extract structure
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    // First image found
+    const firstImg = div.querySelector('img');
+    const imgSrc = firstImg ? (imageMap[firstImg.getAttribute('src')] || '') : '';
+    // Remove image from div so it doesn't appear in body text
+    if(firstImg) firstImg.closest('p') ? firstImg.closest('p').remove() : firstImg.remove();
+    // Title: first h1/h2/h3, or first bold, or first non-empty paragraph
+    let title = '';
+    const heading = div.querySelector('h1,h2,h3');
+    if(heading){ title = heading.textContent.trim(); heading.remove(); }
+    else {
+      const firstBold = div.querySelector('strong,b');
+      if(firstBold){ title = firstBold.textContent.trim(); firstBold.closest('p') ? firstBold.closest('p').remove() : firstBold.remove(); }
+      else {
+        const firstP = div.querySelector('p');
+        if(firstP){ title = firstP.textContent.trim(); firstP.remove(); }
+      }
+    }
+    // Summary: next non-empty paragraph
+    let summary = '';
+    const paras = div.querySelectorAll('p,h1,h2,h3,h4');
+    for(const p of paras){
+      const t = p.textContent.trim();
+      if(t){ summary = t; p.remove(); break; }
+    }
+    // Body: everything remaining as plain text
+    const body = Array.from(div.querySelectorAll('p,h1,h2,h3,h4,li'))
+      .map(el => el.textContent.trim()).filter(Boolean).join('\n\n');
+    if(!title){ showImportError('Could not find a title in the Word document. Make sure the first line is the headline.'); return; }
+    buildImportPreview([{ title, summary, body, img: imgSrc, category:'Kenya', region:'Kenya', date: new Date().toISOString().split('T')[0] }]);
+  } catch(e){
+    showImportError('Could not read Word file: '+e.message);
+  }
+}
+
+async function parsePdf(buffer){
+  try {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    const pdf = await pdfjsLib.getDocument({data: buffer}).promise;
+    let allText = '';
+    let imgDataUrl = '';
+    // Extract text from all pages
+    for(let p = 1; p <= pdf.numPages; p++){
+      const page = await pdf.getPage(p);
+      // Try to grab first image from first page
+      if(p === 1 && !imgDataUrl){
+        try {
+          const ops = await page.getOperatorList();
+          const objs = page.objs;
+          for(let i = 0; i < ops.fnArray.length; i++){
+            if(ops.fnArray[i] === pdfjsLib.OPS.paintImageXObject){
+              const imgName = ops.argsArray[i][0];
+              await new Promise(resolve => {
+                objs.get(imgName, imgObj => {
+                  if(imgObj && imgObj.bitmap && !imgDataUrl){
+                    try {
+                      const canvas = document.createElement('canvas');
+                      canvas.width = imgObj.width;
+                      canvas.height = imgObj.height;
+                      const ctx = canvas.getContext('2d');
+                      ctx.drawImage(imgObj.bitmap, 0, 0);
+                      imgDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                    } catch(e){}
+                  }
+                  resolve();
+                });
+              });
+              if(imgDataUrl) break;
+            }
+          }
+        } catch(e){}
+      }
+      const content = await page.getTextContent();
+      const pageText = content.items.map(i=>i.str).join(' ');
+      allText += pageText + '\n';
+    }
+    // Split into lines, clean up
+    const lines = allText.split('\n').map(l=>l.trim()).filter(Boolean);
+    if(lines.length === 0){ showImportError('No text found in PDF.'); return; }
+    const title = lines[0];
+    const summary = lines[1] || '';
+    const body = lines.slice(2).join('\n\n');
+    buildImportPreview([{ title, summary, body, img: imgDataUrl, category:'Kenya', region:'Kenya', date: new Date().toISOString().split('T')[0] }]);
+  } catch(e){
+    showImportError('Could not read PDF: '+e.message);
+  }
+}
+
+function parseCSV(text){
+  const lines = text.trim().split(/\r?\n/);
+  if(lines.length < 2){ showImportError('CSV is empty or has no data rows.'); return; }
+  const headers = lines[0].split(',').map(h=>h.trim().replace(/^"|"$/g,'').toLowerCase());
+  const rows = [];
+  for(let i=1;i<lines.length;i++){
+    const cols = lines[i].match(/('[^']*'|"[^"]*"|[^,]+|(?<=,)(?=,)|^(?=,)|(?<=,)$)/g) || lines[i].split(',');
+    const obj = {};
+    headers.forEach((h,idx)=>{ obj[h] = (cols[idx]||'').trim().replace(/^"|"$/g,''); });
+    if(obj.title) rows.push(obj);
+  }
+  buildImportPreview(rows);
+}
+
+function parseExcel(buffer){
+  try {
+    const wb = XLSX.read(buffer, {type:'arraybuffer'});
+    const ws = wb.Sheets[wb.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(ws, {defval:''});
+    const normalized = rows.map(r=>{
+      const obj={};
+      Object.keys(r).forEach(k=>{ obj[k.toLowerCase().trim()]=String(r[k]||'').trim(); });
+      return obj;
+    }).filter(r=>r.title);
+    buildImportPreview(normalized);
+  } catch(e){
+    showImportError('Could not read Excel file: '+e.message);
+  }
+}
+
+function buildImportPreview(rows){
+  if(rows.length===0){ showImportError('No valid articles found. Make sure your file has a "title" column.'); return; }
+  const maxId = ARTICLES.length>0 ? Math.max(...ARTICLES.map(a=>a.id)) : 0;
+  importedArticles = rows.map((r,i)=>({
+    id: maxId + i + 1,
+    title:    r.title||'',
+    category: r.category||'Kenya',
+    region:   r.region||'Kenya',
+    date:     r.date||new Date().toISOString().split('T')[0],
+    img:      r.img||r.image||r.imageurl||'',
+    summary:  r.summary||'',
+    body:     r.body||r.content||r.article||'',
+    teaser:   r.teaser||''
+  }));
+  document.getElementById('importPreviewCount').textContent = '✅ '+importedArticles.length+' article'+(importedArticles.length>1?'s':'')+' ready to import';
+  document.getElementById('importPreviewList').innerHTML = importedArticles.slice(0,10).map((a,i)=>{
+    const imgThumb = a.img ? '<img src="'+a.img+'" style="width:48px;height:36px;object-fit:cover;border-radius:4px;margin-right:8px;vertical-align:middle;flex-shrink:0;" onerror="this.style.display=\'none\'">' : '';
+    return '<div style="padding:6px 0;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;">'+imgThumb+'<span>'+(i+1)+'. '+a.title+'</span></div>';
+  }).join('') + (importedArticles.length>10 ? '<div style="color:#555;padding:4px 0;">...and '+(importedArticles.length-10)+' more</div>' : '');
+  document.getElementById('importPreview').style.display='block';
+  document.getElementById('importBtn').style.display='block';
+}
+
+function doImport(){
+  if(importedArticles.length===0) return;
+  ARTICLES = [...importedArticles, ...ARTICLES];
+  renderList();
+  closeImport();
+  showToast('⏳ Imported '+importedArticles.length+' articles — publishing...');
+  publishToGitHub();
+}
+
+function showImportError(msg){
+  const el = document.getElementById('importError');
+  el.textContent = '❌ '+msg;
+  el.style.display='block';
+}
+
+function downloadTemplate(){
+  const csv = 'title,category,region,date,img,summary,body,teaser\n' +
+    '"Sample Article Title",Kenya,Nairobi,2026-03-14,"https://images.unsplash.com/photo-1495020689067-958852a7765e?w=800","Short summary here.","Full article body text here.","🔥 Teaser for social media!"';
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([csv],{type:'text/csv'}));
+  a.download = 'hustle254_template.csv';
+  a.click();
+}
+</script>
+
+<!-- IMPORT MODAL -->
+<div id="importModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:999;align-items:center;justify-content:center;">
+  <div style="background:#141418;border:1px solid #2a2a35;border-top:3px solid #0d419d;border-radius:12px;padding:32px;width:560px;max-width:95vw;max-height:90vh;overflow-y:auto;">
+    <div style="font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;">📂 Import Articles</div>
+    <div style="font-size:12px;color:#666;margin-bottom:24px;">Upload CSV or Excel (bulk) — or a single Word / PDF article with its image embedded</div>
+
+    <!-- Format guide -->
+    <div style="background:#0d0d0f;border:1px solid #2a2a35;border-radius:8px;padding:16px;margin-bottom:20px;">
+      <div style="font-size:11px;font-weight:700;color:#0d419d;letter-spacing:1px;margin-bottom:8px;">SUPPORTED FORMATS</div>
+      <div style="font-size:11px;color:#888;line-height:2;">
+        <span style="color:#e8192c;font-family:monospace;">.csv / .xlsx</span> — Bulk import many articles. Needs columns: <span style="color:#fff;font-family:monospace;">title, category, region, date, img, summary, body, teaser</span><br>
+        <span style="color:#e8192c;font-family:monospace;">.docx</span> — Single article from Word. <strong style="color:#fff;">Structure:</strong> insert image first → title as heading → summary paragraph → full body below<br>
+        <span style="color:#e8192c;font-family:monospace;">.pdf</span> — Single article from PDF. First line = title, second line = summary, rest = body. First image extracted automatically.
+      </div>
+      <button onclick="downloadTemplate()" style="margin-top:12px;background:none;border:1px solid #333;color:#58a6ff;font-size:11px;padding:6px 12px;border-radius:6px;cursor:pointer;">⬇ Download CSV Template</button>
+    </div>
+
+    <!-- File drop zone -->
+    <div id="dropZone" style="border:2px dashed #2a2a35;border-radius:8px;padding:32px;text-align:center;cursor:pointer;transition:border-color 0.2s;margin-bottom:16px;"
+      onclick="document.getElementById('fileInput').click()"
+      ondragover="event.preventDefault();this.style.borderColor='#0d419d'"
+      ondragleave="this.style.borderColor='#2a2a35'"
+      ondrop="handleDrop(event)">
+      <div style="font-size:32px;margin-bottom:8px;">📁</div>
+      <div style="font-size:13px;color:#888;">Click to browse or drag & drop your file here</div>
+      <div style="font-size:11px;color:#555;margin-top:4px;">Supports: .csv, .xlsx, .xls, .docx, .pdf</div>
+      <input type="file" id="fileInput" accept=".csv,.xlsx,.xls,.docx,.pdf" style="display:none;" onchange="handleFileSelect(event)">
+    </div>
+
+    <!-- Preview -->
+    <div id="importPreview" style="display:none;">
+      <div style="font-size:12px;font-weight:700;color:#3fb950;margin-bottom:8px;" id="importPreviewCount"></div>
+      <div style="background:#0d0d0f;border:1px solid #2a2a35;border-radius:6px;max-height:180px;overflow-y:auto;padding:10px;font-size:11px;color:#888;" id="importPreviewList"></div>
+    </div>
+
+    <!-- Error -->
+    <div id="importError" style="display:none;color:#ff6b6b;font-size:12px;margin-top:8px;"></div>
+
+    <!-- Actions -->
+    <div style="display:flex;gap:10px;margin-top:20px;">
+      <button id="importBtn" onclick="doImport()" style="display:none;background:#238636;border:none;color:#fff;font-size:13px;font-weight:700;padding:10px 24px;border-radius:6px;cursor:pointer;">✅ Import & Publish</button>
+      <button onclick="closeImport()" style="background:none;border:1px solid #333;color:#888;font-size:13px;padding:10px 20px;border-radius:6px;cursor:pointer;">Cancel</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
